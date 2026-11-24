@@ -238,7 +238,17 @@ body button[type],body button:not([type]){min-width:44px;min-height:44px}
 #award-toast{bottom:auto;top:max(10px,env(safe-area-inset-top))}
 
 #round-back,.feedback-nav a,.feedback-nav button{display:inline-flex;align-items:center;justify-content:center;min-height:44px;min-width:44px;padding:9px 12px;border:1px solid #867599;border-radius:5px;background:#322c40;color:#f6effb;font:650 14px/1.25 var(--sans);text-decoration:none;text-align:center;margin:0}
-#round-back{margin:0 0 12px;gap:8px;font-size:16px}
+.round-navigation{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px 16px;margin-bottom:12px}
+#round-back{gap:8px;font-size:16px}
+#round-team{justify-content:center;min-height:52px;padding:10px 20px;text-align:center;font-size:clamp(17px,2vw,20px);font-weight:800}
+#round-team:focus-visible{outline:3px solid #ffe5aa;outline-offset:2px}
+#guest-team-note{margin:8px 0 12px;display:flex;align-items:center;flex-wrap:wrap;gap:6px 12px}
+#guest-team-note a{min-height:44px}
+#team-invite{width:min(28rem,calc(100% - 32px));padding:20px;background:#242036;color:#f6effb;border:2px solid #afa1ce;border-radius:6px}
+#team-invite::backdrop{background:rgba(12,10,24,.78)}
+#team-invite h2{margin:0}#team-invite p{margin:10px 0 16px}
+.team-invite-actions{display:flex;flex-wrap:wrap;gap:8px}
+#team-invite :focus-visible{outline:3px solid #ffe5aa;outline-offset:2px}
 #feedback[hidden]+.feedback-nav,.feedback-nav[hidden]{display:none}
 .feedback-nav{position:fixed;z-index:15;bottom:0;left:0;right:0;margin:0;display:flex;flex-wrap:nowrap;gap:8px;align-items:center;justify-content:center;background:#211d2e;border-top:1px solid #79698a;padding:8px max(8px,env(safe-area-inset-right)) max(8px,calc(6px + env(safe-area-inset-bottom))) max(8px,env(safe-area-inset-left))}
 .feedback-nav button,.feedback-nav a{flex:0 1 auto}.feedback-nav .retry{box-shadow:none}
@@ -637,7 +647,10 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;ba
   <details id="market-panel" class="objectives" hidden><summary>Saudi-market references</summary><p class="source" id="market-note"></p><ul id="market-list"></ul></details>
 </main>
 <main class="wrap" id="game" hidden>
-  <a class="back" id="round-back" href="#library">‹ Back to lectures</a>
+  <nav class="round-navigation" aria-label="Lecture navigation">
+    <a class="back" id="round-back" href="#library">‹ Back to lectures</a>
+    <a class="play-link" id="round-team" href="#championship" hidden>Join a team</a>
+  </nav>
 
 <p id="champ-round-note" hidden></p><p id="champ-round-sync" role="status"></p>
 <section class="brief" id="brief" aria-labelledby="lecture"><div class="brief-title"><span class="tag" id="case-tag"></span><h2 id="lecture" aria-describedby="case-tag"></h2></div><section class="round-objectives" aria-labelledby="round-objectives-title" hidden><h3 id="round-objectives-title">Learning objective</h3><ul id="round-objectives-list"></ul></section><p id="vignette"></p><p class="question" id="question"></p></section>
@@ -992,10 +1005,19 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;ba
 </section>
 
 </div>
-<section class="feedback" id="feedback" tabindex="-1" hidden aria-labelledby="result-title"><div class="verdict" id="verdict"></div><div id="crew-reward" role="status" hidden><span id="crew-arrival-pair" aria-hidden="true"></span><strong id="crew-reward-title"></strong><br><span id="crew-reward-names"></span> <a href="#hangar">Visit crew hangar</a></div><h2 id="result-title"></h2><p class="completion-note" id="lecture-completion" hidden></p><p id="chosen-why"></p><span class="source" id="chosen-source"></span><h3>Other choices</h3><div id="other-choices"></div></section>
+<section class="feedback" id="feedback" tabindex="-1" hidden aria-labelledby="result-title"><div class="verdict" id="verdict"></div><div id="guest-team-note" hidden><span id="guest-team-message"></span><a class="next-link" href="#championship">Choose a team</a></div><div id="crew-reward" role="status" hidden><span id="crew-arrival-pair" aria-hidden="true"></span><strong id="crew-reward-title"></strong><br><span id="crew-reward-names"></span> <a href="#hangar">Visit crew hangar</a></div><h2 id="result-title"></h2><p class="completion-note" id="lecture-completion" hidden></p><p id="chosen-why"></p><span class="source" id="chosen-source"></span><h3>Other choices</h3><div id="other-choices"></div></section>
 <nav class="feedback-nav" id="feedback-nav" aria-label="Round actions"><button class="next-link" id="next" type="button">Next target</button><button class="retry" id="retry" type="button">Try Again</button><a href="#library" id="leave-round">Back to lectures</a></nav>
 <footer class="foot"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M1 3h4q2 0 3 2 1-2 3-2h4v10h-4q-2 0-3 1-1-1-3-1H1zM8 5v9"/></svg><span id="source-note"></span></footer>
 </main>
+<dialog id="team-invite" hidden aria-labelledby="team-invite-title" aria-describedby="team-invite-detail">
+  <h2 id="team-invite-title">Which team should get your points?</h2>
+  <p id="team-invite-detail"></p>
+  <div class="team-invite-actions">
+    <button type="button" class="next-link" data-team="sara">Team Dr. Wanda</button>
+    <button type="button" class="next-link" data-team="omar">Team Dr. Strange</button>
+    <button type="button" class="next-link" id="team-invite-later">Keep practicing</button>
+  </div>
+</dialog>
 <dialog id="story" aria-labelledby="story-title">
   <h2 id="story-title" class="sr-only">Distress call from Asgard</h2>
   <svg id="story-art" viewBox="0 0 640 360" aria-hidden="true">
@@ -1008,13 +1030,14 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;ba
     <rect width="640" height="360" fill="url(#story-sky)"/>
     <g id="story-stars"/>
     <g id="story-orbit">
+      <g id="story-drift"/>
       <g transform="translate(108 93) rotate(-18)">
         <ellipse rx="104" ry="22" fill="none" stroke="#9b80a8" stroke-width="5"/>
         <path d="M-45-24h6v-12h17v-10h44v9h17v12h9v52h-10v12h-18v8h-43v-8h-15V27h-10z" fill="#9d7288"/>
         <path d="M-45-23h86v8h-86zm-2 17h94v11h-94zm4 21h88v9h-88z" fill="#c98f89"/>
         <path d="M-104 0a104 22 0 0 0 208 0" fill="none" stroke="#e3b9a6" stroke-width="4"/>
       </g>
-      <g transform="translate(423 126)" shape-rendering="crispEdges">
+      <g id="story-approach-planet" transform="translate(423 126)" shape-rendering="crispEdges">
         <defs>
           <clipPath id="story-asgard-disc"><path d="M-113-42h13v-24h20v-20h24v-15h28v-8h65v8h28v15h23v20h16v24h12v79h-12v24H87v22H63v15H36v9h-65v-9h-28V83h-23V61h-20V38h-13z"/></clipPath>
         </defs>
@@ -1031,14 +1054,16 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;ba
       <g id="story-flyby"><g transform="scale(.7)" id="story-flight-ship"/></g>
     </g>
     <g id="story-transmission" font-family="monospace">
-      <path d="M28 171h505l19 19v133H28z" fill="#11182a" stroke="#b67d98" stroke-width="2"/>
-      <path d="M29 208h521" stroke="#395964"/>
-      <path id="story-signal" d="M48 195v-8m9 8v-12m9 12v-17" stroke="#fb9c91" stroke-width="4"/>
-      <text x="91" y="196" font-size="14" font-weight="700" fill="#ffb19e" letter-spacing="1.6">DISTRESS CALL / ASGARD</text>
-      <text x="47" y="238" font-size="20" font-weight="700" fill="#f7f3e9">
-        <tspan x="47" id="story-first-line"/>
-        <tspan x="47" dy="33" id="story-second-line"/>
-        <tspan x="47" dy="24" id="story-third-line"/>
+      <!-- Canopy struts and the physical receiver share the pilot's frame of reference. -->
+      <path d="M0 0h90L39 61 0 112zm640 0h-52l52 62zM0 149l95 72 80 20 465-41v160H0z" fill="#12192b" stroke="#53617a" stroke-width="4"/>
+      <path d="M0 165l90 66 91 23 459-41M16 24l12-14h36" stroke="#97b8c5" fill="none" stroke-width="3"/>
+      <path d="M10 260l114-15 47 24v69H10z" fill="#202d40" stroke="#384d61" stroke-width="2"/>
+      <g id="story-receiver" transform="translate(86 297)"/>
+      <path d="M170 240l414-34 36 25v103H170z" fill="#111e30" stroke="#53657c" stroke-width="2"/>
+      <path id="story-signal" d="M186 254v-5m6 5v-9m6 9v-13" stroke="#ff9b77" stroke-width="3"/>
+      <text x="211" y="252" font-size="12" font-weight="bold" letter-spacing="1.4" fill="#ffc29e">PRIORITY SIGNAL / ASGARD</text>
+      <text x="187" y="277" font-size="16" font-weight="bold" fill="#f4f7eb">
+        <tspan x="187" id="story-first-line"/><tspan x="187" dy="21" id="story-second-line"/><tspan x="187" dy="21" id="story-third-line"/>
       </text>
     </g>
     <g id="story-dock">
@@ -1076,7 +1101,10 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;ba
       <path d="M482 180h139" stroke="#efaba2" stroke-width="3"/>
       <path d="M0 260h640v100H0z" fill="#29283f"/>
       <path d="M0 262h640M0 291h640M0 335h640M107 261l-58 99m192-99-22 99m179-99 25 99m105-99 66 99" stroke="#51496c" fill="none" stroke-width="2"/>
+      <g transform="translate(385 196) scale(.55)"><path d="M125 120v30h25m130-37v27h19" fill="none" stroke="#96abb6" stroke-width="5"/><g id="story-ambulance"/></g>
+      <g id="story-pad-dust"/>
       <g id="story-landed-ship">
+        <path id="story-landing-light" d="M314 255l86 36-103 0z" fill="#b5e7eb" opacity=".18"/>
         <g transform="translate(-62 95) scale(1.35)" id="story-dock-ship"/>
         <g id="story-hatch">
           <defs><clipPath id="story-hatch-opening"><path d="M174 206h42v47h-42z"/></clipPath></defs>
@@ -1111,6 +1139,7 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;ba
       </g>
       <g id="story-lasers"/>
       <g id="story-impacts"/>
+      <path id="story-pad-glint" d="M71 300l326-23 188 7-326 24z" fill="#ffcc9f" opacity="0"/>
     </g>
     <g id="story-reflection">
       <rect width="640" height="360" fill="#30334c"/>
@@ -1138,6 +1167,7 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;ba
       <path d="M319 102h21l8-9 9 20 12-32 11 21h31" fill="none" stroke="#b6f0a1" stroke-width="3"/>
       <path d="M0 222h640v138H0z" fill="#33304d"/>
       <path d="M0 224h640M0 256h640M0 301h640M95 224l-55 136m199-136-21 136m186-136 23 136m101-136 63 136" fill="none" stroke="#524c69" stroke-width="2"/>
+      <g id="story-other-patients"/>
       <g id="story-bed" transform="translate(108 119) scale(2.3)"/>
       <g id="story-elder" transform="translate(108 119) scale(2.3)">
         <path id="story-elder-hand" d="M30 66h-7v-2h-4v-3h-4v-9h5v5h3v4h8z" fill="#afa58d" stroke="#292436" stroke-width="1.3"/>
@@ -1146,25 +1176,45 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;ba
       <g id="story-ward-strange" transform="translate(282 198) scale(1.42)"/>
       <g id="story-ward-threats"/>
       <g id="story-ward-bolts"/>
+      <g id="story-guard"/>
       <g id="story-speech">
-        <path d="M45 127h119v32H84l-9 9v-9H45z" fill="#e8f2ee" stroke="#27263c" stroke-width="2"/>
-        <text x="56" y="149" fill="#25263c" font-family="monospace" font-size="16" font-weight="700">WE’RE HERE.</text>
+        <path d="M44 137h233v32h-51l-11 15v-15H44z" fill="#e8f2ee" stroke="#27263c" stroke-width="2"/>
+        <text x="55" y="158" fill="#25263c" font-family="monospace" font-size="16" font-weight="700">Dr pls don't leave us !</text>
       </g>
     </g>
-    <g id="story-reinforcements" font-family="monospace">
-      <rect width="640" height="360" fill="#0c1427" opacity=".92"/>
-      <path d="M43 60h528l26 26v213H43z" fill="#171c32" stroke="#a197c4" stroke-width="2"/>
-      <path d="M43 99h554" stroke="#595c80" stroke-width="2"/>
-      <path d="M58 83h9v-8h8v-7h7v15z" fill="#c9f7d9"/>
-      <text x="96" y="84" fill="#c9f7d9" font-size="16" letter-spacing="1.4" font-weight="bold">CREW CHANNEL</text>
-      <text x="61" y="132" fill="#f9f4ed" font-size="23" font-weight="bold">We need reinforcements.</text>
-      <text id="story-reinforce-line" x="61" y="164" fill="#e2d5f0" font-size="18">Doom, Storm, bring the team.</text>
-      <g id="story-reinforce-pilots">
-        <path d="M64 190h252v84H64zm260 0h252v84H324z" fill="#262c46" stroke="#685c80" stroke-width="2"/>
-        <g id="story-call-doom" transform="translate(75 195) scale(.79)"/>
-        <g id="story-call-storm" transform="translate(334 195) scale(.79)"/>
-        <text x="129" y="239" fill="#f9f4ed" font-size="22" font-weight="bold">DR. DOOM</text>
-        <text x="394" y="239" fill="#f9f4ed" font-size="22" font-weight="bold">DR. STORM</text>
+    <g id="story-dialogue" font-family="monospace">
+      <path d="M16 276h608v72H16z" fill="#101829" stroke="#6b8797" stroke-width="2"/>
+      <path d="M17 277h5v70h-5z" fill="#a3e6e6"/>
+      <text id="story-speaker" x="32" y="296" font-size="13" font-weight="bold" fill="#a3e6e6"/>
+      <text x="32" y="317" font-size="17" font-weight="bold" fill="#fcf3df"><tspan id="story-quote"/><tspan x="32" dy="21" id="story-quote-next"/></text>
+    </g>
+    <g id="story-doom-scene" font-family="monospace">
+      <rect width="640" height="360" fill="#0b1923"/>
+      <path d="M8 13h625v162l-53 46H66L8 170z" fill="url(#story-sky)" stroke="#4d6969" stroke-width="5"/>
+      <g id="story-doom-stars"/>
+      <path d="M8 13h68L15 114zM632 13h-52l52 102zM255 13h11l-28 127h-12zM12 180l92 27h248v108H0z" fill="#233643" stroke="#475856" stroke-width="3"/>
+      <path d="M12 350v-97l34-34h76l49 48v83" fill="#242b39" stroke="#667074" stroke-width="4"/>
+      <g id="story-call-doom" transform="translate(55 111) scale(2.67)"/>
+      <path d="M3 314l166-26 88-50 80 7v110H3z" fill="#222e38" stroke="#637678" stroke-width="3"/>
+      <path d="M32 322l81-12m20-4 28-5m19-13 35-18" fill="none" stroke="#b4d295" stroke-width="4"/>
+      <path d="M316 85h278l22 19v212H292V111z" fill="#192831" stroke="#82918c" stroke-width="3"/>
+      <path d="M304 131h300v167H304z" fill="#0c1e26" stroke="#47615e" stroke-width="2"/>
+      <text x="316" y="116" font-size="15" font-weight="bold" fill="#c8dfb4">DOOM  /  LONG-RANGE RADAR</text>
+      <g id="story-doom-radar" transform="translate(391 210)"/>
+      <path d="M466 150v127" stroke="#49645f"/>
+      <text x="478" y="178" font-size="12" fill="#9ebcae">DISTRESS BEACON</text>
+      <text x="478" y="204" font-size="21" font-weight="bold" fill="#ffcf96">ASGARD</text>
+      <text id="story-lock-status" x="478" y="232" font-size="13" fill="#b8eed1"/>
+      <text x="40" y="53" font-size="14" font-weight="bold" fill="#f5ead3">DR. DOOM’S SHIP</text>
+    </g>
+    <g id="story-launch">
+      <rect width="640" height="360" fill="url(#story-sky)"/>
+      <g id="story-launch-stars"/>
+      <g id="story-launch-world"/>
+      <g id="story-depart"><g id="story-drive"/><g id="story-doom-ship"/></g>
+      <g font-family="monospace"><path d="M22 252h362l16 16v62H22z" fill="#101d2b" stroke="#607a78" stroke-width="2"/>
+        <text x="37" y="275" font-size="14" fill="#a4dfbb" font-weight="bold">DR. DOOM  /  CREW CHANNEL</text>
+        <text x="37" y="308" font-size="21" fill="#faf2db" font-weight="bold">Hold on. We’re on our way.</text>
       </g>
     </g>
     <g id="story-end">
@@ -1175,7 +1225,7 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;ba
       <text x="320" y="263" text-anchor="middle" fill="#adc7e1" font-family="monospace" font-size="14">dosearcade.github.io/dose-arcade</text>
     </g>
   </svg>
-  <p class="sr-only">Star’s Thera picks up a distress call from Asgard. A bacterial epidemic has swept through the city. Dr. Wanda and Dr. Strange reach a patient, whose room is blocked by bacteria with energy shields, and call Dr. Doom and Dr. Storm for reinforcements. You make the next decision.</p>
+  <p class="sr-only">Asgard calls Star’s Thera for help. The ship clears a landing zone at the emergency ward. Dr. Wanda and Dr. Strange descend the ramp and fight their way past shielded bacteria to protect three patients. Strange asks Wanda to call Dr. Doom, Dr. Storm and the rest of the crew. Doom locks onto Asgard’s signal and launches his ship.</p>
   <div class="story-controls">
     <button type="button" id="story-sound">Enable sound</button>
     <button type="button" id="story-skip">Skip intro</button>
@@ -1240,12 +1290,12 @@ const lectures = [
         "id": "principles-exposure",
         "level": 1,
         "number": null,
-        "title": "Recognize the aminoglycoside killing pattern",
+        "title": "Identify a killing pattern",
         "objectiveIds": [
           "pkpd",
           "drugs"
         ],
-        "learningObjective": "Identify concentration-dependent killing as a property of aminoglycosides.",
+        "learningObjective": "Relate antibiotic exposure to bacterial killing.",
         "vignette": "",
         "vignettePages": [],
         "question": "Which antibiotic class exhibits concentration-dependent killing?",
@@ -1402,7 +1452,7 @@ const lectures = [
           "practice"
         ],
         "learningObjective": "Use the infection site and the enterococcal VanA phenotype to select treatment.",
-        "vignette": "A patient has confirmed pneumonia caused by vancomycin-resistant Enterococcus. The lab detects vanA and reports that the isolate is susceptible to both daptomycin and linezolid.",
+        "vignette": "A patient has confirmed pneumonia caused by vancomycin-resistant Enterococcus. Molecular testing detects vanA.",
         "vignettePages": [
           61,
           62,
@@ -1421,7 +1471,7 @@ const lectures = [
           {
             "id": "daptomycin",
             "name": "Daptomycin",
-            "explanation": "The isolate tests susceptible, but lung surfactant inactivates daptomycin at the site of pneumonia.",
+            "explanation": "Daptomycin can cover VRE, but lung surfactant inactivates it at the site of pneumonia.",
             "pages": [
               62
             ]
@@ -1437,7 +1487,7 @@ const lectures = [
           {
             "id": "linezolid",
             "name": "Linezolid",
-            "explanation": "Linezolid covers VRE, and this isolate tests susceptible. It is the active option for pneumonia among these three choices.",
+            "explanation": "Linezolid covers VRE and is the appropriate pulmonary treatment among these choices. VanA rules out teicoplanin, and lung surfactant inactivates daptomycin.",
             "pages": [
               61,
               62,
@@ -1453,19 +1503,19 @@ const lectures = [
         "organism": "pseudomonas",
         "level": 2,
         "number": 8,
-        "title": "Identify the highlighted combination for Pseudomonas",
+        "title": "Select a combination for a resistant isolate",
         "objectiveIds": [
           "organisms",
           "drugs"
         ],
-        "learningObjective": "Identify the highlighted combination for Pseudomonas",
-        "vignette": "A hospital patient has an infection due to multidrug-resistant P. aeruginosa. The team wants susceptibility results for the newer cephalosporin paired with tazobactam.",
+        "learningObjective": "Select antibiotic coverage for a resistant gram-negative organism.",
+        "vignette": "A hospitalized patient has an infection caused by multidrug-resistant P. aeruginosa. The isolate is resistant to antipseudomonal penicillins.",
         "vignettePages": [
           38,
           41
         ],
-        "question": "Which combination should the pharmacist look for on the report?",
-        "decisiveClue": "The requested combination pairs a cephalosporin with tazobactam and is highlighted for MDR Pseudomonas.",
+        "question": "Which combination is an appropriate option to evaluate for treatment?",
+        "decisiveClue": "The organism is MDR Pseudomonas, and penicillin-based therapy is ruled out by the resistance report. The lecture highlights ceftolozane/tazobactam for MDR Pseudomonas.",
         "decisiveCluePages": [
           38,
           41
@@ -1484,7 +1534,7 @@ const lectures = [
           {
             "id": "piperacillin-tazobactam",
             "name": "Piperacillin/tazobactam",
-            "explanation": "This penicillin combination can cover susceptible Pseudomonas. Its partner drug is a penicillin, so this is a different product from the cephalosporin combination requested.",
+            "explanation": "Piperacillin is an antipseudomonal penicillin. The reported penicillin resistance makes this combination unsuitable for the isolate in the case.",
             "pages": [
               38,
               41
@@ -1493,7 +1543,7 @@ const lectures = [
           {
             "id": "ceftolozane-tazobactam",
             "name": "Ceftolozane/tazobactam",
-            "explanation": "The newer cephalosporin slide highlights this combination for MDR Pseudomonas. Its entry on the susceptibility report is the one the team needs to review.",
+            "explanation": "The newer cephalosporin slide highlights ceftolozane/tazobactam for MDR Pseudomonas. It is the appropriate option among these choices to evaluate against the isolate.",
             "pages": [
               41
             ]
@@ -1560,17 +1610,17 @@ const lectures = [
         "id": "principles-gentamicin-safety",
         "level": 3,
         "number": 14,
-        "title": "Investigate a new hearing complaint",
+        "title": "Plan treatment monitoring",
         "objectiveIds": [
           "drugs"
         ],
-        "learningObjective": "Investigate a new hearing complaint",
-        "vignette": "An older patient with reduced renal function reports new hearing difficulty during gentamicin therapy.",
+        "learningObjective": "Select safety monitoring for antibiotic therapy.",
+        "vignette": "An older patient with reduced renal function is starting gentamicin therapy.",
         "vignettePages": [
           29
         ],
-        "question": "Which monitoring plan most directly addresses these clues?",
-        "decisiveClue": "The combination of hearing change, reduced renal function, and gentamicin raises concern for aminoglycoside toxicity.",
+        "question": "Which monitoring plan is most appropriate?",
+        "decisiveClue": "Gentamicin requires monitoring of drug concentrations, renal function and hearing; older age and impaired renal function increase concern.",
         "decisiveCluePages": [
           29
         ],
@@ -1580,7 +1630,7 @@ const lectures = [
           {
             "id": "ecg-and-liver-tests",
             "name": "ECG and liver tests",
-            "explanation": "These are highlighted monitoring parameters for macrolides. They would not directly assess hearing change or gentamicin exposure in this patient.",
+            "explanation": "ECG and liver tests are highlighted for other antibiotic classes. This plan omits the drug concentrations, renal function and hearing monitoring needed with gentamicin.",
             "pages": [
               29,
               54
@@ -1589,7 +1639,7 @@ const lectures = [
           {
             "id": "hearing-renal-function-and-drug-levels",
             "name": "Hearing, renal function and drug levels",
-            "explanation": "Gentamicin can cause ototoxicity and nephrotoxicity. The lecture highlights hearing, renal function, and regimen-appropriate concentration monitoring.",
+            "explanation": "The lecture recommends monitoring gentamicin concentrations, renal function and hearing. Older age and renal impairment make this safety plan particularly important.",
             "pages": [
               29
             ]
@@ -1597,7 +1647,7 @@ const lectures = [
           {
             "id": "platelets-and-blood-count",
             "name": "Platelets and blood count",
-            "explanation": "Platelet monitoring is emphasized for linezolid-associated myelosuppression. It does not assess the hearing complaint or gentamicin clearance.",
+            "explanation": "Platelet monitoring is emphasized for linezolid-associated myelosuppression. It does not provide the gentamicin concentration, renal function and hearing monitoring needed here.",
             "pages": [
               29,
               63
@@ -1714,12 +1764,12 @@ const lectures = [
         "id": "principles-clindamycin",
         "level": 3,
         "number": 22,
-        "title": "Recognize a highlighted antibiotic warning",
+        "title": "Evaluate a new symptom",
         "objectiveIds": [
           "drugs"
         ],
-        "learningObjective": "Recognize a highlighted antibiotic warning",
-        "vignette": "A patient develops significant diarrhea during clindamycin therapy. The pharmacist reviews the specific warning highlighted on the slide.",
+        "learningObjective": "Recognize an antibiotic-associated complication.",
+        "vignette": "A patient develops significant diarrhea during clindamycin therapy.",
         "vignettePages": [
           65
         ],
@@ -1773,13 +1823,13 @@ const lectures = [
           "practice"
         ],
         "learningObjective": "Match MRSA activity to the infection site",
-        "vignette": "A patient has MRSA pneumonia. The isolate tests susceptible to both linezolid and daptomycin, and the team is reviewing which drug retains activity in the lung.",
+        "vignette": "A patient has pneumonia caused by MRSA. The team is selecting directed antibiotic therapy.",
         "vignettePages": [
           41,
           62,
           63
         ],
-        "question": "Which option has activity against the isolate at this site?",
+        "question": "Which antibiotic is most appropriate for this infection?",
         "decisiveClue": "MRSA susceptibility favors linezolid, while lung surfactant inactivates daptomycin.",
         "decisiveCluePages": [
           41,
@@ -1800,7 +1850,7 @@ const lectures = [
           {
             "id": "linezolid",
             "name": "Linezolid",
-            "explanation": "Linezolid covers MRSA, and this patient’s isolate is susceptible. It fits the pneumonia case among the listed options.",
+            "explanation": "Linezolid covers MRSA and is appropriate for the pulmonary infection among these choices. Daptomycin loses activity in the lung, and ceftriaxone lacks MRSA coverage.",
             "pages": [
               62,
               63
@@ -1822,16 +1872,16 @@ const lectures = [
         "id": "principles-muscle",
         "level": 4,
         "number": 27,
-        "title": "Choose the monitoring test for muscle injury",
+        "title": "Select follow-up testing",
         "objectiveIds": [
           "drugs"
         ],
-        "learningObjective": "Choose the monitoring test for muscle injury",
-        "vignette": "A patient receiving daptomycin develops new muscle pain while also taking a statin. The pharmacist reviews the adverse-effect monitoring plan.",
+        "learningObjective": "Choose monitoring based on the antibiotic and patient factors.",
+        "vignette": "A patient receiving daptomycin while also taking a statin reports new muscle pain.",
         "vignettePages": [
           62
         ],
-        "question": "Which test most directly evaluates the highlighted muscle toxicity?",
+        "question": "Which test should the pharmacist request?",
         "decisiveClue": "Daptomycin is associated with rhabdomyolysis and the slide highlights additional concern with statins.",
         "decisiveCluePages": [
           62
@@ -2078,11 +2128,11 @@ const lectures = [
         "id": "amr-beta-lactamase-spectrum",
         "number": 17,
         "level": 1,
-        "title": "Distinguish ESBL from other beta-lactamases",
+        "title": "Interpret an enzyme result",
         "objectiveIds": [
           "enzymes"
         ],
-        "learningObjective": "Distinguish a CTX-M ESBL from broad-spectrum beta-lactamases and AmpC.",
+        "learningObjective": "Classify beta-lactamases using laboratory findings.",
         "vignette": "",
         "vignettePages": [],
         "question": "An Enterobacterales isolate produces a CTX-M enzyme that hydrolyzes cefotaxime and aztreonam. Which type of beta-lactamase does this finding identify?",
@@ -2235,7 +2285,7 @@ const lectures = [
           "therapy"
         ],
         "learningObjective": "Select an antibiotic or regimen for a resistant isolate using the organism, infection site and susceptibility findings.",
-        "vignette": "A 63-year-old patient has Enterobacter cloacae bacteremia. The laboratory flags AmpC production and reports susceptibility to cefepime.",
+        "vignette": "A 63-year-old patient has Enterobacter cloacae bacteremia. The laboratory identifies AmpC production.",
         "vignettePages": [
           15
         ],
@@ -2256,7 +2306,7 @@ const lectures = [
           {
             "id": "cefepime",
             "name": "Cefepime",
-            "explanation": "Cefepime is listed for AmpC-producing organisms, and this bloodstream isolate tests susceptible.",
+            "explanation": "Cefepime is listed among treatments for AmpC-producing organisms. Unlike ceftriaxone, it is an appropriate choice for this enzyme pattern among the options given.",
             "pages": [
               15
             ]
@@ -2285,13 +2335,13 @@ const lectures = [
           "therapy"
         ],
         "learningObjective": "Select an antibiotic or regimen for a resistant isolate using the organism, infection site and susceptibility findings.",
-        "vignette": "A culture grows MDR P. aeruginosa. It is resistant to cefepime and susceptible to ceftolozane/tazobactam. The team wants a single active antipseudomonal agent.",
+        "vignette": "A culture grows MDR P. aeruginosa. Testing shows resistance to cefepime and susceptibility to both ceftolozane/tazobactam and colistin.",
         "vignettePages": [
           19,
           20
         ],
-        "question": "Which plan best fits the report?",
-        "decisiveClue": "A documented susceptible antipseudomonal agent can be used alone.",
+        "question": "Which definitive regimen is most appropriate?",
+        "decisiveClue": "The lecture allows monotherapy for MDR Pseudomonas when the isolate is susceptible. Two agents test active, but routine addition of colistin is unnecessary.",
         "decisiveCluePages": [
           19,
           20
@@ -2338,13 +2388,13 @@ const lectures = [
           "therapy"
         ],
         "learningObjective": "Select an antibiotic or regimen for a resistant isolate using the organism, infection site and susceptibility findings.",
-        "vignette": "The team plans combination therapy for resistant A. baumannii and wants to include the high-dose sulbactam-containing option highlighted in the lecture.",
+        "vignette": "A hospitalized patient has an infection caused by resistant A. baumannii. The team has started colistin and is considering a second agent.",
         "vignettePages": [
           20,
           21
         ],
-        "question": "Which product supplies that component?",
-        "decisiveClue": "The requested inhibitor is sulbactam in an ampicillin combination.",
+        "question": "Which additional beta-lactam regimen is appropriate?",
+        "decisiveClue": "The lecture recommends combination therapy for resistant A. baumannii and includes high-dose ampicillin/sulbactam among the options.",
         "decisiveCluePages": [
           20,
           21
@@ -2353,7 +2403,7 @@ const lectures = [
           {
             "id": "colistin",
             "name": "Colistin",
-            "explanation": "Colistin appears on the slide as another option for resistant A. baumannii. It does not supply the requested sulbactam component.",
+            "explanation": "Colistin is already part of the regimen. Selecting it again does not add a second agent or provide the requested beta-lactam regimen.",
             "pages": [
               21
             ]
@@ -2369,7 +2419,7 @@ const lectures = [
           {
             "id": "ampicillin-sulbactam",
             "name": "Ampicillin/sulbactam",
-            "explanation": "The A. baumannii slide highlights high-dose ampicillin/sulbactam and specifically circles sulbactam.",
+            "explanation": "The lecture includes high-dose ampicillin/sulbactam for resistant A. baumannii and recommends combination therapy for this organism.",
             "pages": [
               21
             ]
@@ -2391,7 +2441,7 @@ const lectures = [
           "enzymes"
         ],
         "learningObjective": "Select an active regimen for OXA-48-producing CRE bacteremia using the enzyme, susceptibility results and infection site.",
-        "vignette": "Blood cultures grow carbapenem-resistant K. pneumoniae. The enzyme panel detects OXA-48 and no metallo-beta-lactamase. The isolate is susceptible to ceftazidime/avibactam and resistant to meropenem.",
+        "vignette": "Blood cultures grow carbapenem-resistant K. pneumoniae. The enzyme panel detects OXA-48 and no metallo-beta-lactamase.",
         "vignettePages": [
           16
         ],
@@ -2404,7 +2454,7 @@ const lectures = [
           {
             "id": "meropenem",
             "name": "Meropenem alone",
-            "explanation": "The isolate tests resistant to meropenem. The OXA-48 slide lists a carbapenem only as part of a combination.",
+            "explanation": "Meropenem alone is unsuitable for this carbapenem-resistant bloodstream isolate. The OXA-48 slide lists carbapenems as part of combination regimens.",
             "pages": [
               16
             ]
@@ -2420,7 +2470,7 @@ const lectures = [
           {
             "id": "ceftazidime-avibactam",
             "name": "Ceftazidime/avibactam",
-            "explanation": "The lecture highlights avibactam against OXA-48 and lists ceftazidime/avibactam as an option. This bloodstream isolate tests susceptible to the combination.",
+            "explanation": "The lecture highlights avibactam against OXA-48 and lists ceftazidime/avibactam for organisms producing this enzyme. Among these options, it fits the bloodstream infection and enzyme pattern.",
             "pages": [
               16
             ]
@@ -2441,7 +2491,7 @@ const lectures = [
           "enzymes"
         ],
         "learningObjective": "Select an active regimen for NDM-producing CRE when the isolate also produces an ESBL.",
-        "vignette": "A patient has bacteremia due to carbapenem-resistant K. pneumoniae. The isolate produces NDM and an ESBL. Susceptibility testing supports aztreonam/avibactam.",
+        "vignette": "A patient has bacteremia due to carbapenem-resistant K. pneumoniae. Molecular testing detects NDM and an ESBL.",
         "vignettePages": [
           14,
           16,
@@ -2497,11 +2547,11 @@ const lectures = [
           "prevention"
         ],
         "learningObjective": "Choose patient-level and hospital-level stewardship actions to limit unnecessary antibiotic exposure.",
-        "vignette": "A patient is improving on broad empiric therapy. Cultures identify one pathogen, and a narrower antibiotic covers it at the infection site.",
+        "vignette": "A patient is improving on broad empiric antibiotic therapy. Cultures now identify a single pathogen, and its susceptibility results are available.",
         "vignettePages": [
           22
         ],
-        "question": "What should the pharmacist recommend now?",
+        "question": "What should the pharmacist recommend when reviewing the regimen?",
         "decisiveClue": "Culture and susceptibility results permit de-escalation.",
         "decisiveCluePages": [
           22
@@ -2719,12 +2769,12 @@ const lectures = [
           "elements"
         ],
         "learningObjective": "Distinguish the seven core elements of an antimicrobial stewardship program by the work each element involves.",
-        "vignette": "",
+        "vignette": "An antimicrobial stewardship proposal is approved, but its activities cannot begin because staff have no protected time and the hospital has not funded access to prescribing data.",
         "vignettePages": [
           4,
           5
         ],
-        "question": "Which core element secures staffing, funding and information technology for the program?",
+        "question": "Which CDC core element should the hospital strengthen first?",
         "decisiveClue": "Leadership commitment provides the staff, budget and information technology needed to run the program.",
         "decisiveCluePages": [
           4,
@@ -2766,17 +2816,17 @@ const lectures = [
         "id": "asp-accountability",
         "number": 2,
         "level": 1,
-        "title": "Responsibility for outcomes",
+        "title": "Review program organization",
         "objectiveIds": [
           "elements"
         ],
         "learningObjective": "Distinguish the seven core elements of an antimicrobial stewardship program by the work each element involves.",
-        "vignette": "",
+        "vignette": "A stewardship committee has staff and funding, but when its results are questioned, each member says another member should explain the program’s performance.",
         "vignettePages": [
           4,
           5
         ],
-        "question": "Which element designates a leader who is answerable for the program’s outcomes?",
+        "question": "Which CDC core element needs to be strengthened?",
         "decisiveClue": "Accountability assigns responsibility for program outcomes to a designated leader.",
         "decisiveCluePages": [
           4,
@@ -2818,17 +2868,17 @@ const lectures = [
         "id": "asp-drug-expertise",
         "number": 3,
         "level": 1,
-        "title": "Pharmacist leadership",
+        "title": "Assign a stewardship role",
         "objectiveIds": [
           "elements"
         ],
         "learningObjective": "Distinguish the seven core elements of an antimicrobial stewardship program by the work each element involves.",
-        "vignette": "",
+        "vignette": "A hospital has a physician overseeing its stewardship program. The pharmacy department is asked to nominate a clinical pharmacist to guide changes in antibiotic prescribing.",
         "vignettePages": [
           4,
           5
         ],
-        "question": "A hospital assigns a clinical pharmacist to lead efforts to improve antibiotic prescribing. Which CDC core element does this appointment fulfill?",
+        "question": "Which CDC core element is addressed by adding this role?",
         "decisiveClue": "Drug expertise puts a pharmacist in a leadership role focused on improving antibiotic use.",
         "decisiveCluePages": [
           4,
@@ -2931,12 +2981,12 @@ const lectures = [
           "elements"
         ],
         "learningObjective": "Distinguish the seven core elements of an antimicrobial stewardship program by the work each element involves.",
-        "vignette": "",
+        "vignette": "A stewardship team introduces a checkpoint after initial antibiotic treatment. At the checkpoint, the treating team must decide whether to continue, change or stop therapy.",
         "vignettePages": [
           4,
           5
         ],
-        "question": "Which element includes implementing a scheduled review of whether antibiotics are still needed?",
+        "question": "Which CDC core element is demonstrated by this change?",
         "decisiveClue": "Action implements an intervention, such as a scheduled review of the ongoing need for antibiotics.",
         "decisiveCluePages": [
           4,
@@ -2978,17 +3028,17 @@ const lectures = [
         "id": "asp-tracking",
         "number": 5,
         "level": 2,
-        "title": "Measuring change",
+        "title": "Review a committee activity",
         "objectiveIds": [
           "elements"
         ],
         "learningObjective": "Distinguish the seven core elements of an antimicrobial stewardship program by the work each element involves.",
-        "vignette": "",
+        "vignette": "At each monthly stewardship meeting, the team compares the hospital’s antibiotic prescribing and resistance data with previous months.",
         "vignettePages": [
           4,
           5
         ],
-        "question": "Which element monitors prescribing and resistance patterns over time?",
+        "question": "Which CDC core element does this work primarily demonstrate?",
         "decisiveClue": "Tracking measures prescribing and resistance patterns over time.",
         "decisiveCluePages": [
           4,
@@ -3030,17 +3080,17 @@ const lectures = [
         "id": "asp-reporting",
         "number": 6,
         "level": 2,
-        "title": "Sharing findings",
+        "title": "Review the next program step",
         "objectiveIds": [
           "elements"
         ],
         "learningObjective": "Distinguish the seven core elements of an antimicrobial stewardship program by the work each element involves.",
-        "vignette": "",
+        "vignette": "The stewardship team has already collected antibiotic-use and resistance data. It now distributes the results to doctors and nurses on the wards.",
         "vignettePages": [
           4,
           5
         ],
-        "question": "Which element regularly communicates measured antibiotic use and resistance patterns to prescribers and nurses?",
+        "question": "Which CDC core element is demonstrated by this step?",
         "decisiveClue": "Reporting regularly shares antibiotic use and resistance findings with clinical staff.",
         "decisiveCluePages": [
           4,
@@ -3082,17 +3132,17 @@ const lectures = [
         "id": "asp-education",
         "number": 7,
         "level": 2,
-        "title": "Building prescribing skills",
+        "title": "Respond to prescribing errors",
         "objectiveIds": [
           "elements"
         ],
         "learningObjective": "Distinguish the seven core elements of an antimicrobial stewardship program by the work each element involves.",
-        "vignette": "",
+        "vignette": "After identifying repeated prescribing errors, a stewardship pharmacist runs case discussions in which clinicians explain their antibiotic choices and receive feedback.",
         "vignettePages": [
           4,
           5
         ],
-        "question": "Which element teaches clinicians how to recognize resistance and improve prescribing?",
+        "question": "Which CDC core element is demonstrated by these sessions?",
         "decisiveClue": "Education teaches clinicians about resistance and appropriate prescribing.",
         "decisiveCluePages": [
           4,
@@ -5994,6 +6044,32 @@ function playSound(cue, value = 0, direction = 1) {
       tone("triangle",388,441,.13,now,.23,{attack:.015,wobble:18});
       tone("triangle",330,246,.20,now+.16,.23,{attack:.015,wobble:24});
       break;
+    case "story-score": {
+      const root=[98,116.54,130.81,146.83][value];
+      tone("sine",root,root,.86,now,.20,{attack:.10});
+      tone("triangle",root*1.5,root*1.5,.69,now+.14,.12,{attack:.10});
+      tone("sine",root*2,root*2,.79,now+.37,.15,{attack:.15});
+      break;
+    }
+    case "radar-ping":
+      tone("sine",790,805,.135,now,.31,{attack:.006});
+      tone("sine",790,780,.21,now+.17,.11,{attack:.018});
+      break;
+    case "radar-lock":
+      tone("triangle",502,502,.09,now,.31,{attack:.008});
+      tone("triangle",670,670,.09,now+.12,.32,{attack:.008});
+      tone("sine",1005,1012,.39,now+.24,.32,{attack:.01});
+      break;
+    case "story-boost":
+      tone("sine",64,155,.72,now,.50,{attack:.13});
+      noise(380,2280,.8,.84,now,.44,{attack:.18});
+      noise(2400,370,.9,.49,now+.65,.32,{attack:.04});
+      break;
+    case "story-cannon":
+      tone("triangle",315,48,.33,now,.74,{attack:.006});
+      tone("sine",850,145,.20,now+.014,.50,{attack:.008});
+      noise(2560,420,.9,.21,now,.37,{attack:.004});
+      break;
     case "story-hatch":
       noise(680,1460,1.5,.32,now,.32,{attack:.06});
       tone("triangle",137,105,.19,now+.13,.32,{attack:.029});
@@ -6386,8 +6462,8 @@ function drawWordmark() {
   }
 }
 
-function landingPharmacist(parent,who) {
-  pharmacistArt(parent,who);
+function landingPharmacist(parent,who,walking = false) {
+  pharmacistArt(parent,who,walking);
   const gun = genericBlaster(parent);
   gun.setAttribute("x","35"); gun.setAttribute("y","39");
   gun.setAttribute("width","59"); gun.setAttribute("height","21");
@@ -7622,7 +7698,21 @@ new ResizeObserver(() => {
   if (height) byId("game").style.setProperty("--feedback-bar-height",height+"px");
 }).observe(feedbackNav);
 
-function showFeedback(played,choice,isBest,completed) {
+const teamInvite = byId("team-invite");
+let offeredTeamThisVisit = false;
+let teamFromInvite = "";
+teamInvite.addEventListener("click",event => {
+  const button = event.target.closest("button");
+  if (!button) return;
+  teamInvite.close();
+  if (button.dataset.team) {
+    teamFromInvite = button.dataset.team;
+    location.hash = "#championship";
+  }
+});
+teamInvite.addEventListener("close",() => { teamInvite.hidden = true; });
+
+function showFeedback(played,choice,isBest,completed,championshipResult) {
   const note = byId("lecture-completion");
   note.hidden = !completed;
   note.textContent = completed ? (profile.name.trim() ? profile.name.trim()+" · " : "") +
@@ -7630,7 +7720,34 @@ function showFeedback(played,choice,isBest,completed) {
   phase="review";
   const feedback=byId("feedback");
   feedback.dataset.best=String(isBest);
-  byId("verdict").textContent=isBest?"Best answer":"Not the best answer";
+  const verdict = isBest ? "Best answer" : "Not the best answer";
+  byId("verdict").textContent = championshipResult ? verdict + " · " + championshipResult : verdict;
+  const guestNote = byId("guest-team-note");
+  const guest = championshipConfigured && !championshipPlayer && catalog.has(played.round.id);
+  const message = byId("guest-team-message");
+  guestNote.hidden = false;
+  guestNote.querySelector("a").hidden = !guest || !navigator.onLine;
+  if (!catalog.has(played.round.id)) {
+    message.textContent = "Cannon Demo · Practice only. Play a lecture case to earn championship points.";
+  } else if (guest) {
+    const stars = starCount(championshipRounds);
+    const saved = lastStored === JSON.stringify(profile);
+    const balance = stars + (stars === 1 ? " first-try point" : " first-try points");
+    message.textContent = (profile.results[played.round.id] & FIRST ?
+      "You have a first-try star for this case. " : "No point for this case. ") +
+      (saved ? balance + " saved in this browser." : balance + " in this session. Browser storage is unavailable.") +
+      (navigator.onLine ? " Choose a team to add your points to the leaderboard." : " You can join when you’re back online.");
+  } else if (championshipConfigured && championshipPlayer) {
+    const player = championshipPlayer;
+    const score = scoreOf(player);
+    message.textContent = "Team " + championshipTeams[player.team].name + " · Your score: " + score +
+      (score === 1 ? " point." : " points.") + (!championshipResult && isBest ?
+        (player.attempts[played.round.id] ? " This case has already counted." : " Only the first attempt earns a point.") : "");
+  } else {
+    guestNote.hidden = true;
+  }
+  if (guestNote.hidden) feedback.removeAttribute("aria-describedby");
+  else feedback.setAttribute("aria-describedby","guest-team-message");
   byId("result-title").textContent="You chose "+choice.name+".";
   byId("chosen-why").textContent=choice.explanation;
   byId("chosen-source").textContent=played.lecture.title+" · "+pagesLabel(choice.pages);
@@ -7649,6 +7766,12 @@ function showFeedback(played,choice,isBest,completed) {
   feedback.hidden=false;
   feedback.focus({preventScroll:true});
   feedback.scrollIntoView({block:"start",behavior:"auto"});
+  if (guest && isBest && navigator.onLine && !offeredTeamThisVisit && typeof teamInvite.showModal === "function") {
+    offeredTeamThisVisit = true;
+    byId("team-invite-detail").textContent = message.textContent;
+    teamInvite.hidden = false;
+    teamInvite.showModal();
+  }
 }
 
 async function fireAtShield(isBest,heavy,token) {
@@ -7739,13 +7862,10 @@ async function confirmAnswer() {
   if (meeting) await committeeVerdict(isBest,token);
   else await showCombatResult(impact,isBest,heavy,streak,previousStreak,token);
   if (token === roundToken && currentCase === played.round) {
-    showFeedback(played,choice,isBest,completed);
+    showFeedback(played,choice,isBest,completed,championshipResult);
     if (streak >= 3) syncAtmosphere();
     showCrewReward(crewUnlocked,token);
-    if (championshipResult) {
-      byId("verdict").textContent += " · " + championshipResult;
-      void syncChampionshipScore();
-    }
+    if (championshipResult) void syncChampionshipScore();
   }
 }
 
@@ -8683,6 +8803,10 @@ function renderRound(settled = true) {
   byId("case-count").textContent=(currentCase.priority==="essential"?"ESSENTIAL":"EXTRA")+" · LEVEL "+currentCase.level;
   if (review) byId("case-count").textContent = "REVIEW · "+(targetPosition().index+1)+" / "+review.ids.length;
   const demo = inCannonDemo();
+  const teamLink = byId("round-team");
+  teamLink.hidden = demo || !championshipConfigured || championshipPlaying;
+  teamLink.textContent = championshipPlayer ?
+    "Team " + championshipTeams[championshipPlayer.team].name : "Join a team";
   if (demo) byId("case-count").textContent = "TRAINING DEMO";
   byId("case-tag").textContent=demo ? "FICTIONAL CASE" : roundLabel(currentCase).toUpperCase();
   byId("lecture").textContent=demo ? "Aegis Cannon Training" : lecture.title;
@@ -8939,9 +9063,11 @@ async function joinChampionship(event) {
     await firestoreRequest(":commit",{method:"POST",body:{writes}});
     player.uploaded = scoreOf(player);
     championshipPlayer = player;
+    leaderboardDirty = true;
     saveChampionship();
     championshipSyncStatus("");
     showChampionshipHome();
+    if (!byId("home").hidden) void refreshChampionshipBoard();
   } catch {
     championshipSyncStatus(championshipMessage());
   } finally {
@@ -8983,6 +9109,7 @@ async function syncChampionshipScore() {
   }
   const player = championshipPlayer;
   const pending = {...player,attempts:Object.assign(Object.create(null),player.attempts)};
+  let synced = false;
   scoreRequest = (async () => {
     try {
       const {uid} = await authenticateChampionship();
@@ -8999,6 +9126,7 @@ async function syncChampionshipScore() {
         if (correct) player.attempts[id] = true;
       }
       player.uploaded = scoreOf(pending);
+      synced = true;
       leaderboardDirty = true;
       saveChampionship();
       championshipSyncStatus(scoreOf(player) > player.uploaded ? "Syncing your score…" : "Score synced.");
@@ -9010,7 +9138,7 @@ async function syncChampionshipScore() {
   })();
   try { await scoreRequest; }
   finally { scoreRequest = null; }
-  if (leaderboardDirty && !byId("home").hidden) void refreshChampionshipBoard();
+  if (synced && !byId("home").hidden) void refreshChampionshipBoard();
 }
 
 // ── Leaderboard queries and display ──
@@ -9142,7 +9270,7 @@ async function refreshChampionshipBoard() {
   }
   // Complete this device's upload before asking Firestore for its standings.
   await syncChampionshipScore();
-  if (leaderboardRequest) return leaderboardRequest;
+  if (leaderboardRequest) return;
   leaderboardTime = Math.max(leaderboardTime,Number(readPreference(championshipKey + ":leaderboard")) || 0);
   if (Date.now() - leaderboardTime < boardCooldown) {
     leaderboard = restoreStandings() || leaderboard;
@@ -9278,6 +9406,7 @@ let hasNavigated=false;
 
 function route(){
   if (byId("story").open) finishStory();
+  if (teamInvite.open) teamInvite.close();
   stopLibraryFlight();
   stopThinking();
   interruptTransition();
@@ -9349,6 +9478,13 @@ function route(){
   window.scrollTo({top:0,behavior:"instant"});
   if(hasNavigated) focusHeading(focusTarget);
   if (type === "hangar" || (inChampionship && !championshipPlaying)) focusTarget.scrollIntoView({block:"start"});
+  if (inChampionship && teamFromInvite) {
+    if (!byId("champ-join").hidden) {
+      byId("champ-team").value = teamFromInvite;
+      byId("champ-nickname").focus();
+    }
+    teamFromInvite = "";
+  }
   hasNavigated=true;
   syncArrival();
   syncAtmosphere();
@@ -9359,8 +9495,8 @@ function route(){
    ========================================================================== */
 
 const story = byId("story");
-const storyLength = 30.5;
-const storyTitleTime = 27.5;
+const storyLength = 38.5;
+const storyTitleTime = 35.5;
 const storyTraffic = [
   {y:79,period:4.8,offset:.1,size:.86,direction:1,color:"#9ee5dc"},
   {y:121,period:5.9,offset:.64,size:.62,direction:-1,color:"#ebbc91"},
@@ -9368,17 +9504,31 @@ const storyTraffic = [
 ];
 const storyEnemies = [[485,213,.35],[549,211,.58],[607,222,.40],[611,154,.25],[543,133,.23],
   [309,230,.34],[400,238,.21],[448,289,.45],[584,292,.57]];
+// The landing origin follows the same easing as the visible craft.
+function storyApproach(t) {
+  const remaining = 1 - Math.max(0,Math.min(1,(t-6.35)/1.53));
+  return remaining * remaining;
+}
+const airCover = [[6.78,6],[7.14,0],[7.46,5]].map(([time,target])=>{
+  const offset=storyApproach(time);
+  return [time,355-220*offset,259-117*offset,target];
+});
 const storyShots = [
-  [12.12,385,228,0],[12.84,462,231,1],[13.54,385,233,8],
-  [14.35,391,229,3],[14.98,462,232,2],[15.63,396,229,7],[16.27,456,229,4]
-].map(([time,x,y,target],index)=>({time,x,y,target,color:index%2 ? "#62e6ff" : "#efa1ff"}));
+  ...airCover,
+  [12.12,385,228,3],[12.84,462,231,1],[13.54,385,233,8],
+  [14.35,391,229,6],[14.98,462,232,2],[15.63,396,229,7],[16.27,456,229,4]
+].map(([time,x,y,target],index)=>({time,x,y,target,color:index<airCover.length ? "#ffbf76" : index%2 ? "#62e6ff" : "#efa1ff"}));
 const shotFlight = .22;
 const wardThreats = [
   {x:518,y:112,scale:.88,source:"creature",color:"#b4fffb",time:19.62,missX:416,missY:65},
   {x:583,y:204,scale:.82,source:"dock-cluster",color:"#92dfff",time:20.45,missX:467,missY:145},
   {x:507,y:268,scale:.78,source:"dock-scout",color:"#c0ffe3",time:21.28,missX:430,missY:342}
 ];
-const wardShotStart = {x:411,y:269};
+// Alternate shooters and targets across the room. A rebounding pulse is intercepted at the beds.
+const wardVolleys = [
+  [18.58,1,true],[19.05,2,false],[19.62,0,false],[20.02,2,true],
+  [20.45,1,false],[20.87,0,true],[21.28,2,false],[21.72,1,true],[22.16,0,false]
+].map(([time,target,wanda])=>({time,target,x:wanda?188:411,y:wanda?239:269}));
 const wardFlight = .24;
 const wardBounce = .34;
 const storyCues = [
@@ -9387,9 +9537,14 @@ const storyCues = [
   [6.8,"comet",.68],[7.66,"entry"],[7.81,"story-hatch"],[8.25,"step"],[8.62,"step"],[9.12,"step"],[9.72,"step"],
   [10.15,"alarm-plea"],[10.88,"alarm-plea"],[11.32,"ready"],
   [17.12,"entry"],[18.5,"monitor"],[18.92,"ready"],[22.95,"radio-end"],[24.24,"radio-bit"],
-  [25.22,"mission"],[27.52,"opening"],
-  ...wardThreats.flatMap(({time})=>[[time,"story-laser",1],[time+wardFlight,"bounce"]]),
-  ...storyShots.flatMap((shot,index)=>[[shot.time,"story-laser",index%2],
+  [26.55,"radio-start"],[27.22,"radio-end"],[28.22,"radar-ping"],[29.4,"radar-ping"],
+  [30.52,"radar-lock"],[31.85,"story-boost"],[33.03,"comet",1.35],[35.55,"opening"],
+  [.35,"radar-ping"],[1.65,"radar-ping"],[3.55,"radar-lock"],[5.28,"story-boost"],
+  [.25,"story-score",0],[3.52,"story-score",1],[6.39,"story-score",2],
+  [11.55,"story-score",1],[16.92,"story-score",0],[21.55,"story-score",2],
+  [28.02,"story-score",0],[32.27,"story-score",3],
+  ...wardVolleys.flatMap(({time})=>[[time,"story-laser",1],[time+wardFlight,"bounce"]]),
+  ...storyShots.flatMap((shot,index)=>[[shot.time,index<airCover.length?"story-cannon":"story-laser",index%2],
     [shot.time+shotFlight,"story-damage",index%3]])
 ].sort((a,b)=>a[0]-b[0]);
 let storyFrame = 0;
@@ -9417,9 +9572,20 @@ function buildStoryArt() {
       }
     }
   }
-  for (const id of ["story-flight-ship","story-dock-ship"]) {
+  for (const id of ["story-flight-ship","story-dock-ship","story-ambulance","story-doom-ship"]) {
     const craft = byId(id);
     uniquePaint(storyClone(byId("shuttle-hull"),craft));
+    if (id!=="story-ambulance") {
+      const doom=id==="story-doom-ship";
+      if (doom) {
+        craft.querySelectorAll('[fill="#ddb964"],[fill="#eac56d"]').forEach(panel=>panel.setAttribute("fill","#649c80"));
+        svgNode("path",{d:"M101 118l108-10 19 6-119 15z",fill:"#31594d"},craft);
+      } else {
+        svgNode("path",{d:"M227 111l10-2 5-8 2 7 10-1-8 6 1 5-6-3-8 4 3-7z",fill:"#ffe9a6",stroke:"#534259","stroke-width":1.6},craft);
+        svgNode("path",{d:"M272 123l40-4v4l-41 6z",fill:"#6b778c",stroke:"#263144","stroke-width":1.8},craft);
+      }
+      continue;
+    }
     svgNode("path",{d:"M96 119l141-14 16 6-138 16z",fill:"#9c344e",stroke:"#532940","stroke-width":1.5},craft);
     svgNode("path",{d:"M119 113h7v-4h5v4h6v5h-6v5h-5v-5h-7z",fill:"#fff5ee"},craft);
     const marking = svgNode("text",{x:142,y:117,transform:"rotate(-5 142 117)",
@@ -9450,15 +9616,32 @@ function buildStoryArt() {
     patientPath(person,"#3a3040","M-2 6h5v3h-5z");
   }
   pharmacistArt(byId("story-call-doom"),"doom");
-  pharmacistArt(byId("story-call-storm"),"storm");
+  const rearBeds=byId("story-other-patients");
+  for (const [x,y,size,palette] of [[-9,144,1.20,0],[184,143,1.12,1]]) {
+    const bed=svgNode("g",{transform:"translate("+x+" "+y+") scale("+size+")"},rearBeds);
+    storyClone(byId("patient-shadow"),bed);
+    storyClone(byId("patient-bed"),bed);
+    drawLyingPatient(bed,patientPalettes[palette],true);
+  }
+  buildRescueInstruments();
+  for(let i=0;i<14;i++) {
+    svgNode("path",{d:"M-10 0h8v-2h9v2h6v3H-9z",fill:i%2?"#9a94af":"#a7b6c9"},byId("story-pad-dust"));
+  }
+  const world=storyClone(byId("story-approach-planet"),byId("story-launch-world"));
+  world.setAttribute("transform","translate(530 91) scale(.60)");
+  // Reuse the existing globe clip from the orbit shot in the departure shot.
+  world.querySelector("defs").remove();
+  const drive=byId("story-drive");
+  svgNode("path",{d:"M80 112l-111 4 41 7-65 12 129-9z",fill:"#6dbfa8",opacity:".64"},drive);
+  svgNode("path",{d:"M78 115l-60 6 36 1-16 5 38-5z",fill:"#e6ffe4"},drive);
   storyClone(byId("patient-shadow"),byId("story-bed"));
   storyClone(byId("patient-bed"),byId("story-bed"));
   drawLyingPatient(byId("story-elder"),patientPalettes[2],false);
-  pharmacistArt(byId("story-ward-wanda"),"woman");
+  landingPharmacist(byId("story-ward-wanda"),"woman");
   landingPharmacist(byId("story-ward-strange"),"man");
   for (const [id,who] of [["story-wanda","woman"],["story-strange","man"]]) {
     const figure = byId(id);
-    landingPharmacist(figure,who);
+    landingPharmacist(figure,who,true);
     figure.querySelector(".pilot-head").append(svgNode("path",{d:"M36 33h5v1h-2v2h-4v-2h1z",fill:"#703744"},figure));
     const gun = figure.querySelector("svg");
     svgNode("g",{id:id+"-blaster"},figure).append(gun);
@@ -9491,7 +9674,8 @@ function buildStoryArt() {
     svgNode("path",{d:shieldShape,fill:color,"fill-opacity":.23,stroke:"#f3ffff","stroke-width":5},flare);
     svgNode("path",{d:"M-52-6h9v-10h4v10h10v4h-10V8h-4V-2h-9z",fill:"#fff9f0"},flare);
   });
-  wardThreats.forEach(({color},index)=>{
+  wardVolleys.forEach(({target},index)=>{
+    const color=wardThreats[target].color;
     const bolt = svgNode("g",{id:"story-ward-bolt-"+index},byId("story-ward-bolts"));
     svgNode("path",{d:"M-34 0H6",stroke:color,"stroke-width":10,opacity:.32},bolt);
     svgNode("path",{d:"M-22 0H6",stroke:color,"stroke-width":5},bolt);
@@ -9524,8 +9708,53 @@ function buildStoryArt() {
     svgNode("rect",{x:(i*79+i*i*13)%639,y:(i*113+i*i*7)%358,width:size,height:size,
       fill:["#beafd8","#d9f6ff","#f9d7ab"][i%3],opacity:.36+(i%6)*.11},byId("story-stars"));
   }
+  const guard=byId("story-guard");
+  svgNode("path",{d:"M72 240q0-94 96-100t160 87",fill:"none",stroke:"#d2afff","stroke-width":4},guard);
+  svgNode("path",{d:"M80 230q13-67 70-77m126 9 25 23",fill:"none",stroke:"#fae7ff","stroke-width":3},guard);
   const logo = byId("story-logo");
   for (const part of byId("brand-art").children) storyClone(part,logo);
+}
+
+// Fixed geometry keeps the SVG game and the shareable film on one timeline.
+function buildRescueInstruments() {
+  for (const [id,r] of [["story-receiver",34],["story-doom-radar",64]]) {
+    const scope=byId(id);
+    svgNode("circle",{r,fill:"#0c222b",stroke:"#70a59c","stroke-width":2},scope);
+    for (const mul of [.36,.70]) svgNode("circle",{r:r*mul,fill:"none",stroke:"#31555a"},scope);
+    svgNode("path",{d:"M-"+r+" 0H"+r+"M0 -"+r+"V"+r,stroke:"#305054"},scope);
+    const sweep=svgNode("g",{id:id+"-sweep"},scope);
+    svgNode("path",{d:"M0 0L"+r+" 0 A"+r+" "+r+" 0 0 0 "+r*.84+" -"+r*.54+"Z",fill:"#8becc4",opacity:.18},sweep);
+    svgNode("path",{d:"M0 0h"+r,stroke:"#b7f9cd","stroke-width":1.6},sweep);
+    const blip=svgNode("g",{id:id+"-blip",transform:"translate("+r*.48+" -"+r*.46+")"},scope);
+    svgNode("circle",{r:4,fill:"#ffd49b"},blip);
+    svgNode("circle",{id:id+"-ring",r:8,fill:"none",stroke:"#ffb381","stroke-width":1.4},blip);
+  }
+  for(const id of ["story-drift","story-doom-stars","story-launch-stars"]) {
+    const group=byId(id);
+    for(let i=0;i<37;i++) {
+      svgNode("line",{stroke:["#8fbcda","#ffdbad","#c4bde8"][i%3],"stroke-width":i%6===0?2:1,opacity:.35+(i%5)*.12},group);
+    }
+  }
+}
+
+function flyStars(id,t,speed,vanishX,vanishY) {
+  const stars=byId(id).children;
+  for(let i=0;i<stars.length;i++) {
+    const angle=i*2.39996, phase=(i*.618+t*speed*(1+i%4*.13))%1;
+    const radius=12+phase*phase*660, trail=1+phase*phase*(speed> .5?73:18);
+    const dx=Math.cos(angle),dy=Math.sin(angle)*.64;
+    const star=stars[i];
+    star.setAttribute("x1",vanishX+dx*radius); star.setAttribute("y1",vanishY+dy*radius);
+    star.setAttribute("x2",vanishX+dx*(radius+trail)); star.setAttribute("y2",vanishY+dy*(radius+trail));
+  }
+}
+
+function scanStoryRadar(id,t,lock) {
+  byId(id+"-sweep").setAttribute("transform","rotate("+(-95+t*110)+")");
+  const ping=(t*1.4)%1;
+  byId(id+"-ring").setAttribute("r",5+12*ping);
+  byId(id+"-ring").setAttribute("opacity",1-ping);
+  byId(id+"-blip").setAttribute("opacity",lock?1:.25+.75*Math.max(0,Math.cos(t*5)));
 }
 
 function renderStoryFrame(t, still = false) {
@@ -9534,14 +9763,28 @@ function renderStoryFrame(t, still = false) {
   const move = (id,x,y) => byId(id).setAttribute("transform","translate("+x+" "+y+")");
   const orbit = t<6.35, dock = t>=6.35 && t<14.2, reflected = t>=14.2 && t<17.1;
   paint("story-orbit",orbit);
-  paint("story-transmission",t<5.3);
+  paint("story-transmission",1-progress(4.98,5.26));
   paint("story-dock",dock);
   paint("story-reflection",reflected);
-  paint("story-ward",t>=17.1);
-  paint("story-reinforcements",progress(22.85,23.2));
+  paint("story-ward",t>=17.1 && t<28);
+  paint("story-dialogue",t>=22.95 && t<28);
+  paint("story-doom-scene",t>=28 && t<32.25);
+  paint("story-launch",t>=32.25 && t<storyTitleTime+.22);
+  if (t>=28 && t<32.25) {
+    scanStoryRadar("story-doom-radar",t-28,t>=30.52);
+    flyStars("story-doom-stars",t-28,.065,265,80);
+    byId("story-lock-status").textContent=t<30.52?"ACQUIRING…":"SIGNAL LOCKED";
+  }
+  if(t>=32.25) {
+    const run=progress(32.25,35.68), thrust=run*run;
+    flyStars("story-launch-stars",t-32.25,.60,520,92);
+    const size=1.5-1.44*thrust;
+    byId("story-depart").setAttribute("transform","translate("+(-210+716*thrust)+" "+(95-14*thrust)+") scale("+size+") rotate(-10 180 112)");
+    paint("story-drive",.82+.16*Math.sin(t*30));
+  }
   paint("story-end",progress(storyTitleTime-.25,storyTitleTime+.22));
   if (orbit) {
-    const lines = ["Star’s Thera picked up a distress call.","A bacterial epidemic has swept","through Asgard."];
+    const lines = ["Star’s Thera, do you copy?","The epidemic has reached our ward.","We have patients trapped inside."];
     const reveal = [progress(.45,2.13),progress(2.65,3.72),progress(3.7,4.39)];
     ["story-first-line","story-second-line","story-third-line"].forEach((id,i)=>{
       const line = byId(id);
@@ -9550,12 +9793,14 @@ function renderStoryFrame(t, still = false) {
       if (line.textContent !== chunk) line.textContent = chunk;
     });
     paint("story-signal",still ? 1 : .52 + .48*Math.abs(Math.sin(t*5)));
+    scanStoryRadar("story-receiver",t,t>=3.55);
+    flyStars("story-drift",t+2*Math.max(0,t-5.02),.19,388,117);
+    byId("story-approach-planet").setAttribute("transform","translate("+(436-6*t)+" "+(122+t*1.3)+") scale("+(.72+t*.060)+")");
     const flight = progress(5.02,6.35);
     move("story-flyby",-290+1010*flight,82+46*flight);
   }
   const beacon = .42 + .58 * Math.max(0,Math.sin(t*7));
-  paint("story-flight-ship-beacon",beacon);
-  paint("story-dock-ship-beacon",beacon);
+  paint("story-ambulance-beacon",beacon);
   if (dock) {
     for (const [index,traffic] of storyTraffic.entries()) {
       const pass = ((t-6.35)/traffic.period+traffic.offset)%1;
@@ -9563,7 +9808,22 @@ function renderStoryFrame(t, still = false) {
       const y = traffic.y - Math.sin(pass*Math.PI)*12;
       byId("story-hover-"+index).setAttribute("transform","translate("+x+" "+y+") scale("+traffic.direction*traffic.size+" "+traffic.size+")");
     }
-    const landing = 1 - (1-progress(6.35,7.88))**2;
+    const landing = 1-storyApproach(t);
+    const landingDust=Math.sin(Math.PI*progress(6.75,8.72));
+    Array.from(byId("story-pad-dust").children).forEach((fleck,i)=>{
+      const phase=((t-6.35)*1.45+i*.37)%1;
+      const x=176+(i%2?-1:1)*phase*(70+(i%5)*20);
+      fleck.setAttribute("transform","translate("+x+" "+(281+i%4*4-7*phase)+") scale("+(1+.6*phase)+")");
+      fleck.setAttribute("opacity",landingDust*(1-phase)*.56);
+    });
+    const jolt=storyShots.reduce((peak,shot)=>{
+      const impact=shot.time+shotFlight;
+      return Math.max(peak,t>=impact?1-progress(impact,impact+.19):0);
+    },0);
+    const push=1+.035*progress(6.35,14.2);
+    byId("story-dock").setAttribute("transform","translate("+(-250*(push-1)+jolt*1.8)+" "+(-180*(push-1)-jolt)+") scale("+push+")");
+    paint("story-pad-glint",jolt*.15);
+    paint("story-landing-light",.16*(1-progress(7.95,8.35)));
     move("story-landed-ship",-220*(1-landing),-117*(1-landing));
     const hatch = progress(7.78,8.10);
     move("story-hatch-left",-23*hatch,0);
@@ -9578,12 +9838,16 @@ function renderStoryFrame(t, still = false) {
       const onGround = progress(rampEnd,finish);
       const step = (downRamp+onGround)/2;
       const hop = step>0 && step<1 ? Math.abs(Math.sin(step*14))*3.5 : 0;
-      const kick = storyShots.filter((_,i)=>id==="story-wanda" ? i%2===0 : i%2===1)
+      const kick = storyShots.slice(airCover.length).filter((_,i)=>id==="story-wanda" ? i%2===0 : i%2===1)
         .reduce((peak,shot)=>Math.max(peak, 3*(1-progress(shot.time,shot.time+.13))*(t>=shot.time)),0);
       const scale = .53+.63*downRamp+(size-1.16)*onGround;
       const foot = 252+43*downRamp+(ground-295)*onGround;
       const left = 179+28*downRamp+(x-207)*onGround-kick;
       byId(id).setAttribute("transform","translate("+left+" "+(foot-89*scale-hop)+") scale("+scale+")");
+      const stride=Math.sin(step*6*Math.PI)*(step<1?1:0);
+      byId(id).querySelectorAll(".ward-leg").forEach((leg,i)=>{
+        leg.setAttribute("transform","rotate("+(stride*(i?13:-13))+" "+(i?33:19)+" 66)");
+      });
       paint(id,progress(start,start+.14));
       paint(id+"-blaster",progress(start+.17,rampEnd));
       byId(id+"-blaster").setAttribute("transform","rotate("+(25-37*progress(10.9,11.65))+" 44 55)");
@@ -9622,27 +9886,48 @@ function renderStoryFrame(t, still = false) {
     const impact = shot ? Math.max(0,1-Math.abs(t-shot.time-shotFlight)/.19) : 0;
     paint("story-reflected-hit",impact*.8);
   }
-  if (t>=17.1) {
+  if (t>=17.1 && t<28) {
     wardThreats.forEach(({x,y,scale,time,missX,missY},index)=>{
       paint("story-ward-shield-"+index,progress(17.92+index*.12,18.32+index*.12));
-      const impactTime = time+wardFlight;
-      const impact = t>=impactTime ? 1-progress(impactTime,impactTime+.30) : 0;
+      const impact=wardVolleys.filter(volley=>volley.target===index && t>=volley.time+wardFlight)
+        .reduce((peak,volley)=>Math.max(peak,1-progress(volley.time+wardFlight,volley.time+wardFlight+.30)),0);
       paint("story-ward-flare-"+index,impact);
+      const shift=Math.sin(t*4+index)*1.5+impact*6;
+      byId("story-ward-shield-"+index).parentNode.setAttribute("transform","translate("+(x+shift)+" "+y+") scale("+scale+")");
+    });
+    wardVolleys.forEach((shot,index)=>{
+      const {time,target}=shot;
+      const {x,y,scale,missX,missY}=wardThreats[target];
+      const impactTime=time+wardFlight;
       const shieldX = x-46*scale;
       const deflected = t>=impactTime;
       const flight = deflected ? progress(impactTime,impactTime+wardBounce) : progress(time,impactTime);
-      const [fromX,fromY] = deflected ? [shieldX,y] : [wardShotStart.x,wardShotStart.y];
-      const [toX,toY] = deflected ? [missX,missY] : [shieldX,y];
+      const [fromX,fromY] = deflected ? [shieldX,y] : [shot.x,shot.y];
+      const [toX,toY] = deflected ? (target===1 ? [284,165] : [missX,missY]) : [shieldX,y];
       const angle = Math.atan2(toY-fromY,toX-fromX)*180/Math.PI;
       const bolt = byId("story-ward-bolt-"+index);
       bolt.setAttribute("transform","translate("+(fromX+(toX-fromX)*flight)+" "+(fromY+(toY-fromY)*flight)+") rotate("+angle+")");
       paint("story-ward-bolt-"+index,flight>0 && flight<1 ? (deflected ? 1-flight*.76 : 1) : 0);
     });
+    const kickAt=(x)=>wardVolleys.filter(v=>v.x===x && t>=v.time).reduce((peak,v)=>Math.max(peak,1-progress(v.time,v.time+.17)),0);
+    byId("story-ward-wanda").setAttribute("transform","translate("+(45-4*kickAt(188))+" 168) scale(1.65)");
+    byId("story-ward-strange").setAttribute("transform","translate("+(282-4*kickAt(411))+" 198) scale(1.42)");
+    const zoom=1+.055*progress(17.1,22.5);
+    byId("story-ward").setAttribute("transform","translate("+(-222*(zoom-1))+" "+(-180*(zoom-1))+") scale("+zoom+")");
     const reach = Math.sin(Math.PI * progress(17.9,22.0));
     byId("story-elder-hand").setAttribute("transform","rotate("+(12-35*reach)+" 29 65)");
-    paint("story-speech",t>=18.5 && t<20.96);
-    paint("story-reinforce-line",progress(24.03,24.32));
-    paint("story-reinforce-pilots",progress(24.82,25.35));
+    paint("story-speech",t>=17.45 && t<22.85);
+    const guard=wardVolleys.filter(v=>v.target===1).reduce((peak,v)=>{
+      const at=v.time+wardFlight+wardBounce;
+      return Math.max(peak,t>=at-.10?1-progress(at,at+.38):0);
+    },0);
+    paint("story-guard",guard*.9);
+    if(t>=22.95) {
+      const wanda=t>=26.55;
+      byId("story-speaker").textContent=wanda?"DR. WANDA  /  TRANSMITTING":"DR. STRANGE";
+      byId("story-quote").textContent=wanda?"Signal sent. Stay with me.":"Wanda, we need backup. Call Dr. Doom";
+      byId("story-quote-next").textContent=wanda?"":"and Dr. Storm. Tell them to bring the team.";
+    }
   }
 }
 
