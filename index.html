@@ -573,6 +573,7 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;ba
         <a class="play-link" id="champ-play">Play championship</a>
         <button id="champ-change" type="button" class="next-link">Change team</button>
       </div>
+      <p>Once you join a team, first-try correct answers in lectures and championship play earn points. Eligible first-try results already saved on this device are recovered automatically. Each case counts once.</p>
       <p id="champ-sync" role="status"></p>
       <p id="champ-storage" hidden>This browser blocks device saves. Your championship identity lasts for this visit.</p>
       <div id="champ-team-summary" role="group" aria-label="Team standings"></div>
@@ -7477,7 +7478,8 @@ async function confirmAnswer() {
   const isBest = choice.id === played.round.bestAnswerId;
   const heavy = isCarbapenem(choice.name);
   const previousStreak = arenaStreak();
-  const championshipResult = championshipPlaying ? recordChampionshipAnswer(played.round.id,isBest) : "";
+  const championshipResult = !demo && championshipConfigured && championshipPlayer ?
+    recordChampionshipAnswer(played.round.id,isBest) : "";
   byId("confirm").disabled = true;
   for (const button of choicesBox.children) button.disabled = true;
   byId("status").textContent = (inMeeting() ? "Submitting " : "Firing ") + choice.name + "…";
@@ -8528,7 +8530,8 @@ if (championshipAuth && savedPlayer && owns(championshipTeams,savedPlayer.team) 
   const uploaded = Number.isInteger(savedPlayer.uploaded) ? savedPlayer.uploaded : 0;
   championshipPlayer = {...savedPlayer,attempts,uploaded:Math.max(0,Math.min(points,uploaded))};
 }
-let authRequest, scoreRequest, scoreRetry, leaderboardRequest;
+let authRequest, scoreRequest, scoreRetry, leaderboardRequest, boardRefreshTimer;
+let leaderboardDirty = false;
 let leaderboard = null;
 let leaderboardTime = Number(readPreference(championshipKey + ":leaderboard")) || 0;
 let championshipStorageBlocked = false;
@@ -8695,6 +8698,7 @@ async function joinChampionship(event) {
       return;
     }
     const attempts = Object.assign(Object.create(null),championshipPlayer?.attempts);
+    mergePracticeAttempts(attempts);
     reconcileChampionshipSolves(attempts,previous);
     const player = {team,nickname,attempts,uploaded:0};
     const writes = [championshipWrite(player,path,previous)];
@@ -8712,7 +8716,23 @@ async function joinChampionship(event) {
   }
 }
 
+// Recover device history without overwriting an existing championship attempt.
+// FIRST survives later practice mistakes; a corrected first miss has no FIRST bit.
+function mergePracticeAttempts(attempts) {
+  syncProfile();
+  let changed = false;
+  for (const round of championshipRounds) {
+    const flags = profile.results[round.id];
+    if (flags && !owns(attempts,round.id)) {
+      attempts[round.id] = Boolean(flags & FIRST);
+      changed = true;
+    }
+  }
+  return changed;
+}
+
 function recordChampionshipAnswer(id,isBest) {
+  if (mergePracticeAttempts(championshipPlayer.attempts)) saveChampionship();
   if (owns(championshipPlayer.attempts,id)) return "";
   championshipPlayer.attempts[id] = isBest;
   saveChampionship();
@@ -8720,8 +8740,9 @@ function recordChampionshipAnswer(id,isBest) {
 }
 
 async function syncChampionshipScore() {
-  if (!championshipConfigured || !championshipPlayer ||
-      scoreOf(championshipPlayer) <= championshipPlayer.uploaded || scoreRequest) return scoreRequest;
+  if (!championshipConfigured || !championshipPlayer) return;
+  if (mergePracticeAttempts(championshipPlayer.attempts)) saveChampionship();
+  if (scoreOf(championshipPlayer) <= championshipPlayer.uploaded || scoreRequest) return scoreRequest;
   clearTimeout(scoreRetry);
   if (!navigator.onLine) {
     championshipSyncStatus(offlineChampionship + " Your score will sync when you reconnect.");
@@ -8745,6 +8766,7 @@ async function syncChampionshipScore() {
         if (correct) player.attempts[id] = true;
       }
       player.uploaded = scoreOf(pending);
+      leaderboardDirty = true;
       saveChampionship();
       championshipSyncStatus(scoreOf(player) > player.uploaded ? "Syncing your score…" : "Score synced.");
       if (scoreOf(player) > player.uploaded) scoreRetry = setTimeout(syncChampionshipScore,0);
@@ -8755,6 +8777,7 @@ async function syncChampionshipScore() {
   })();
   try { await scoreRequest; }
   finally { scoreRequest = null; }
+  if (leaderboardDirty && !byId("home").hidden) void refreshChampionshipBoard();
 }
 
 // ── Leaderboard queries and display ──
@@ -8884,14 +8907,26 @@ async function refreshChampionshipBoard() {
     status.textContent = offlineChampionship;
     return;
   }
+  // Complete this device's upload before asking Firestore for its standings.
+  await syncChampionshipScore();
+  if (leaderboardRequest) return leaderboardRequest;
   leaderboardTime = Math.max(leaderboardTime,Number(readPreference(championshipKey + ":leaderboard")) || 0);
   if (Date.now() - leaderboardTime < boardCooldown) {
     leaderboard = restoreStandings() || leaderboard;
     drawLeaderboard();
-    status.textContent = leaderboard ? "Leaderboard refresh is available every two minutes." :
+    status.textContent = leaderboard ? "Showing saved standings. Leaderboard refresh is available every two minutes." :
       "Scores are temporarily unavailable. Please refresh in two minutes.";
+    // One follow-up after a changed score, respecting the existing read budget.
+    if (leaderboardDirty && !boardRefreshTimer) {
+      boardRefreshTimer = setTimeout(() => {
+        boardRefreshTimer = null;
+        if (!byId("home").hidden && !document.hidden) void refreshChampionshipBoard();
+      },Math.max(0,boardCooldown - (Date.now() - leaderboardTime)) + 100);
+    }
     return;
   }
+  clearTimeout(boardRefreshTimer);
+  boardRefreshTimer = null;
   leaderboardTime = Date.now();
   savePreference(championshipKey + ":leaderboard",String(leaderboardTime));
   const button = byId("champ-refresh");
@@ -8904,6 +8939,7 @@ async function refreshChampionshipBoard() {
   ]);
   try {
     const [sara,omar,rank] = await leaderboardRequest;
+    leaderboardDirty = false;
     leaderboard = {teams:[sara,omar],rank,owner:rankOwner,team:rankTeam};
     savePreference(championshipKey + ":standings",JSON.stringify(leaderboard));
     drawLeaderboard();
@@ -8924,6 +8960,7 @@ function championshipLink(round) {
 
 function showChampionshipHome(complete = false) {
   const player = championshipPlayer;
+  if (player && championshipConfigured) void syncChampionshipScore();
   const available = championshipConfigured && navigator.onLine;
   if (championshipConfigured && byId("championship-board").open) drawLeaderboard();
   else drawTeamSummary();
@@ -8993,6 +9030,12 @@ function championshipConnectionChanged() {
 }
 window.addEventListener("online",championshipConnectionChanged);
 window.addEventListener("offline",championshipConnectionChanged);
+document.addEventListener("visibilitychange",() => {
+  if (!championshipConfigured || !championshipPlayer) return;
+  void syncChampionshipScore();
+  if (!document.hidden && !byId("home").hidden &&
+      (summaryInView || byId("championship-board").open)) void refreshChampionshipBoard();
+});
 
 /* ==========================================================================
    Routing and startup
