@@ -1014,7 +1014,7 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;ba
         <path d="M-45-23h86v8h-86zm-2 17h94v11h-94zm4 21h88v9h-88z" fill="#c98f89"/>
         <path d="M-104 0a104 22 0 0 0 208 0" fill="none" stroke="#e3b9a6" stroke-width="4"/>
       </g>
-      <g transform="translate(352 89)">
+      <g transform="translate(286 40) scale(1.53)">
         <path d="M-14 26h237v40h-14v30H6V70h-20z" fill="#181a2d" stroke="#67647f" stroke-width="3"/>
         <path d="M26 26V10h31V0h104v11h30v15M0 53h212M18 77h177" fill="#363956" stroke="#8885a0" stroke-width="3"/>
         <path d="M95 8h10v8h8v9h-8v8H95v-8h-8v-9h8z" fill="#a7ecd6"/>
@@ -1034,13 +1034,24 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;ba
       </text>
     </g>
     <g id="story-dock">
-      <path d="M298 89h342v188H298z" fill="#2d304a" stroke="#6b708e" stroke-width="4"/>
-      <path d="M305 101h335v39H305zM315 210h325v60H315z" fill="#41445e"/>
+      <g transform="translate(113 73) rotate(-15)">
+        <ellipse rx="85" ry="19" fill="none" stroke="#927ba8" stroke-width="4"/>
+        <path d="M-32-18h9v-9h11v-6h27v6h13v10h6v37h-10v8h-12v6h-25v-7h-11v-9h-8z" fill="#9e778f"/>
+        <path d="M-31-13h63v6h-63zm0 18h63v8h-63z" fill="#d5a19a"/>
+        <path d="M-85 0a85 19 0 0 0 170 0" fill="none" stroke="#d7b2ba" stroke-width="3"/>
+      </g>
+      <path d="M186 144h6v-6h12v-4h13v4h9v7h5v19h-6v7h-10v4h-14v-4h-11v-6h-4z" fill="#6294a8"/>
+      <path d="M192 147h27v5h-27zm13 12h20v5h-20z" fill="#94c4ce"/>
+      <path d="M241 103h48V49h65V29h286v247H241z" fill="#2d304a" stroke="#757991" stroke-width="4"/>
+      <path d="M294 56h346v12H294zm-47 55h393v22H247zm4 99h389v60H251z" fill="#41445e"/>
+      <path d="M367 40h124v8H367zm142 0h80v8h-80zM252 141h22v37h-22zM284 141h19v37h-19z" fill="#657e98"/>
+      <path d="M450 75h99v4h-99zm-120 0h99v4h-99z" fill="#9395aa"/>
+      <text x="470" y="102" font-family="monospace" font-size="16" letter-spacing="2" font-weight="bold" fill="#c0d9e3">HOSPITAL</text>
       <path d="M332 158h34v37h-34zm41 0h34v37h-34zm41 0h34v37h-34z" fill="#192a43" stroke="#7a8099" stroke-width="3"/>
       <path d="M485 266V158h131v108" fill="#141929" stroke="#9090a5" stroke-width="5"/>
       <path d="M507 266v-83h87v83" fill="#252941" stroke="#4f5477" stroke-width="3"/>
       <path d="M550 184v81" stroke="#5c5c74" stroke-width="3"/>
-      <path d="M540 106h12v10h10v12h-10v10h-12v-10h-10v-12h10z" fill="#9cebd9"/>
+      <path d="M601 82h10v8h8v10h-8v8h-10v-8h-8V90h8z" fill="#9cebd9"/>
       <path d="M0 260h640v100H0z" fill="#29283f"/>
       <path d="M0 262h640M0 291h640M0 335h640M107 261l-58 99m192-99-22 99m179-99 25 99m105-99 66 99" stroke="#51496c" fill="none" stroke-width="2"/>
       <g id="story-landed-ship"><g transform="translate(-62 95) scale(1.35)" id="story-dock-ship"/></g>
@@ -9300,21 +9311,35 @@ function buildStoryArt() {
     const gun = figure.querySelector("svg");
     svgNode("g",{id:id+"-blaster"},figure).append(gun);
   }
+  function angryFace(sprite,source) {
+    const faces = {
+      creature:{parent:sprite.firstElementChild, d:"M59 63l18 7-2 5-17-7zm28 7 17-7 2 5-17 7zM68 92h7v-5h13v5h7v5h-9v-5H77v5h-9z"},
+      "dock-cluster":{parent:sprite,d:"M-12 0l6 2v2l-6-2zm11 2 5-2v2l-5 2zM-8 8h2V6h5v2h2v2h-3V8h-3v2h-3z"},
+      "dock-scout":{parent:sprite,d:"M-12-4l7 2v2l-7-2zM-2-2l7-3v2l-7 3zm-6 7h3V3h5v2h2v2h-3V5h-3v2h-4z"}
+    };
+    const face=faces[source];
+    if (source==="creature") {
+      svgNode("path",{d:"M68 82h25v11H68z",fill:"#a5d876"},face.parent);
+    }
+    svgNode("path",{d:face.d,fill:"#293146",stroke:"none"},face.parent);
+  }
   const threat = storyClone(byId("creature"),byId("story-threat"));
   uniquePaint(threat);
+  angryFace(threat,"creature");
   const placements = [[485,213,.35],[549,211,.58],[607,222,.40],[611,153,.28],[543,135,.23],
     [309,229,.34],[382,236,.21],[448,289,.45],[584,292,.57]];
   placements.forEach(([x,y,scale],index)=>{
     const anchor = svgNode("g",{transform:"translate("+x+" "+y+") scale("+scale+")"},byId("story-swarm"));
-    const source = byId(index % 3 === 1 ? "dock-cluster" : index % 3 === 2 ? "dock-scout" : "creature");
-    const sprite = storyClone(source,anchor);
+    const source = index % 3 === 1 ? "dock-cluster" : index % 3 === 2 ? "dock-scout" : "creature";
+    const sprite = storyClone(byId(source),anchor);
     sprite.setAttribute("transform",index % 3 === 0 ? "translate(-80 -78)" : "scale(4)");
     uniquePaint(sprite);
+    angryFace(sprite,source);
   });
   for (let i=0; i<130; i++) {
-    const size = i%9===0 ? 3 : 1.5;
+    const size = i%9===0 ? 3.25 : 2;
     svgNode("rect",{x:(i*79+i*i*13)%639,y:(i*113+i*i*7)%358,width:size,height:size,
-      fill:["#beafd8","#d9f6ff","#f9d7ab"][i%3],opacity:.26+(i%6)*.11},byId("story-stars"));
+      fill:["#beafd8","#d9f6ff","#f9d7ab"][i%3],opacity:.36+(i%6)*.11},byId("story-stars"));
   }
   const logo = byId("story-logo");
   for (const part of byId("brand-art").children) storyClone(part,logo);
