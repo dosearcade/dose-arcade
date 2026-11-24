@@ -997,7 +997,7 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;ba
 <footer class="foot"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M1 3h4q2 0 3 2 1-2 3-2h4v10h-4q-2 0-3 1-1-1-3-1H1zM8 5v9"/></svg><span id="source-note"></span></footer>
 </main>
 <dialog id="story" aria-labelledby="story-title">
-  <h2 id="story-title" class="sr-only">Star’s Thera receives a distress call</h2>
+  <h2 id="story-title" class="sr-only">Distress call from Asgard</h2>
   <svg id="story-art" viewBox="0 0 640 360" aria-hidden="true">
     <defs>
       <radialGradient id="story-sky" cx=".28" cy=".72" r=".83">
@@ -1014,26 +1014,27 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;ba
         <path d="M-45-23h86v8h-86zm-2 17h94v11h-94zm4 21h88v9h-88z" fill="#c98f89"/>
         <path d="M-104 0a104 22 0 0 0 208 0" fill="none" stroke="#e3b9a6" stroke-width="4"/>
       </g>
-      <g transform="translate(247 25)" shape-rendering="crispEdges">
-        <path d="M6 85h15V62h92V24h53V11h155v13h47v49h17v92H6z" fill="#171e34" stroke="#767d98" stroke-width="3"/>
-        <path d="M17 85h101v80H17zM117 30h241v135H117zM264 78h110v87H264z" fill="#303c57"/>
-        <path d="M126 31h225v12H126zM22 67h92v11H22zM266 74h103v10H266z" fill="#586680"/>
-        <g fill="#87becb">
-          <path d="M141 52h15v10h-15zm40 0h15v10h-15zm40 0h15v10h-15zm40 0h15v10h-15zm40 0h15v10h-15zm36 0h12v10h-12z"/>
-          <path d="M32 89h18v10H32zm31 0h18v10H63zm31 0h18v10H94zm47 0h15v10h-15zm40 0h15v10h-15zm40 0h15v10h-15zm59 3h17v10h-17zm30 0h17v10h-17zm30 0h17v10h-17z"/>
-          <path d="M32 116h18v10H32zm31 0h18v10H63zm31 0h18v10H94zm47 0h15v10h-15zm40 0h15v10h-15zm40 0h15v10h-15zm59 0h17v10h-17zm30 0h17v10h-17zm30 0h17v10h-17z"/>
+      <g transform="translate(423 126)" shape-rendering="crispEdges">
+        <defs>
+          <clipPath id="story-asgard-disc"><path d="M-113-42h13v-24h20v-20h24v-15h28v-8h65v8h28v15h23v20h16v24h12v79h-12v24H87v22H63v15H36v9h-65v-9h-28V83h-23V61h-20V38h-13z"/></clipPath>
+        </defs>
+        <path d="M-118-48h13v-22h21v-20h25v-16h30v-8h68v8h31v16h22v20h17v22h12v91h-12v25H91v20H67v15H40v9h-72v-9h-29V88h-23V67h-22V43h-12z" fill="#77cbd6" opacity=".69"/>
+        <g clip-path="url(#story-asgard-disc)">
+          <rect x="-116" y="-113" width="236" height="226" fill="#294c73"/>
+          <path d="M-113-31h29v-18h32v-17h38v-11h45v9h23v16h32v13h20v23H67V-5H42V8H12v13h-39V7h-24V-4h-41v-13h-21z" fill="#53a194"/>
+          <path d="M-93-26h36v-17h30v-12h37v12h29v13h42v12H45v14H19v11h-45V-7h-29v-9h-38zM5 54h41V38h32V23h41v37H96v20H69v14H29V81H6z" fill="#8fc39a"/>
+          <path d="M44-38h29v-15h25v-16h23v112H99V27H79V10H58V-6H44z" fill="#162b4b" opacity=".48"/>
+          <path d="M-104-56h43v-5h57v5h31v5h-73v5h-58zm63 85h60v-5h53v5h28v6H57v5H5v-5h-46zM-104 50h40v-5h18v5h29v5h-31v5h-56z" fill="#b4dcdc" opacity=".45"/>
+          <path d="M-29-39h3v3h-3zm7 3h3v3h-3zm12 1h2v2h-2zm-4 7h3v3h-3zM51 62h3v3h-3zm7-5h3v3h-3zm9 2h2v2h-2z" fill="#ffe2a2"/>
         </g>
-        <path d="M17 105h357v4H17zm0 27h357v4H17zM118 68h240v3H118z" fill="#66728b"/>
-        <path d="M210 16h8v7h7v8h-7v7h-8v-7h-7v-8h7z" fill="#a7ecd6"/>
-        <path d="M27 145h337v8H27z" fill="#99d7ce"/>
       </g>
       <g id="story-flyby"><g transform="scale(.7)" id="story-flight-ship"/></g>
     </g>
     <g id="story-transmission" font-family="monospace">
-      <path d="M28 171h505l19 19v133H28z" fill="#11182a" stroke="#76cbbf" stroke-width="2"/>
+      <path d="M28 171h505l19 19v133H28z" fill="#11182a" stroke="#b67d98" stroke-width="2"/>
       <path d="M29 208h521" stroke="#395964"/>
-      <path d="M47 191h7m5-5h8m5-5h7" stroke="#a6f1d9" stroke-width="3"/>
-      <text x="91" y="196" font-size="14" font-weight="700" fill="#a6f1d9" letter-spacing="2">DISTRESS SIGNAL</text>
+      <path id="story-signal" d="M48 195v-8m9 8v-12m9 12v-17" stroke="#fb9c91" stroke-width="4"/>
+      <text x="91" y="196" font-size="14" font-weight="700" fill="#ffb19e" letter-spacing="1.6">DISTRESS CALL / ASGARD</text>
       <text x="47" y="238" font-size="20" font-weight="700" fill="#f7f3e9">
         <tspan x="47" id="story-first-line"/>
         <tspan x="47" dy="33" id="story-second-line"/>
@@ -1049,6 +1050,12 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;ba
       </g>
       <path d="M186 144h6v-6h12v-4h13v4h9v7h5v19h-6v7h-10v4h-14v-4h-11v-6h-4z" fill="#6294a8"/>
       <path d="M192 147h27v5h-27zm13 12h20v5h-20z" fill="#94c4ce"/>
+      <path d="M0 142h47v-31h42v20h31v-32h44v49h18v-18h36v130H0z" fill="#343950"/>
+      <path d="M0 201h18v-41h39v-13h28v13h27v43h18v-66h29v-15h20v15h26v55h41v68H0z" fill="#46546d" stroke="#56637d" stroke-width="2"/>
+      <path d="M26 169h8v8h-8zm16 0h13v8H42zm0 18h13v6H42zm39-17h12v5H81zm1 16h12v7H82zm56-42h10v6h-10zm17 0h11v6h-11zm21 0h17v6h-17zm-38 17h10v7h-10zm17 0h11v7h-11zm21 0h17v7h-17z" fill="#8ac6cb"/>
+      <path d="M0 229h222M15 207h81m41-14h64" stroke="#b2a0ba" stroke-width="2"/>
+      <path d="M85 145v-23m74 10v-25" stroke="#8791ad" stroke-width="3"/>
+      <g id="story-city-traffic"/>
       <path d="M218 126h56V74h38V22h328v248H218z" fill="#2d304a" stroke="#757991" stroke-width="4"/>
       <path d="M313 37h327v8H313zm-38 52h365v7H275zm-56 51h421v8H219zm14 71h407v7H233z" fill="#596782"/>
       <path d="M319 47h321v35H319zm-37 49h358v36H282zm-56 53h414v50H226z" fill="#20293f"/>
@@ -1059,6 +1066,8 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;ba
       </g>
       <path d="M386 52h39v22h-39zm108 50h39v22h-39zm-162 0h39v22h-39z" fill="#d7bca4"/>
       <path d="M332 158h34v37h-34zm41 0h34v37h-34zm41 0h34v37h-34z" fill="#192a43" stroke="#7a8099" stroke-width="3"/>
+      <path d="M361 23v118m117-118v118m107-118v118M270 234h183" fill="none" stroke="#6c778d" stroke-width="3"/>
+      <path d="M472 264l-16 15h178l-11-15z" fill="#556079" stroke="#29354a" stroke-width="2"/>
       <path d="M476 264v-91h150v91z" fill="#171d2b" stroke="#a9a0ad" stroke-width="4"/>
       <path d="M498 266v-78h106v78" fill="#29344b" stroke="#546484" stroke-width="3"/>
       <path d="M551 188v78" stroke="#67718d" stroke-width="3"/>
@@ -1068,10 +1077,22 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;ba
       <path d="M0 260h640v100H0z" fill="#29283f"/>
       <path d="M0 262h640M0 291h640M0 335h640M107 261l-58 99m192-99-22 99m179-99 25 99m105-99 66 99" stroke="#51496c" fill="none" stroke-width="2"/>
       <g id="story-landed-ship"><g transform="translate(-62 95) scale(1.35)" id="story-dock-ship"/></g>
+      <g id="story-ramp" transform="translate(83 52) scale(1.05)"/>
+      <g id="story-civilians"/>
       <g id="story-swarm"/>
       <g id="story-crew">
         <g id="story-wanda"/><g id="story-strange"/>
       </g>
+      <g id="story-plea-east">
+        <path d="M398 107h137v30h-51l-10 9v-9h-76z" fill="#f1edf9" stroke="#27263c" stroke-width="2"/>
+        <text x="408" y="128" fill="#25263c" font-family="monospace" font-size="16" font-weight="700">PLEASE HELP!</text>
+      </g>
+      <g id="story-plea-west">
+        <path d="M36 232h142v30h-66l-10 9v-9H36z" fill="#f1edf9" stroke="#27263c" stroke-width="2"/>
+        <text x="47" y="253" fill="#25263c" font-family="monospace" font-size="16" font-weight="700">OVER HERE!</text>
+      </g>
+      <g id="story-lasers"/>
+      <g id="story-impacts"/>
     </g>
     <g id="story-reflection">
       <rect width="640" height="360" fill="#30334c"/>
@@ -1080,7 +1101,10 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;ba
         <path d="M332 158h34v37h-34zm41 0h34v37h-34zm41 0h34v37h-34z" fill="#1b2844" stroke="#7a8099" stroke-width="3"/>
         <path d="M333 172l13-13h7l-20 20zm41 0 13-13h7l-20 20zm41 0 13-13h7l-20 20z" fill="#627396" opacity=".6"/>
         <g clip-path="url(#story-glass)">
-          <g id="story-reflected-bolt"><path d="M0 4h12V0h32v2h18v4H45v2H10V7H0z" fill="#eeb0f7"/><path d="M24 3h26v2H24z" fill="#ffeffa"/></g>
+          <g id="story-reflected-bolt">
+            <path d="M0 6h18V2h26v2h19v6H44v2H18V9H0z" fill="currentColor" opacity=".6"/>
+            <path d="M18 5h45v3H18z" fill="#f7fbff"/>
+          </g>
           <path id="story-reflected-hit" d="M424 165h13v12h10v9h-10v10h-13v-10h-12v-9h12z" fill="#9ef6ed"/>
         </g>
       </g>
@@ -1111,6 +1135,22 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;ba
         <text x="56" y="149" fill="#25263c" font-family="monospace" font-size="16" font-weight="700">WE’RE HERE.</text>
       </g>
     </g>
+    <g id="story-reinforcements" font-family="monospace">
+      <rect width="640" height="360" fill="#0c1427" opacity=".92"/>
+      <path d="M43 60h528l26 26v213H43z" fill="#171c32" stroke="#a197c4" stroke-width="2"/>
+      <path d="M43 99h554" stroke="#595c80" stroke-width="2"/>
+      <path d="M58 83h9v-8h8v-7h7v15z" fill="#c9f7d9"/>
+      <text x="96" y="84" fill="#c9f7d9" font-size="16" letter-spacing="1.4" font-weight="bold">CREW CHANNEL</text>
+      <text x="61" y="132" fill="#f9f4ed" font-size="23" font-weight="bold">We need reinforcements.</text>
+      <text id="story-reinforce-line" x="61" y="164" fill="#e2d5f0" font-size="18">Doom, Storm, bring the team.</text>
+      <g id="story-reinforce-pilots">
+        <path d="M64 190h252v84H64zm260 0h252v84H324z" fill="#262c46" stroke="#685c80" stroke-width="2"/>
+        <g id="story-call-doom" transform="translate(75 195) scale(.79)"/>
+        <g id="story-call-storm" transform="translate(334 195) scale(.79)"/>
+        <text x="129" y="239" fill="#f9f4ed" font-size="22" font-weight="bold">DR. DOOM</text>
+        <text x="394" y="239" fill="#f9f4ed" font-size="22" font-weight="bold">DR. STORM</text>
+      </g>
+    </g>
     <g id="story-end">
       <rect width="640" height="360" fill="#101429" opacity=".90"/>
       <g id="story-logo" transform="translate(77 124) scale(7.75)" shape-rendering="crispEdges"/>
@@ -1119,7 +1159,7 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;ba
       <text x="320" y="263" text-anchor="middle" fill="#adc7e1" font-family="monospace" font-size="14">dosearcade.github.io/dose-arcade</text>
     </g>
   </svg>
-  <p class="sr-only">Star’s Thera picked up a distress call. A bacterial epidemic had swept through the station. Dr. Wanda and Dr. Strange reach a patient. You make the next decision.</p>
+  <p class="sr-only">Star’s Thera picks up a distress call from Asgard. A bacterial epidemic has swept through the city. Dr. Wanda and Dr. Strange reach a patient and call Dr. Doom and Dr. Storm for reinforcements. You make the next decision.</p>
   <div class="story-controls">
     <button type="button" id="story-sound">Enable sound</button>
     <button type="button" id="story-skip">Skip intro</button>
@@ -5925,13 +5965,31 @@ function playSound(cue, value = 0, direction = 1) {
       break;
     }
     case "radio-start":
-      tone("sine",664,664,.085,now,.30,{attack:.008});
-      tone("triangle",997,1090,.17,now+.085,.31,{attack:.008});
+      tone("triangle",345,565,.29,now,.64,{attack:.009});
+      tone("sine",670,925,.22,now+.012,.49,{attack:.008});
+      tone("square",535,535,.14,now+.32,.34,{attack:.01});
+      noise(1600,740,1.3,.21,now+.025,.32,{attack:.018});
       break;
     case "radio-bit":
-      tone("sine",1120,1010,.044,now,.17,{attack:.006});
-      tone("triangle",1535,1450,.045,now+.051,.13,{attack:.007});
+      tone("triangle",1350,1180,.063,now,.36,{attack:.008});
+      tone("sine",840,980,.045,now+.068,.27,{attack:.006});
       break;
+    case "alarm-plea":
+      tone("triangle",388,441,.13,now,.23,{attack:.015,wobble:18});
+      tone("triangle",330,246,.20,now+.16,.23,{attack:.015,wobble:24});
+      break;
+    case "story-laser":
+      tone("triangle",value ? 1550 : 1210,value ? 235 : 165,.19,now,.57,{attack:.004});
+      tone("sine",180,74,.17,now,.49,{attack:.005});
+      noise(3700,1880,1.4,.08,now,.32,{attack:.003});
+      break;
+    case "story-damage": {
+      const pitch = [430,362,475][value];
+      tone("square",pitch,94,.16,now,.36,{attack:.005,wobble:34});
+      tone("triangle",184,61,.18,now,.54,{attack:.006});
+      noise(2440,570,1.2,.13,now,.28,{attack:.009});
+      break;
+    }
     case "radio-end":
       tone("triangle",765,765,.079,now,.22,{attack:.009});
       tone("sine",528,506,.14,now+.081,.23,{attack:.008});
@@ -9280,12 +9338,30 @@ function route(){
    ========================================================================== */
 
 const story = byId("story");
-const storyLength = 22;
-const storyCues = [
-  [.2,"radio-start"],[1.13,"radio-bit"],[1.62,"radio-bit"],[2.6,"radio-end"],[3.32,"radio-bit"],
-  [5.2,"comet",1.55],[7.4,"entry"],[9.3,"ready"],[11.05,"fire"],[11.79,"fire"],[12.43,"bounce"],
-  [13.8,"entry"],[15.3,"monitor"],[16.67,"monitor"],[18.2,"radio-end"],[19.75,"opening"]
+const storyLength = 29;
+const storyTitleTime = 26.2;
+const storyTraffic = [
+  {y:79,period:4.8,offset:.1,size:.86,direction:1,color:"#9ee5dc"},
+  {y:121,period:5.9,offset:.64,size:.62,direction:-1,color:"#ebbc91"},
+  {y:48,period:7.6,offset:.28,size:.50,direction:-1,color:"#9eaadb"}
 ];
+const storyEnemies = [[485,213,.35],[549,211,.58],[607,222,.40],[611,154,.25],[543,133,.23],
+  [309,230,.34],[400,238,.21],[448,289,.45],[584,292,.57]];
+const storyShots = [
+  [12.12,385,228,0],[12.84,462,231,1],[13.54,385,233,8],
+  [14.35,391,229,3],[14.98,462,232,2],[15.63,396,229,7],[16.27,456,229,4]
+].map(([time,x,y,target],index)=>({time,x,y,target,color:index%2 ? "#62e6ff" : "#efa1ff"}));
+const shotFlight = .22;
+const storyCues = [
+  [.08,"radio-start"],[.76,"radio-bit"],[1.35,"radio-bit"],[1.94,"radio-bit"],[2.65,"radio-start"],
+  [3.1,"radio-bit"],[3.72,"radio-bit"],[4.3,"radio-end"],[5.15,"comet",1.42],
+  [6.8,"comet",.68],[7.84,"entry"],[8.25,"step"],[8.62,"step"],[9.12,"step"],[9.72,"step"],
+  [10.15,"alarm-plea"],[10.88,"alarm-plea"],[11.32,"ready"],
+  [17.12,"entry"],[18.5,"monitor"],[19.87,"monitor"],[21.72,"radio-end"],[23.1,"radio-bit"],
+  [24.02,"mission"],[26.22,"opening"],
+  ...storyShots.flatMap((shot,index)=>[[shot.time,"story-laser",index%2],
+    [shot.time+shotFlight,"story-damage",index%3]])
+].sort((a,b)=>a[0]-b[0]);
 let storyFrame = 0;
 let storyPatientRound = "";
 
@@ -9322,6 +9398,30 @@ function buildStoryArt() {
     svgNode("path",{d:"M208 95v-8h16v8l-4 2h-12z",fill:"#582a44"},craft);
     svgNode("path",{id:id+"-beacon",d:"M210 87h12v6h-12z",fill:"#ff8a97"},craft);
   }
+  storyClone(byId("arrival-ramp"),byId("story-ramp"));
+  for (const [index,traffic] of storyTraffic.entries()) {
+    const hover = svgNode("g",{id:"story-hover-"+index},byId("story-city-traffic"));
+    svgNode("path",{d:"M-19 0h-36m42 4h-30",stroke:traffic.color,"stroke-width":2,opacity:.46},hover);
+    svgNode("path",{d:"M-23-3h13l8-7h15l5 7h8v7H17v3h-35v-3h-5z",
+      fill:"#5a6b8f",stroke:"#1d273e","stroke-width":2},hover);
+    svgNode("path",{d:"M-7-3l5-5h12l4 5zM-18 3h5v2h-5zm35 0h5v2h-5z",fill:traffic.color},hover);
+  }
+  const crowd = byId("story-civilians");
+  for (const [index,[x,y,scale]] of [[110,293,1.20],[454,198,.96],[510,224,.83]].entries()) {
+    const person = svgNode("g",{transform:"translate("+x+" "+y+") scale("+scale+")"},crowd);
+    const color = patientPalettes[index];
+    patientPath(person,"#222437","M-8 9h16v4h4v16H7v13h-5V31h-4v11h-6V29h-4V13h4z");
+    patientPath(person,color.shirt,"M-7 11h14v3h4v9H8v6H-8v-6h-3v-9h4z");
+    patientPath(person,"#bcc9e1","M-5 15h10v2H-5zm-3 22h6v3h-6zm10 0h5v3H2z");
+    const arm = svgNode("g",{},person);
+    patientPath(arm,color.shirt,"M-12 14h-4V6h4v8h4v6h-4z");
+    patientPath(arm,color.skin,"M-17 1h4v6h-4z");
+    patientFace(person,color,true);
+    patientPath(person,color.skin,"M-3 4h7v6H-3z");
+    patientPath(person,"#3a3040","M-2 6h5v3h-5z");
+  }
+  pharmacistArt(byId("story-call-doom"),"doom");
+  pharmacistArt(byId("story-call-storm"),"storm");
   storyClone(byId("patient-shadow"),byId("story-bed"));
   storyClone(byId("patient-bed"),byId("story-bed"));
   drawLyingPatient(byId("story-elder"),patientPalettes[2],false);
@@ -9349,15 +9449,27 @@ function buildStoryArt() {
   const threat = storyClone(byId("creature"),byId("story-threat"));
   uniquePaint(threat);
   angryFace(threat,"creature");
-  const placements = [[485,213,.35],[549,211,.58],[607,222,.40],[611,153,.28],[543,135,.23],
-    [309,229,.34],[382,236,.21],[448,289,.45],[584,292,.57]];
-  placements.forEach(([x,y,scale],index)=>{
-    const anchor = svgNode("g",{transform:"translate("+x+" "+y+") scale("+scale+")"},byId("story-swarm"));
+  storyEnemies.forEach((_,index)=>{
+    const anchor = svgNode("g",{id:"story-germ-"+index},byId("story-swarm"));
     const source = index % 3 === 1 ? "dock-cluster" : index % 3 === 2 ? "dock-scout" : "creature";
     const sprite = storyClone(byId(source),anchor);
     sprite.setAttribute("transform",index % 3 === 0 ? "translate(-80 -78)" : "scale(4)");
     uniquePaint(sprite);
     angryFace(sprite,source);
+  });
+  const lasers = byId("story-lasers"), impacts = byId("story-impacts");
+  storyShots.forEach(({color,x,y,target},index)=>{
+    const bolt = svgNode("g",{id:"story-shot-"+index},lasers);
+    svgNode("path",{d:"M-44 0h43",stroke:color,"stroke-width":11,opacity:.25},bolt);
+    svgNode("path",{d:"M-33-2h16v-2h19v8h-19V2h-16z",fill:color},bolt);
+    svgNode("path",{d:"M-21-1H3v2h-24z",fill:"#f8ffff"},bolt);
+    svgNode("path",{id:"story-muzzle-"+index,d:"M-12-2h9v-8h4v7h11v5H4v7H0V3h-12z",
+      transform:"translate("+x+" "+y+")",fill:color},lasers);
+    const [hitX,hitY] = storyEnemies[target];
+    const hit = svgNode("g",{id:"story-hit-"+index,transform:"translate("+hitX+" "+hitY+")"},impacts);
+    svgNode("path",{d:"M-18-6h9v-5h4v7h7v-13h4v12h9v-6h4v9H9v7h9v4h-9v8H5V8h-8v8h-4V7h-13V3h11v-5h-9z",
+      fill:color},hit);
+    svgNode("path",{d:"M-5-6h10v4h5v5H5v4H-5V3h-5v-5h5z",fill:"#fff7ec"},hit);
   });
   for (let i=0; i<130; i++) {
     const size = i%9===0 ? 3.25 : 2;
@@ -9372,42 +9484,93 @@ function renderStoryFrame(t, still = false) {
   const progress = (start,end) => Math.max(0,Math.min(1,(t-start)/(end-start)));
   const paint = (id,alpha) => byId(id).setAttribute("opacity",String(Number(alpha)));
   const move = (id,x,y) => byId(id).setAttribute("transform","translate("+x+" "+y+")");
-  paint("story-orbit",t<6.65);
-  paint("story-transmission",t<5.4);
-  const lines = ["Star’s Thera picked up a distress call.","A bacterial epidemic had swept","through the station."];
-  const reveal = [progress(.52,2.04),progress(2.5,3.72),progress(3.7,4.4)];
-  for (const [i,id] of ["story-first-line","story-second-line","story-third-line"].entries()) {
-    const line = byId(id);
-    const words = lines[i].split(" ");
-    const chunk = (still ? words : words.slice(0,Math.ceil(reveal[i] * words.length))).join(" ");
-    if (line.textContent !== chunk) line.textContent = chunk;
+  const orbit = t<6.35, dock = t>=6.35 && t<14.2, reflected = t>=14.2 && t<17.1;
+  paint("story-orbit",orbit);
+  paint("story-transmission",t<5.3);
+  paint("story-dock",dock);
+  paint("story-reflection",reflected);
+  paint("story-ward",t>=17.1);
+  paint("story-reinforcements",progress(21.6,21.95));
+  paint("story-end",progress(storyTitleTime-.25,storyTitleTime+.22));
+  if (orbit) {
+    const lines = ["Star’s Thera picked up a distress call.","A bacterial epidemic has swept","through Asgard."];
+    const reveal = [progress(.45,2.13),progress(2.65,3.72),progress(3.7,4.39)];
+    ["story-first-line","story-second-line","story-third-line"].forEach((id,i)=>{
+      const line = byId(id);
+      const words = lines[i].split(" ");
+      const chunk = (still ? words : words.slice(0,Math.ceil(reveal[i] * words.length))).join(" ");
+      if (line.textContent !== chunk) line.textContent = chunk;
+    });
+    paint("story-signal",still ? 1 : .52 + .48*Math.abs(Math.sin(t*5)));
+    const flight = progress(5.02,6.35);
+    move("story-flyby",-290+1010*flight,82+46*flight);
   }
-  move("story-flyby",-290+1010*progress(5.1,6.62),82-66*progress(5.1,6.62));
   const beacon = .42 + .58 * Math.max(0,Math.sin(t*7));
   paint("story-flight-ship-beacon",beacon);
   paint("story-dock-ship-beacon",beacon);
-  paint("story-dock",t>=6.65 && t<10.8);
-  const landing = 1 - (1-progress(6.65,7.9))**2;
-  move("story-landed-ship",-220*(1-landing),-100*(1-landing));
-  const step = progress(7.6,9.2);
-  const hop = step>0 && step<1 ? Math.abs(Math.sin(step*9.4))*5 : 0;
-  byId("story-wanda").setAttribute("transform","translate("+(165+98*step)+" "+(145-hop)+") scale(1.8)");
-  byId("story-strange").setAttribute("transform","translate("+(240+93*step)+" "+(150-hop)+") scale(1.7)");
-  paint("story-crew",progress(7.58,7.83));
-  byId("story-wanda-blaster").setAttribute("transform","rotate("+(17-26*progress(9.15,9.65))+" 44 55)");
-  byId("story-strange-blaster").setAttribute("transform","rotate("+(23-31*progress(9.4,9.93))+" 44 55)");
-  move("story-swarm",Math.floor(Math.sin(t*4)*3),Math.floor(Math.sin(t*6)*4));
-  paint("story-reflection",t>=10.8 && t<13.55);
-  const boltProgress = t<11.79 ? progress(11.05,11.52) : progress(11.79,12.44);
-  move("story-reflected-bolt",290+boltProgress*186,168+boltProgress*9);
-  paint("story-reflected-bolt",boltProgress>0 && boltProgress<1);
-  paint("story-reflected-hit",Math.max(0,1-Math.abs(t-12.46)/.27)*.85);
-  paint("story-ward",t>=13.55);
-  paint("story-ward-shield",progress(18.15,18.48));
-  const reach = Math.sin(Math.PI * progress(14.8,18.4));
-  byId("story-elder-hand").setAttribute("transform","rotate("+(12-35*reach)+" 29 65)");
-  paint("story-speech",t>=15.48 && t<18.45);
-  paint("story-end",progress(19.55,20.15));
+  if (dock) {
+    for (const [index,traffic] of storyTraffic.entries()) {
+      const pass = ((t-6.35)/traffic.period+traffic.offset)%1;
+      const x = traffic.direction>0 ? -60+730*pass : 670-730*pass;
+      const y = traffic.y - Math.sin(pass*Math.PI)*12;
+      byId("story-hover-"+index).setAttribute("transform","translate("+x+" "+y+") scale("+traffic.direction*traffic.size+" "+traffic.size+")");
+    }
+    const landing = 1 - (1-progress(6.35,7.88))**2;
+    move("story-landed-ship",-220*(1-landing),-117*(1-landing));
+    paint("story-ramp",progress(7.72,8.14));
+    for (const [id,start,finish,x,y,size] of [
+      ["story-wanda",8.2,10,235,151,1.75],["story-strange",8.65,10.5,322,153,1.68]
+    ]) {
+      const step = progress(start,finish);
+      const hop = step>0 && step<1 ? Math.abs(Math.sin(step*11))*5 : 0;
+      const kick = storyShots.filter((_,i)=>id==="story-wanda" ? i%2===0 : i%2===1)
+        .reduce((peak,shot)=>Math.max(peak, 3*(1-progress(shot.time,shot.time+.13))*(t>=shot.time)),0);
+      byId(id).setAttribute("transform","translate("+(210+(x-210)*step-kick)+" "+(92+(y-92)*step-hop)+") scale("+size+")");
+      paint(id,progress(start,start+.2));
+      byId(id+"-blaster").setAttribute("transform","rotate("+(25-37*progress(10.9,11.65))+" 44 55)");
+    }
+    paint("story-plea-east",t>=9.72 && t<11.96);
+    paint("story-plea-west",t>=8.76 && t<10.85);
+    for (const [index,[x,y,scale]] of storyEnemies.entries()) {
+      const hit = storyShots.find(shot=>shot.target===index);
+      const reaction = hit ? progress(hit.time+shotFlight,hit.time+shotFlight+.44) : 0;
+      const pulse = Math.sin(reaction*Math.PI/2);
+      const dx = Math.sin(t*5+index)*3 + pulse*29;
+      const dy = Math.sin(t*7+index)*4 - pulse*14;
+      const s = scale*(1-.42*reaction);
+      const sprite = byId("story-germ-"+index);
+      sprite.setAttribute("transform","translate("+(x+dx)+" "+(y+dy)+") rotate("+(pulse*24)+" ) scale("+s+")");
+      paint("story-germ-"+index,1-reaction*.78);
+    }
+    storyShots.forEach((shot,index)=>{
+      const {time,x,y,target} = shot;
+      const flight = progress(time,time+shotFlight);
+      const [hitX,hitY] = storyEnemies[target];
+      const angle = Math.atan2(hitY-y,hitX-x)*180/Math.PI;
+      const bolt = byId("story-shot-"+index);
+      bolt.setAttribute("transform","translate("+(x+(hitX-x)*flight)+" "+(y+(hitY-y)*flight)+") rotate("+angle+")");
+      paint("story-shot-"+index,flight>0 && flight<1);
+      paint("story-muzzle-"+index,t>=time && 1-progress(time,time+.10));
+      paint("story-hit-"+index,t>=time+shotFlight && 1-progress(time+shotFlight,time+shotFlight+.24));
+    });
+  }
+  if (reflected) {
+    const shot = storyShots.filter(item=>item.time<=t).pop();
+    const flight = shot ? progress(shot.time,shot.time+shotFlight) : 0;
+    move("story-reflected-bolt",290+186*flight,168+flight*9);
+    byId("story-reflected-bolt").setAttribute("color",shot?.color || "#62e6ff");
+    paint("story-reflected-bolt",flight>0 && flight<1);
+    const impact = shot ? Math.max(0,1-Math.abs(t-shot.time-shotFlight)/.19) : 0;
+    paint("story-reflected-hit",impact*.8);
+  }
+  if (t>=17.1) {
+    paint("story-ward-shield",progress(20.65,21.14));
+    const reach = Math.sin(Math.PI * progress(17.9,21.3));
+    byId("story-elder-hand").setAttribute("transform","rotate("+(12-35*reach)+" 29 65)");
+    paint("story-speech",t>=18.5 && t<21.36);
+    paint("story-reinforce-line",progress(22.86,23.15));
+    paint("story-reinforce-pilots",progress(23.65,24.18));
+  }
 }
 
 function finishStory(openCase = false) {
@@ -9443,7 +9606,7 @@ function startStory() {
       const [time,sound,value] = storyCues[cue++];
       if (t-time<.16) playSound(sound,value);
     }
-    if (t>=19.75) {
+    if (t>=storyTitleTime) {
       byId("story-play").hidden = false;
       byId("story-skip").textContent = "Lecture library";
     }
