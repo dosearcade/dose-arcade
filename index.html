@@ -1076,8 +1076,26 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;ba
       <path d="M482 180h139" stroke="#efaba2" stroke-width="3"/>
       <path d="M0 260h640v100H0z" fill="#29283f"/>
       <path d="M0 262h640M0 291h640M0 335h640M107 261l-58 99m192-99-22 99m179-99 25 99m105-99 66 99" stroke="#51496c" fill="none" stroke-width="2"/>
-      <g id="story-landed-ship"><g transform="translate(-62 95) scale(1.35)" id="story-dock-ship"/></g>
-      <g id="story-ramp" transform="translate(83 52) scale(1.05)"/>
+      <g id="story-landed-ship">
+        <g transform="translate(-62 95) scale(1.35)" id="story-dock-ship"/>
+        <g id="story-hatch">
+          <defs><clipPath id="story-hatch-opening"><path d="M174 206h42v47h-42z"/></clipPath></defs>
+          <path d="M164 202h7v-5h47v5h8v56h-62z" fill="#1d2a41" stroke="#91a8bf" stroke-width="3"/>
+          <path d="M174 205h42v48h-42z" fill="#0e1528" stroke="#475973" stroke-width="2"/>
+          <path d="M174 250h42v3h-42z" fill="#e4c595"/>
+          <g clip-path="url(#story-hatch-opening)">
+            <path d="M177 208h36v5h-36z" fill="#f0ca96" opacity=".72"/>
+            <path id="story-hatch-left" d="M173 205h22v48h-22zM179 216h11v28h-11z" fill-rule="evenodd" fill="#788da8" stroke="#36465e"/>
+            <path id="story-hatch-right" d="M195 205h22v48h-22zM200 216h11v28h-11z" fill-rule="evenodd" fill="#91a8be" stroke="#36465e"/>
+          </g>
+          <path d="M166 215h3v21h-3zm54 0h3v21h-3z" fill="#f6cc9d"/>
+        </g>
+        <g id="story-ramp">
+          <path d="M173 253h43l39 44h-48z" fill="#7788a1" stroke="#1e293f" stroke-width="3"/>
+          <path d="m185 263 39 0m-30 11h40m-32 11h42M176 256l32 38m8-38 35 38" fill="none" stroke="#c6d4de" stroke-width="2"/>
+          <path d="M207 294h48v4h-48z" fill="#ebcc92"/>
+        </g>
+      </g>
       <g id="story-civilians"/>
       <g id="story-swarm"/>
       <g id="story-crew">
@@ -1120,16 +1138,14 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;ba
       <path d="M319 102h21l8-9 9 20 12-32 11 21h31" fill="none" stroke="#b6f0a1" stroke-width="3"/>
       <path d="M0 222h640v138H0z" fill="#33304d"/>
       <path d="M0 224h640M0 256h640M0 301h640M95 224l-55 136m199-136-21 136m186-136 23 136m101-136 63 136" fill="none" stroke="#524c69" stroke-width="2"/>
-      <g id="story-bed" transform="translate(142 99) scale(2.6)"/>
-      <g id="story-elder" transform="translate(142 99) scale(2.6)">
+      <g id="story-bed" transform="translate(108 119) scale(2.3)"/>
+      <g id="story-elder" transform="translate(108 119) scale(2.3)">
         <path id="story-elder-hand" d="M30 66h-7v-2h-4v-3h-4v-9h5v5h3v4h8z" fill="#afa58d" stroke="#292436" stroke-width="1.3"/>
       </g>
-      <g id="story-ward-wanda" transform="translate(45 168) scale(1.7)"/>
-      <g id="story-ward-strange" transform="translate(375 165) scale(1.7)"/>
-      <path d="M432 231h24v17h-24z" fill="#afdbed" stroke="#26283e" stroke-width="3"/>
-      <path d="M436 236h14m-14 4h9" stroke="#567895" stroke-width="2"/>
-      <g id="story-threat" transform="translate(459 117) scale(1.35)"/>
-      <path id="story-ward-shield" d="m567 127 66 22v58l-15 42-51 32-51-32-15-42v-58z" fill="#61d1ec" fill-opacity=".16" stroke="#94f5f2" stroke-width="5"/>
+      <g id="story-ward-wanda" transform="translate(45 168) scale(1.65)"/>
+      <g id="story-ward-strange" transform="translate(282 198) scale(1.42)"/>
+      <g id="story-ward-threats"/>
+      <g id="story-ward-bolts"/>
       <g id="story-speech">
         <path d="M45 127h119v32H84l-9 9v-9H45z" fill="#e8f2ee" stroke="#27263c" stroke-width="2"/>
         <text x="56" y="149" fill="#25263c" font-family="monospace" font-size="16" font-weight="700">WE’RE HERE.</text>
@@ -1159,7 +1175,7 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;ba
       <text x="320" y="263" text-anchor="middle" fill="#adc7e1" font-family="monospace" font-size="14">dosearcade.github.io/dose-arcade</text>
     </g>
   </svg>
-  <p class="sr-only">Star’s Thera picks up a distress call from Asgard. A bacterial epidemic has swept through the city. Dr. Wanda and Dr. Strange reach a patient and call Dr. Doom and Dr. Storm for reinforcements. You make the next decision.</p>
+  <p class="sr-only">Star’s Thera picks up a distress call from Asgard. A bacterial epidemic has swept through the city. Dr. Wanda and Dr. Strange reach a patient, whose room is blocked by bacteria with energy shields, and call Dr. Doom and Dr. Storm for reinforcements. You make the next decision.</p>
   <div class="story-controls">
     <button type="button" id="story-sound">Enable sound</button>
     <button type="button" id="story-skip">Skip intro</button>
@@ -5978,6 +5994,11 @@ function playSound(cue, value = 0, direction = 1) {
       tone("triangle",388,441,.13,now,.23,{attack:.015,wobble:18});
       tone("triangle",330,246,.20,now+.16,.23,{attack:.015,wobble:24});
       break;
+    case "story-hatch":
+      noise(680,1460,1.5,.32,now,.32,{attack:.06});
+      tone("triangle",137,105,.19,now+.13,.32,{attack:.029});
+      tone("triangle",218,90,.10,now+.33,.24,{attack:.012});
+      break;
     case "story-laser":
       tone("triangle",value ? 1550 : 1210,value ? 235 : 165,.19,now,.57,{attack:.004});
       tone("sine",180,74,.17,now,.49,{attack:.005});
@@ -9338,8 +9359,8 @@ function route(){
    ========================================================================== */
 
 const story = byId("story");
-const storyLength = 29;
-const storyTitleTime = 26.2;
+const storyLength = 30.5;
+const storyTitleTime = 27.5;
 const storyTraffic = [
   {y:79,period:4.8,offset:.1,size:.86,direction:1,color:"#9ee5dc"},
   {y:121,period:5.9,offset:.64,size:.62,direction:-1,color:"#ebbc91"},
@@ -9352,13 +9373,22 @@ const storyShots = [
   [14.35,391,229,3],[14.98,462,232,2],[15.63,396,229,7],[16.27,456,229,4]
 ].map(([time,x,y,target],index)=>({time,x,y,target,color:index%2 ? "#62e6ff" : "#efa1ff"}));
 const shotFlight = .22;
+const wardThreats = [
+  {x:518,y:112,scale:.88,source:"creature",color:"#b4fffb",time:19.62,missX:416,missY:65},
+  {x:583,y:204,scale:.82,source:"dock-cluster",color:"#92dfff",time:20.45,missX:467,missY:145},
+  {x:507,y:268,scale:.78,source:"dock-scout",color:"#c0ffe3",time:21.28,missX:430,missY:342}
+];
+const wardShotStart = {x:411,y:269};
+const wardFlight = .24;
+const wardBounce = .34;
 const storyCues = [
   [.08,"radio-start"],[.76,"radio-bit"],[1.35,"radio-bit"],[1.94,"radio-bit"],[2.65,"radio-start"],
   [3.1,"radio-bit"],[3.72,"radio-bit"],[4.3,"radio-end"],[5.15,"comet",1.42],
-  [6.8,"comet",.68],[7.84,"entry"],[8.25,"step"],[8.62,"step"],[9.12,"step"],[9.72,"step"],
+  [6.8,"comet",.68],[7.66,"entry"],[7.81,"story-hatch"],[8.25,"step"],[8.62,"step"],[9.12,"step"],[9.72,"step"],
   [10.15,"alarm-plea"],[10.88,"alarm-plea"],[11.32,"ready"],
-  [17.12,"entry"],[18.5,"monitor"],[19.87,"monitor"],[21.72,"radio-end"],[23.1,"radio-bit"],
-  [24.02,"mission"],[26.22,"opening"],
+  [17.12,"entry"],[18.5,"monitor"],[18.92,"ready"],[22.95,"radio-end"],[24.24,"radio-bit"],
+  [25.22,"mission"],[27.52,"opening"],
+  ...wardThreats.flatMap(({time})=>[[time,"story-laser",1],[time+wardFlight,"bounce"]]),
   ...storyShots.flatMap((shot,index)=>[[shot.time,"story-laser",index%2],
     [shot.time+shotFlight,"story-damage",index%3]])
 ].sort((a,b)=>a[0]-b[0]);
@@ -9398,7 +9428,6 @@ function buildStoryArt() {
     svgNode("path",{d:"M208 95v-8h16v8l-4 2h-12z",fill:"#582a44"},craft);
     svgNode("path",{id:id+"-beacon",d:"M210 87h12v6h-12z",fill:"#ff8a97"},craft);
   }
-  storyClone(byId("arrival-ramp"),byId("story-ramp"));
   for (const [index,traffic] of storyTraffic.entries()) {
     const hover = svgNode("g",{id:"story-hover-"+index},byId("story-city-traffic"));
     svgNode("path",{d:"M-19 0h-36m42 4h-30",stroke:traffic.color,"stroke-width":2,opacity:.46},hover);
@@ -9426,7 +9455,7 @@ function buildStoryArt() {
   storyClone(byId("patient-bed"),byId("story-bed"));
   drawLyingPatient(byId("story-elder"),patientPalettes[2],false);
   pharmacistArt(byId("story-ward-wanda"),"woman");
-  pharmacistArt(byId("story-ward-strange"),"man");
+  landingPharmacist(byId("story-ward-strange"),"man");
   for (const [id,who] of [["story-wanda","woman"],["story-strange","man"]]) {
     const figure = byId(id);
     landingPharmacist(figure,who);
@@ -9446,9 +9475,28 @@ function buildStoryArt() {
     }
     svgNode("path",{d:face.d,fill:"#293146",stroke:"none"},face.parent);
   }
-  const threat = storyClone(byId("creature"),byId("story-threat"));
-  uniquePaint(threat);
-  angryFace(threat,"creature");
+  const shieldShape = "M0-51L46-38V-5L37 23 18 40 0 51l-18-11-19-17-9-28v-33z";
+  wardThreats.forEach(({x,y,scale,source,color},index)=>{
+    const threat = svgNode("g",{transform:"translate("+x+" "+y+") scale("+scale+")"},byId("story-ward-threats"));
+    svgNode("ellipse",{cx:0,cy:54,rx:35,ry:4,fill:"#201d38",opacity:.7},threat);
+    const sprite = storyClone(byId(source),threat);
+    sprite.setAttribute("transform",source==="creature" ? "translate(-80 -72) scale(1)" : "scale(2.05)");
+    uniquePaint(sprite);
+    angryFace(sprite,source);
+    const shield = svgNode("g",{id:"story-ward-shield-"+index},threat);
+    svgNode("path",{d:shieldShape,fill:color,"fill-opacity":.15,stroke:"#253857","stroke-width":7},shield);
+    svgNode("path",{d:shieldShape,fill:"none",stroke:color,"stroke-width":3},shield);
+    svgNode("path",{d:"M-39-33l30-9-30 27zM39-5V9l-13 22-13 8z",fill:color,opacity:.48},shield);
+    const flare = svgNode("g",{id:"story-ward-flare-"+index},threat);
+    svgNode("path",{d:shieldShape,fill:color,"fill-opacity":.23,stroke:"#f3ffff","stroke-width":5},flare);
+    svgNode("path",{d:"M-52-6h9v-10h4v10h10v4h-10V8h-4V-2h-9z",fill:"#fff9f0"},flare);
+  });
+  wardThreats.forEach(({color},index)=>{
+    const bolt = svgNode("g",{id:"story-ward-bolt-"+index},byId("story-ward-bolts"));
+    svgNode("path",{d:"M-34 0H6",stroke:color,"stroke-width":10,opacity:.32},bolt);
+    svgNode("path",{d:"M-22 0H6",stroke:color,"stroke-width":5},bolt);
+    svgNode("path",{d:"M-16 0H4",stroke:"#f7ffff","stroke-width":2},bolt);
+  });
   storyEnemies.forEach((_,index)=>{
     const anchor = svgNode("g",{id:"story-germ-"+index},byId("story-swarm"));
     const source = index % 3 === 1 ? "dock-cluster" : index % 3 === 2 ? "dock-scout" : "creature";
@@ -9490,7 +9538,7 @@ function renderStoryFrame(t, still = false) {
   paint("story-dock",dock);
   paint("story-reflection",reflected);
   paint("story-ward",t>=17.1);
-  paint("story-reinforcements",progress(21.6,21.95));
+  paint("story-reinforcements",progress(22.85,23.2));
   paint("story-end",progress(storyTitleTime-.25,storyTitleTime+.22));
   if (orbit) {
     const lines = ["Star’s Thera picked up a distress call.","A bacterial epidemic has swept","through Asgard."];
@@ -9517,16 +9565,27 @@ function renderStoryFrame(t, still = false) {
     }
     const landing = 1 - (1-progress(6.35,7.88))**2;
     move("story-landed-ship",-220*(1-landing),-117*(1-landing));
-    paint("story-ramp",progress(7.72,8.14));
-    for (const [id,start,finish,x,y,size] of [
-      ["story-wanda",8.2,10,235,151,1.75],["story-strange",8.65,10.5,322,153,1.68]
+    const hatch = progress(7.78,8.10);
+    move("story-hatch-left",-23*hatch,0);
+    move("story-hatch-right",23*hatch,0);
+    const ramp = progress(7.92,8.2);
+    paint("story-ramp",ramp>0);
+    byId("story-ramp").setAttribute("transform","translate(0 253) scale(1 "+ramp+") translate(0 -253)");
+    for (const [id,start,rampEnd,finish,x,ground,size] of [
+      ["story-wanda",8.17,9.13,10,235,308,1.75],["story-strange",8.65,9.62,10.65,322,303,1.68]
     ]) {
-      const step = progress(start,finish);
-      const hop = step>0 && step<1 ? Math.abs(Math.sin(step*11))*5 : 0;
+      const downRamp = progress(start,rampEnd);
+      const onGround = progress(rampEnd,finish);
+      const step = (downRamp+onGround)/2;
+      const hop = step>0 && step<1 ? Math.abs(Math.sin(step*14))*3.5 : 0;
       const kick = storyShots.filter((_,i)=>id==="story-wanda" ? i%2===0 : i%2===1)
         .reduce((peak,shot)=>Math.max(peak, 3*(1-progress(shot.time,shot.time+.13))*(t>=shot.time)),0);
-      byId(id).setAttribute("transform","translate("+(210+(x-210)*step-kick)+" "+(92+(y-92)*step-hop)+") scale("+size+")");
-      paint(id,progress(start,start+.2));
+      const scale = .53+.63*downRamp+(size-1.16)*onGround;
+      const foot = 252+43*downRamp+(ground-295)*onGround;
+      const left = 179+28*downRamp+(x-207)*onGround-kick;
+      byId(id).setAttribute("transform","translate("+left+" "+(foot-89*scale-hop)+") scale("+scale+")");
+      paint(id,progress(start,start+.14));
+      paint(id+"-blaster",progress(start+.17,rampEnd));
       byId(id+"-blaster").setAttribute("transform","rotate("+(25-37*progress(10.9,11.65))+" 44 55)");
     }
     paint("story-plea-east",t>=9.72 && t<11.96);
@@ -9564,12 +9623,26 @@ function renderStoryFrame(t, still = false) {
     paint("story-reflected-hit",impact*.8);
   }
   if (t>=17.1) {
-    paint("story-ward-shield",progress(20.65,21.14));
-    const reach = Math.sin(Math.PI * progress(17.9,21.3));
+    wardThreats.forEach(({x,y,scale,time,missX,missY},index)=>{
+      paint("story-ward-shield-"+index,progress(17.92+index*.12,18.32+index*.12));
+      const impactTime = time+wardFlight;
+      const impact = t>=impactTime ? 1-progress(impactTime,impactTime+.30) : 0;
+      paint("story-ward-flare-"+index,impact);
+      const shieldX = x-46*scale;
+      const deflected = t>=impactTime;
+      const flight = deflected ? progress(impactTime,impactTime+wardBounce) : progress(time,impactTime);
+      const [fromX,fromY] = deflected ? [shieldX,y] : [wardShotStart.x,wardShotStart.y];
+      const [toX,toY] = deflected ? [missX,missY] : [shieldX,y];
+      const angle = Math.atan2(toY-fromY,toX-fromX)*180/Math.PI;
+      const bolt = byId("story-ward-bolt-"+index);
+      bolt.setAttribute("transform","translate("+(fromX+(toX-fromX)*flight)+" "+(fromY+(toY-fromY)*flight)+") rotate("+angle+")");
+      paint("story-ward-bolt-"+index,flight>0 && flight<1 ? (deflected ? 1-flight*.76 : 1) : 0);
+    });
+    const reach = Math.sin(Math.PI * progress(17.9,22.0));
     byId("story-elder-hand").setAttribute("transform","rotate("+(12-35*reach)+" 29 65)");
-    paint("story-speech",t>=18.5 && t<21.36);
-    paint("story-reinforce-line",progress(22.86,23.15));
-    paint("story-reinforce-pilots",progress(23.65,24.18));
+    paint("story-speech",t>=18.5 && t<20.96);
+    paint("story-reinforce-line",progress(24.03,24.32));
+    paint("story-reinforce-pilots",progress(24.82,25.35));
   }
 }
 
