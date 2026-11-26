@@ -86,6 +86,7 @@ a:focus-visible,summary:focus-visible{outline:3px solid #ffe5aa;outline-offset:4
 .tile.live{background:#2a302a;border-color:#76865e}.live .tile-icon{background:#36472e;color:var(--lime)}.live .tile-status{color:var(--lime)}
 a.tile:hover,.round-tile:hover{border-color:var(--lime)}.back{display:inline-flex;align-items:center;min-height:36px;color:var(--violet);font:600 14px var(--sans);text-decoration:none;margin-bottom:6px}.back:hover{text-decoration:underline}
 .lecture-intro{padding:24px}.lecture-intro h2{font-size:clamp(28px,4.5vw,43px)}.lecture-intro>p:last-child{margin-bottom:0;color:#dcd4e5}
+.lecture-review-actions{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:12px}.lecture-review-actions a{min-height:44px;max-width:100%}
 .list-title{font-size:21px;margin:22px 0 10px}.round-tile{padding:15px}.round-meta{color:var(--violet)}.round-icon{color:var(--lime)}.objectives{margin:18px 0;background:#231e30;border:1px solid var(--edge);padding:12px 16px;border-radius:5px}.objectives summary{cursor:pointer;font-weight:700}.objectives li{margin:4px 0}.level-tag{font-size:11px;letter-spacing:0;color:#635173}
 .decision.heavy-blaster .weapon{width:68px;height:24px}.decision .weapon{width:32px;height:26px;flex:none}.decision{gap:6px}.decision .choice-name{font-weight:720;font-size:16px;line-height:1.2;text-align:center;margin:0 0 8px}.feedback-nav{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:14px}.feedback-nav .retry{margin:0}.next-link{background:#393146;color:#f0eaf8;border-color:#6b5c7b;box-shadow:none;min-height:45px}
 @media(max-width:680px){.welcome{min-height:185px;padding:17px;grid-template-columns:1fr 90px;gap:5px}.welcome-copy>p:not(.eyebrow){margin:8px 0 12px;font-size:14px}.welcome h2{font-size:33px}.play-link{font-size:13px;padding:8px}.console-art{width:114px}.library-heading{margin-top:20px}.library-heading h2{font-size:21px}.library-meta{font-size:10px}.week-block{display:block;margin-top:13px}.week-label{margin:0 0 6px}.week-items,.round-grid{grid-template-columns:1fr;gap:6px}.tile,.round-tile{padding:10px 12px}.filters button{font-size:13px}.decision{justify-content:flex-start;gap:9px;padding:5px 34px}.decision .choice-name{margin:0;text-align:left}.decision .option-row{padding:0 9px}.brief-title{flex-wrap:wrap}.lecture-intro{padding:18px}}
@@ -261,6 +262,8 @@ body button[type],body button:not([type]){min-width:44px;min-height:44px}
 #champ-join label{display:block;font-weight:700;margin-top:12px}
 #champ-join input,#champ-join select{display:block;width:100%;min-height:44px;padding:8px 10px;border:1px solid #867599;border-radius:5px;background:#322c40;color:var(--pale);font:inherit}
 #champ-join-submit{margin-top:12px}
+.hunt-panel{display:grid;grid-template-columns:minmax(0,3fr) minmax(12em,2fr);gap:12px;align-items:start;margin:12px 0 18px}.hunt-award{display:flex;align-items:center;gap:12px;padding:12px 14px;border:1px solid #a6804f;border-left:4px solid #ffd779;border-radius:4px;background:#302637}.hunt-award svg{flex:none}.hunt-award>div{min-width:0}.hunt-award h4{margin:0;color:#ffda8a;font:700 13px/1.35 var(--mono)}.hunt-panel p{margin:5px 0}.hunt-panel .source{color:var(--muted)}.hunt-panel summary{cursor:pointer;padding:10px 8px;font-weight:750}.hunt-panel>details>summary{background:#382f4b;color:#e7d8ff;border:1px solid #85719c;border-radius:4px}.hunt-panel a{display:inline-flex;align-items:center;min-height:44px;margin:3px}.hunt-panel .hunt-award #hunt-winner{margin:3px 0 0;overflow-wrap:anywhere;font-size:clamp(17px,2vw,23px);font-weight:750;line-height:1.25}
+@media(max-width:680px){.hunt-panel{grid-template-columns:1fr;gap:8px}}
 .champ-entry #champ-title{margin:0;color:#d6f488;font-size:clamp(1.15rem,4vw,1.5rem)}
 .champ-entry p{margin:6px 0}
 #champ-availability:empty,#champ-sync:empty,#champ-board-status:empty{display:none}
@@ -300,6 +303,24 @@ body button[type],body button:not([type]){min-width:44px;min-height:44px}
 .completion-tag{padding:3px 7px;border:1px solid #7cbfac;border-radius:4px;color:#b5f6de}.perfect-mark{color:#ffe2a6}
 .completion-note{padding:10px 14px;border-left:4px solid #539c87;background:#e4f6ed;color:#203a32;font-weight:700}
 #story{width:min(960px,calc(100% - 20px));max-width:100%;max-height:calc(100% - 20px);padding:0;overflow:auto;border:2px solid #a998c6;border-radius:7px;background:#14192b;color:#f3eefa;box-shadow:0 8px 80px #080b19}
+#rescue-hospital{margin:14px 0;background:#181c32;border:2px solid #514d67;border-radius:6px;overflow:hidden}
+#rescue-hospital svg{display:block;width:100%;max-height:210px;background:#141c33}
+#hospital-caption{padding:6px 12px;color:#c9c0d9;font:600 12px/1.4 var(--mono)}
+#hospital-windows rect,#hospital-sign{transition:fill 1.1s}
+#hospital-supply.arriving{animation:supply-arrival 1.4s ease-out both}
+@keyframes supply-arrival{from{transform:translate(130px,-15px) scale(.31)}to{transform:translate(314px,72px) scale(.31)}}
+.discharge #discharge-walker{animation:leave-ward 6.5s linear both}
+.discharge #discharge-bubble{animation:farewell-bubble 6.5s both}
+@keyframes leave-ward{0%,62%{transform:translateX(0)}94%,100%{transform:translateX(82px);opacity:0}}
+@keyframes farewell-bubble{0%,75%{opacity:1}95%,100%{opacity:0}}
+.stage.ward-safe{box-shadow:inset 0 0 44px #f9c680aa,0 0 10px #d9af7859}
+.stage.ward-safe .room-art,.stage.ward-safe .scene{filter:sepia(.28) saturate(.88)}
+.stage.ward-safe{background-color:#5f4b45}
+@media(prefers-reduced-motion:reduce){
+ #hospital-windows rect,#hospital-sign{transition:none}
+ .discharge #discharge-walker,.discharge #discharge-bubble,#hospital-supply.arriving{animation:none}
+}
+
 #story::backdrop{background:#080b19ed}
 #story-art{display:block;width:100%;height:auto;max-height:calc(100svh - 130px)}
 .story-controls{display:flex;flex-wrap:wrap;justify-content:flex-end;align-items:center;gap:8px;padding:10px;border-top:1px solid #5c5471}
@@ -559,6 +580,28 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;ba
       <figcaption><span>Star’s Thera</span><button type="button" id="story-replay">Replay intro</button><button type="button" id="arrival-control" aria-controls="arrival-view">Replay arrival</button></figcaption>
     </figure>
   </section>
+    <figure id="rescue-hospital" aria-label="Asgard hospital recovery">
+    <svg viewBox="0 0 480 124" role="img" aria-label="Asgard hospital at night">
+      <rect width="480" height="124" fill="#141c33"/>
+      <path fill="#afa7c6" d="M22 15h2v2h-2zm62 14h3v2h-3zm34-22h2v2h-2zm259 16h2v2h-2zm73-13h3v3h-3z"/>
+      <path fill="#27334b" d="M0 66h26V43h18v-7h17v27h22V46h31v30h239V60h22V43h22v20h24V34h29v31h30v48H0z"/>
+      <path d="M0 106h480v18H0z" fill="#343649"/><path d="M0 113h480m-105 4h74m-409 1h53" stroke="#616176" stroke-width="2"/>
+      <path d="M82 106V80h24V56h30V30h152v12h43v23h20v41z" fill="#45536c" stroke="#8692a4" stroke-width="2"/>
+      <path d="M137 29h151M108 65h220M84 84h265" stroke="#6c7e8d" stroke-width="3"/>
+      <g id="hospital-windows"/>
+      <path d="M200 105V82h34v23z" fill="#111b2d" stroke="#768aa1" stroke-width="2"/>
+      <path d="M217 85v20" stroke="#586579"/>
+      <path id="hospital-sign" d="M236 34h5v-5h5v5h5v5h-5v5h-5v-5h-5z" fill="#738494"/>
+      <g id="hospital-supply" opacity="0" transform="translate(314 72) scale(.31)"/>
+      <g id="discharge-party" visibility="hidden">
+        <g id="discharge-walker"><g id="discharge-patient" transform="translate(237 74) scale(.84)"/></g>
+        <g id="discharge-bubble"><path d="M245 21h225v34H277l-13 12v-12h-19z" fill="#f1ebe3" stroke="#363346" stroke-width="2"/>
+          <text x="256" y="36" font-family="monospace" font-size="11" font-weight="bold" fill="#22253b">Hey, Doc.</text><text x="256" y="49" font-family="monospace" font-size="11" fill="#22253b">I’m going home today.</text></g>
+      </g>
+    </svg>
+    <figcaption id="hospital-caption">Asgard General · Emergency entrance</figcaption>
+  </figure>
+<span class="sr-only" role="status" id="discharge-live"></span>
   <section class="player-picker hangar" aria-labelledby="picker-title">
     <div class="hangar-heading"><h3 id="picker-title">Crew hangar</h3><span>Star’s Thera</span></div>
     <p id="crew-progress" aria-live="polite"></p>
@@ -571,6 +614,21 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;ba
     <p id="crew-notice" role="status"></p>
     <section class="objectives champ-screen champ-entry" aria-labelledby="champ-title">
       <h3 id="champ-title">Best bacterial killers!</h3>
+    <section class="hunt-panel" aria-labelledby="hunt-title">
+      <div>
+        <div class="hunt-award">
+          <svg width="40" height="40" viewBox="0 0 20 20" aria-hidden="true" shape-rendering="crispEdges">
+            <path fill="#d79743" d="M1 3h5v2H3v3h2v2H3V9H1zm13 0h5v6h-2v1h-2V8h2V5h-3z"/>
+            <path fill="#ffd779" d="M5 2h10v6h-1v2h-2v2h-1v3h3v2H6v-2h3v-3H8v-2H6V8H5z"/>
+            <path fill="#fff2bb" d="M6 3h2v4H6z"/><path fill="#ac744d" d="M5 17h10v2H5z"/>
+          </svg>
+          <div><h4 id="hunt-title">Hunter of the Week</h4>
+            <p id="hunt-winner" role="status">Checking last week’s results…</p></div>
+        </div>
+        <p id="hunt-balance"></p>
+        <p class="source">Each week, your first try on every lecture or championship question counts. One point per correct answer. The top scorer holds the title the following week. Tied hunters share it. Weeks start Sunday at midnight in Riyadh.</p></div>
+      <details id="hunt-cases"><summary>Hunt Cases</summary><p>Choose a lecture for extra challenges.</p><div id="hunt-cases-list"></div></details>
+    </section>
       <p>Earn one point for each target you answer correctly on your first try.</p>
       <p id="champ-availability" role="status"></p>
       <p id="champ-complete" hidden>Championship complete!</p>
@@ -641,7 +699,7 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;ba
 </main>
 <main id="lecture-menu" class="wrap" hidden>
   <a class="back" href="#home">‹ Lecture library</a>
-  <section class="lecture-intro"><p class="eyebrow" id="lecture-week"></p><h2 id="menu-title"></h2><p id="menu-summary"></p></section>
+  <section class="lecture-intro"><p class="eyebrow" id="lecture-week"></p><h2 id="menu-title"></h2><p id="menu-summary"></p><div class="lecture-review-actions" id="lecture-review-pdf" hidden><a class="play-link" target="_blank" rel="noopener" aria-label="Quick Review (PDF, opens in a new tab)">Quick Review (PDF)</a><a class="next-link" download>Download PDF</a></div></section>
   <section class="objectives" aria-labelledby="objectives-title"><h3 id="objectives-title">Learning objectives</h3><ol id="objective-list"></ol><p id="objective-source" class="source"></p></section>
   <div id="round-list"></div>
   <details id="market-panel" class="objectives" hidden><summary>Saudi-market references</summary><p class="source" id="market-note"></p><ul id="market-list"></ul></details>
@@ -1005,7 +1063,7 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;ba
 </section>
 
 </div>
-<section class="feedback" id="feedback" tabindex="-1" hidden aria-labelledby="result-title"><div class="verdict" id="verdict"></div><div id="guest-team-note" hidden><span id="guest-team-message"></span><a class="next-link" href="#championship">Choose a team</a></div><div id="crew-reward" role="status" hidden><span id="crew-arrival-pair" aria-hidden="true"></span><strong id="crew-reward-title"></strong><br><span id="crew-reward-names"></span> <a href="#hangar">Visit crew hangar</a></div><h2 id="result-title"></h2><p class="completion-note" id="lecture-completion" hidden></p><p id="chosen-why"></p><span class="source" id="chosen-source"></span><h3>Other choices</h3><div id="other-choices"></div></section>
+<section class="feedback" id="feedback" tabindex="-1" hidden aria-labelledby="result-title"><div class="verdict" id="verdict"></div><div id="guest-team-note" hidden><span id="guest-team-message"></span><a class="next-link" href="#championship">Choose a team</a></div><div id="crew-reward" role="status" hidden><span id="crew-arrival-pair" aria-hidden="true"></span><strong id="crew-reward-title"></strong><br><span id="crew-reward-names"></span> <a href="#hangar">Visit crew hangar</a></div><h2 id="result-title"></h2><p class="completion-note" id="lecture-completion" hidden></p><p id="chosen-why"></p><span class="source" id="chosen-source"></span><div class="lecture-review-actions" id="feedback-review-pdf" hidden><a class="next-link" target="_blank" rel="noopener" aria-label="Quick Review (PDF, opens in a new tab)">Quick Review (PDF)</a></div><h3>Other choices</h3><div id="other-choices"></div></section>
 <nav class="feedback-nav" id="feedback-nav" aria-label="Round actions"><button class="next-link" id="next" type="button">Next target</button><button class="retry" id="retry" type="button">Try Again</button><a href="#library" id="leave-round">Back to lectures</a></nav>
 <footer class="foot"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M1 3h4q2 0 3 2 1-2 3-2h4v10h-4q-2 0-3 1-1-1-3-1H1zM8 5v9"/></svg><span id="source-note"></span></footer>
 </main>
@@ -1217,6 +1275,59 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;ba
         <text x="37" y="308" font-size="21" fill="#faf2db" font-weight="bold">Hold on. We’re on our way.</text>
       </g>
     </g>
+    <g id="story-strike" opacity="0" aria-hidden="true">
+      <g id="strike-bridge">
+        <rect width="640" height="360" fill="#101628"/>
+        <path d="M20 20h597v160l-91 43H77l-57-47z" fill="url(#story-sky)" stroke="#627088" stroke-width="5"/>
+        <g fill="#d1e6ee"><path d="M69 51h3v3h-3zm71 33h2v2h-2zm131-43h4v3h-4zm105 45h3v3h-3zm131-42h3v3h-3zm62 85h3v2h-3z"/></g>
+        <path d="M250 174l28-19h31v-22h24v-11h37v20h23v14h27v-17h39v-16h20v35h30v13h75v30H250z" fill="#53627d"/>
+        <path d="M244 180h353m-288-25h45m62 4h37m27 10h43" stroke="#adbac9" stroke-width="3"/>
+        <path d="M17 188l67 30 92 8 64-55h53l-20 55 98 30H0zM504 20l-52 156h-11l46-156z" fill="#273448" stroke="#566079" stroke-width="3"/>
+        <g id="strike-wanda" transform="translate(56 38) scale(2.5)"/>
+        <path d="M0 245l174-17 109-52h193l113 77 51 6v101H0z" fill="#242d44" stroke="#7f8598" stroke-width="3"/>
+        <path d="M280 187h114l32 26H232z" fill="#112233" stroke="#596a83" stroke-width="2"/>
+        <path d="M263 202h36l4-5 6 9 8-14 10 10h37" stroke="#95dcda" stroke-width="2" fill="none"/>
+        <!-- A short side console is mounted immediately beside the pilot's seat. -->
+        <path d="M153 183h68l18 17v29l-16 10h-74v-40z" fill="#3b4057" stroke="#161d31" stroke-width="3"/>
+        <path d="M153 183h68l16 16h-86z" fill="#647086" stroke="#222a3f" stroke-width="2"/>
+        <path d="M177 194l6-10h23l8 10-4 6h-29z" fill="#222739"/>
+        <g id="strike-key"><path d="M181 185l5-6h16l7 6v7l-5 3h-19l-5-4z" fill="#ac2845" stroke="#65253c" stroke-width="2"/>
+          <path id="strike-key-light" d="M183 184l5-4h13l5 5-4 3h-16z" fill="#ff5157"/>
+          <path d="M187 181h9l-2 2h-9z" fill="#ffc3a3"/></g>
+        <rect x="159" y="203" width="65" height="20" fill="#151e31"/>
+        <text id="strike-readout" x="192" y="218" text-anchor="middle" font-family="monospace" font-weight="bold" font-size="15" fill="#a5b4c7">READY</text>
+        <g id="strike-arm">
+          <path d="M151 151h12v8h8v8h9v10h-14v-4h-7v-7h-9z" fill="#373044"/>
+          <path d="M151 151h10v9h8v8h8v6h-10v-5h-7v-6h-9z" fill="#f0e8de"/>
+          <path d="M175 166h8v-2h11v4h4v9h-5v-6h-7v4h-10z" fill="#402e40"/>
+          <path d="M176 167h8v-2h9v4h3v6h-2v-6h-10v4h-8z" fill="#ecb08c"/>
+        </g>
+        <path d="M20 270h600v73H20z" fill="#111829" stroke="#967b97" stroke-width="2"/>
+        <text x="36" y="293" font-family="monospace" font-size="14" fill="#e9a6d7" font-weight="bold">DR. WANDA</text>
+        <text x="36" y="323" font-family="monospace" font-size="21" fill="#fff1da" font-weight="bold">Hold here. Clear the pad before we land.</text>
+      </g>
+      <g id="strike-chase">
+        <rect width="640" height="360" fill="url(#story-sky)"/>
+        <g id="strike-streaks"/>
+        <g id="strike-surface" fill="#28384c" stroke="#506581" stroke-width="3"><path d="M-40 255h87v-42h64v21h44v-53h80v25h57v37h86v-51h63v17h48v-62h78v21h112v230H-40z"/><path d="M-40 280h780m-700 15h130m70-28h90m155-26h70" stroke="#89acb9"/></g>
+        <g id="strike-torpedo"><g id="strike-torpedo-shape">
+          <path d="M-119-15l-84 8 39 6-70 9 111 8z" fill="#70c4ef"/>
+          <path d="M-120-11l-51 10 26 2-16 7 45 2z" fill="#fff6cd"/>
+          <path d="M-106-15l-35-34 43 6 36 24 85-4 50 6 38 15-27 17-48 8-109-2-33 22-36 1 30-32-18-4V-11z" fill="#465577" stroke="#111c32" stroke-width="5"/>
+          <path d="M-87-14l125-4 55 12 11 5-66 7-125-4z" fill="#ccd3df"/>
+          <path d="M-53-12h13v30h-13zm20 0h6v30h-6z" fill="#df9d58"/>
+          <path d="M-95 6h125l40-5-24 11-128 4z" fill="#7e8fa8"/>
+          <path d="M29-11l6 4 11-1-7 5 1 7-7-4-9 5 3-8-5-4 7-1z" fill="#ffe9a3"/>
+        </g>
+      </g></g>
+      <g id="strike-away"><use href="#strike-torpedo-shape"/></g>
+      <g id="strike-plume">
+        <path d="M-63 0l35-10-19-17 29 9 2-31 14 29 21-36-6 40 30-16-15 23 41 7-42 8 16 15-25-6-13 19-7-21-27 13 8-18-34 3z" fill="#f7ba75" stroke="#dc8394" stroke-width="3"/>
+        <path d="M-29 1l20-8 4-20 8 19 20-8-12 14 18 6-23 1-7 12-4-13z" fill="#fff4cf"/>
+        <ellipse cy="10" rx="66" ry="16" fill="none" stroke="#a1eff4" stroke-width="3"/>
+      </g>
+      <path d="M0 0h640v13H0zm0 347h640v13H0z" fill="#0b1020"/>
+    </g>
     <g id="story-end">
       <rect width="640" height="360" fill="#101429" opacity=".90"/>
       <g id="story-logo" transform="translate(77 124) scale(7.75)" shape-rendering="crispEdges"/>
@@ -1225,7 +1336,7 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;ba
       <text x="320" y="263" text-anchor="middle" fill="#adc7e1" font-family="monospace" font-size="14">dosearcade.github.io/dose-arcade</text>
     </g>
   </svg>
-  <p class="sr-only">Asgard calls Star’s Thera for help. The ship clears a landing zone at the emergency ward. Dr. Wanda and Dr. Strange descend the ramp and fight their way past shielded bacteria to protect three patients. Strange asks Wanda to call Dr. Doom, Dr. Storm and the rest of the crew. Doom locks onto Asgard’s signal and launches his ship.</p>
+  <p class="sr-only">Asgard calls Star’s Thera for help. Wanda holds the ship above the pad and fires a torpedo to clear a landing zone at the emergency ward. Dr. Wanda and Dr. Strange descend the ramp and fight their way past shielded bacteria to protect three patients. Strange asks Wanda to call Dr. Doom, Dr. Storm and the rest of the crew. Doom locks onto Asgard’s signal and launches his ship.</p>
   <div class="story-controls">
     <button type="button" id="story-sound">Enable sound</button>
     <button type="button" id="story-skip">Skip intro</button>
@@ -1918,6 +2029,418 @@ const lectures = [
         ],
         "bestAnswerId": "serum-creatine-kinase",
         "priority": "essential"
+      },
+      {
+        "id": "hunt-1-1",
+        "level": 4,
+        "number": 28,
+        "title": "Infusion follow-up",
+        "objectiveIds": [
+          "drugs"
+        ],
+        "learningObjective": "Distinguish infusion rate from route and dosing interval.",
+        "vignette": "Twenty minutes into an IV vancomycin infusion, a patient develops flushing and itching over the face and upper chest. Blood pressure is unchanged, and there is no wheeze or angioedema. The team pauses the infusion, the symptoms resolve, and vancomycin remains indicated.",
+        "vignettePages": [
+          60
+        ],
+        "question": "Which change fits the next dose?",
+        "decisiveClue": "The timing and symptoms fit the infusion-related reaction taught on p. 60. A longer infusion reduces the rate.",
+        "decisiveCluePages": [
+          60
+        ],
+        "challenge": true,
+        "hunt": true,
+        "mode": "decision",
+        "choices": [
+          {
+            "id": "a",
+            "name": "Give the same IV dose over a longer infusion.",
+            "explanation": "The timing and symptoms fit the infusion-related reaction taught on p. 60. A longer infusion reduces the rate.",
+            "pages": [
+              60
+            ]
+          },
+          {
+            "id": "b",
+            "name": "Give the same dose by mouth on the same schedule.",
+            "explanation": "Oral vancomycin does not provide the systemic exposure needed for the original indication.",
+            "pages": [
+              60
+            ]
+          },
+          {
+            "id": "c",
+            "name": "Give the same IV dose over the original infusion time, at a longer dosing interval.",
+            "explanation": "Spacing doses farther apart leaves the rate of each individual infusion unchanged.",
+            "pages": [
+              60
+            ]
+          }
+        ],
+        "bestAnswerId": "a",
+        "priority": "extra"
+      },
+      {
+        "id": "hunt-1-2",
+        "level": 4,
+        "number": 29,
+        "title": "Home infusion",
+        "objectiveIds": [
+          "drugs"
+        ],
+        "learningObjective": "Match an active carbapenem to the outpatient administration limit.",
+        "vignette": "An adult is clinically stable after drainage of an abscess due to ESBL-producing E. coli. E. coli is the only isolate, albumin is normal, and the isolate is susceptible to all three agents below. The team plans to finish the IV course at home, where the nurse can give only one infusion a day.",
+        "vignettePages": [
+          42,
+          43
+        ],
+        "question": "Which regimen fits the discharge plan?",
+        "decisiveClue": "The lecture identifies ertapenem as a once-daily carbapenem for outpatients. The documented E. coli does not require its missing non-fermenter coverage.",
+        "decisiveCluePages": [
+          42,
+          43
+        ],
+        "challenge": true,
+        "hunt": true,
+        "mode": "blaster",
+        "choices": [
+          {
+            "id": "a",
+            "name": "Imipenem/cilastatin",
+            "explanation": "It can treat the isolate, but the lecture uses divided doses throughout the day.",
+            "pages": [
+              42,
+              43
+            ]
+          },
+          {
+            "id": "b",
+            "name": "Ertapenem",
+            "explanation": "The lecture identifies ertapenem as a once-daily carbapenem for outpatients. The documented E. coli does not require its missing non-fermenter coverage.",
+            "pages": [
+              42,
+              43
+            ]
+          },
+          {
+            "id": "c",
+            "name": "Meropenem",
+            "explanation": "It can treat the isolate, but the intervals in the lecture do not fit one daily visit.",
+            "pages": [
+              42,
+              43
+            ]
+          }
+        ],
+        "bestAnswerId": "b",
+        "priority": "extra"
+      },
+      {
+        "id": "hunt-1-3",
+        "level": 4,
+        "number": 30,
+        "title": "Oral step-down",
+        "objectiveIds": [
+          "drugs"
+        ],
+        "learningObjective": "Apply organism and site coverage, then check a drug interaction.",
+        "vignette": "A patient is ready to switch to an oral drug for a Pseudomonas aeruginosa urinary tract infection. The isolate tests susceptible to ciprofloxacin and levofloxacin. The patient takes scheduled tizanidine, which the team plans to continue.",
+        "vignettePages": [
+          53
+        ],
+        "question": "Which oral agent best fits the culture result and the medication list?",
+        "decisiveClue": "It is an active antipseudomonal option here and avoids the ciprofloxacin-tizanidine interaction highlighted in the lecture.",
+        "decisiveCluePages": [
+          53
+        ],
+        "challenge": true,
+        "hunt": true,
+        "mode": "blaster",
+        "choices": [
+          {
+            "id": "a",
+            "name": "Moxifloxacin",
+            "explanation": "The lecture does not give moxifloxacin Pseudomonas coverage and notes its suboptimal urine concentrations.",
+            "pages": [
+              53
+            ]
+          },
+          {
+            "id": "b",
+            "name": "Ciprofloxacin",
+            "explanation": "The isolate tests susceptible, but ciprofloxacin inhibits CYP1A2 and raises tizanidine exposure.",
+            "pages": [
+              53
+            ]
+          },
+          {
+            "id": "c",
+            "name": "Levofloxacin",
+            "explanation": "It is an active antipseudomonal option here and avoids the ciprofloxacin-tizanidine interaction highlighted in the lecture.",
+            "pages": [
+              53
+            ]
+          }
+        ],
+        "bestAnswerId": "c",
+        "priority": "extra",
+        "organism": "pseudomonas"
+      },
+      {
+        "id": "hunt-1-4",
+        "level": 4,
+        "number": 31,
+        "title": "Exposure review",
+        "objectiveIds": [
+          "drugs"
+        ],
+        "learningObjective": "Recognize excess exposure despite a trough that looks acceptable by older targets.",
+        "vignette": "An adult is receiving IV vancomycin for MRSA bacteremia. Renal function is stable. The estimated 24-hour AUC is 670 mg·h/L, the MIC is 1 mg/L, and the trough is 16 mg/L.",
+        "vignettePages": [
+          60
+        ],
+        "question": "Which interpretation should guide the next pharmacokinetic review?",
+        "decisiveClue": "At an MIC of 1, the AUC/MIC is 670, above the lecture's 400-600 target for serious MRSA infection.",
+        "decisiveCluePages": [
+          60
+        ],
+        "challenge": true,
+        "hunt": true,
+        "mode": "decision",
+        "choices": [
+          {
+            "id": "a",
+            "name": "Exposure is at target. Continue the current exposure.",
+            "explanation": "A trough that falls in the lecture's older range does not override the AUC/MIC assessment.",
+            "pages": [
+              60
+            ]
+          },
+          {
+            "id": "b",
+            "name": "Exposure is below target. Review the regimen to raise exposure.",
+            "explanation": "A trough below 20 mg/L alone does not indicate underexposure. The AUC/MIC here is already above target.",
+            "pages": [
+              60
+            ]
+          },
+          {
+            "id": "c",
+            "name": "Exposure is above target. Review the regimen to lower exposure.",
+            "explanation": "At an MIC of 1, the AUC/MIC is 670, above the lecture's 400-600 target for serious MRSA infection.",
+            "pages": [
+              60
+            ]
+          }
+        ],
+        "bestAnswerId": "c",
+        "priority": "extra",
+        "organism": "mrsa"
+      },
+      {
+        "id": "hunt-1-5",
+        "level": 4,
+        "number": 32,
+        "title": "Allergy history",
+        "objectiveIds": [
+          "drugs"
+        ],
+        "learningObjective": "Identify the specific side-chain exception to the usual aztreonam allergy reasoning.",
+        "vignette": "The pharmacy reviews aztreonam orders for three patients who each developed generalized hives within minutes of receiving a cephalosporin. The drug that triggered the reaction is documented in each chart.",
+        "vignettePages": [
+          44
+        ],
+        "question": "Which patient requires additional allergy review specifically because of the prior drug?",
+        "decisiveClue": "Ceftazidime shares the relevant side chain with aztreonam, so this immediate-reaction history changes the allergy assessment.",
+        "decisiveCluePages": [
+          44
+        ],
+        "challenge": true,
+        "hunt": true,
+        "mode": "decision",
+        "choices": [
+          {
+            "id": "a",
+            "name": "The patient who reacted to cefepime",
+            "explanation": "Cefepime is not the specific shared-side-chain exception identified in the lecture.",
+            "pages": [
+              44
+            ]
+          },
+          {
+            "id": "b",
+            "name": "The patient who reacted to ceftazidime",
+            "explanation": "Ceftazidime shares the relevant side chain with aztreonam, so this immediate-reaction history changes the allergy assessment.",
+            "pages": [
+              44
+            ]
+          },
+          {
+            "id": "c",
+            "name": "The patient who reacted to ceftriaxone",
+            "explanation": "Ceftriaxone is not the specific shared-side-chain exception identified in the lecture.",
+            "pages": [
+              44
+            ]
+          }
+        ],
+        "bestAnswerId": "b",
+        "priority": "extra"
+      },
+      {
+        "id": "hunt-1-6",
+        "level": 4,
+        "number": 33,
+        "title": "Definitive therapy",
+        "objectiveIds": [
+          "drugs"
+        ],
+        "learningObjective": "Account for drug exposure at the sites of infection.",
+        "vignette": "A patient’s urine and blood cultures grow the same E. coli. All three antibiotics show activity against the isolate in the laboratory.",
+        "vignettePages": [
+          65
+        ],
+        "question": "Which antibiotic should be avoided?",
+        "decisiveClue": "Tigecycline distributes extensively into tissues, leaving relatively low concentrations in blood and urine. In vitro activity alone does not make it suitable here.",
+        "decisiveCluePages": [
+          65
+        ],
+        "challenge": true,
+        "hunt": true,
+        "mode": "blaster",
+        "choices": [
+          {
+            "id": "a",
+            "name": "Ceftriaxone",
+            "explanation": "Ceftriaxone can treat susceptible E. coli in the bloodstream and urinary tract.",
+            "pages": [
+              65
+            ]
+          },
+          {
+            "id": "b",
+            "name": "Tigecycline",
+            "explanation": "Tigecycline distributes extensively into tissues, leaving relatively low concentrations in blood and urine. In vitro activity alone does not make it suitable here.",
+            "pages": [
+              65
+            ]
+          },
+          {
+            "id": "c",
+            "name": "Ciprofloxacin",
+            "explanation": "Ciprofloxacin can achieve useful urinary and systemic exposure against a susceptible isolate.",
+            "pages": [
+              65
+            ]
+          }
+        ],
+        "bestAnswerId": "b",
+        "priority": "extra"
+      },
+      {
+        "id": "hunt-1-7",
+        "level": 4,
+        "number": 34,
+        "title": "Daily schedule",
+        "objectiveIds": [
+          "drugs"
+        ],
+        "learningObjective": "Resolve mineral coadministration and esophageal irritation in one plan.",
+        "vignette": "A patient takes doxycycline at 08:00 and 20:00. She takes a daily iron tablet and usually lies down immediately after the evening dose. She asks for a routine that accounts for both medicines.",
+        "vignettePages": [
+          56,
+          57
+        ],
+        "question": "Which routine should the pharmacist recommend?",
+        "decisiveClue": "Separating the iron from doxycycline addresses absorption, and staying upright addresses esophagitis.",
+        "decisiveCluePages": [
+          56,
+          57
+        ],
+        "challenge": true,
+        "hunt": true,
+        "mode": "decision",
+        "choices": [
+          {
+            "id": "a",
+            "name": "Take iron at 14:00 and lie down right after the evening doxycycline.",
+            "explanation": "Moving iron addresses the absorption interaction. Lying down right after doxycycline still increases the risk of esophageal irritation.",
+            "pages": [
+              56,
+              57
+            ]
+          },
+          {
+            "id": "b",
+            "name": "Take iron with the morning doxycycline and stay upright after the evening dose.",
+            "explanation": "Staying upright helps prevent esophagitis. Taking iron with the morning dose still reduces tetracycline absorption.",
+            "pages": [
+              56,
+              57
+            ]
+          },
+          {
+            "id": "c",
+            "name": "Take iron at 14:00 and stay upright for an hour after the evening doxycycline.",
+            "explanation": "Separating the iron from doxycycline addresses absorption, and staying upright addresses esophagitis.",
+            "pages": [
+              56,
+              57
+            ]
+          }
+        ],
+        "bestAnswerId": "c",
+        "priority": "extra"
+      },
+      {
+        "id": "hunt-1-8",
+        "level": 4,
+        "number": 35,
+        "title": "Medication review",
+        "objectiveIds": [
+          "drugs"
+        ],
+        "learningObjective": "Distinguish an interaction within a class without ignoring the class's other risks.",
+        "vignette": "A macrolide is being selected for a respiratory infection. Each option would otherwise be suitable. A medication on the patient's chart carries a warning against strong CYP3A4 inhibition. The pharmacist has already reviewed the QT and other interaction risks separately.",
+        "vignettePages": [
+          54
+        ],
+        "question": "Which macrolide should the pharmacist select for this interaction profile?",
+        "decisiveClue": "Azithromycin is the exception in the slide annotation for this CYP3A4 comparison. Other interaction and QT risks still need review.",
+        "decisiveCluePages": [
+          54
+        ],
+        "challenge": true,
+        "hunt": true,
+        "mode": "blaster",
+        "choices": [
+          {
+            "id": "a",
+            "name": "Clarithromycin",
+            "explanation": "Clarithromycin is specifically flagged as a major CYP3A4 inhibitor.",
+            "pages": [
+              54
+            ]
+          },
+          {
+            "id": "b",
+            "name": "Azithromycin",
+            "explanation": "Azithromycin is the exception in the slide annotation for this CYP3A4 comparison. Other interaction and QT risks still need review.",
+            "pages": [
+              54
+            ]
+          },
+          {
+            "id": "c",
+            "name": "Erythromycin",
+            "explanation": "Erythromycin is also specifically flagged as a major CYP3A4 inhibitor.",
+            "pages": [
+              54
+            ]
+          }
+        ],
+        "bestAnswerId": "b",
+        "priority": "extra"
       }
     ],
     "objectivesPage": 2,
@@ -2586,6 +3109,116 @@ const lectures = [
         "mode": "decision",
         "challenge": false,
         "priority": "essential"
+      },
+      {
+        "id": "hunt-2-1",
+        "level": 3,
+        "number": 19,
+        "title": "Directed treatment",
+        "objectiveIds": [
+          "therapy"
+        ],
+        "learningObjective": "Use the bloodstream result to interpret several apparently active drugs.",
+        "vignette": "A patient with fever and flank pain initially receives piperacillin/tazobactam. Blood and urine cultures both grow the same ESBL-producing E. coli. The laboratory reports in vitro activity for the three agents below, and blood cultures are being repeated.",
+        "vignettePages": [
+          14,
+          15
+        ],
+        "question": "Which directed therapy best fits this presentation?",
+        "decisiveClue": "Meropenem is a lecture-supported carbapenem for invasive ESBL infection. The positive blood cultures exclude the cystitis-only approach.",
+        "decisiveCluePages": [
+          14,
+          15
+        ],
+        "challenge": true,
+        "hunt": true,
+        "mode": "decision",
+        "choices": [
+          {
+            "id": "a",
+            "name": "Continue piperacillin/tazobactam.",
+            "explanation": "The lecture restricts this ESBL option to cystitis without bacteremia. The blood isolate changes the decision.",
+            "pages": [
+              14,
+              15
+            ]
+          },
+          {
+            "id": "b",
+            "name": "Switch to tigecycline.",
+            "explanation": "The slide excludes tigecycline for bloodstream and urinary infections despite apparent in vitro activity.",
+            "pages": [
+              14,
+              15
+            ]
+          },
+          {
+            "id": "c",
+            "name": "Switch to meropenem.",
+            "explanation": "Meropenem is a lecture-supported carbapenem for invasive ESBL infection. The positive blood cultures exclude the cystitis-only approach.",
+            "pages": [
+              14,
+              15
+            ]
+          }
+        ],
+        "bestAnswerId": "c",
+        "priority": "extra"
+      },
+      {
+        "id": "hunt-2-2",
+        "level": 3,
+        "number": 20,
+        "title": "Two bloodstream isolates",
+        "objectiveIds": [
+          "therapy"
+        ],
+        "learningObjective": "Match the two locally emphasized enzymes to the lecture regimens.",
+        "vignette": "Two patients have bloodstream infections caused by carbapenem-resistant Klebsiella pneumoniae. Patient 1’s isolate produces OXA-48. Patient 2’s isolate produces NDM. Susceptibility testing is pending.",
+        "vignettePages": [
+          16,
+          18
+        ],
+        "question": "Which pair matches the treatment options emphasized in the lecture?",
+        "decisiveClue": "The lecture pairs ceftazidime/avibactam with OXA-48 and aztreonam/avibactam with NDM. Confirm activity when susceptibility results return.",
+        "decisiveCluePages": [
+          16,
+          18
+        ],
+        "challenge": true,
+        "hunt": true,
+        "mode": "decision",
+        "choices": [
+          {
+            "id": "a",
+            "name": "Patient 1: ceftazidime/avibactam. Patient 2: ceftazidime/avibactam.",
+            "explanation": "Ceftazidime/avibactam is an option for OXA-48, but avibactam does not inhibit NDM.",
+            "pages": [
+              16,
+              18
+            ]
+          },
+          {
+            "id": "b",
+            "name": "Patient 1: ceftazidime/avibactam. Patient 2: aztreonam/avibactam.",
+            "explanation": "The lecture pairs ceftazidime/avibactam with OXA-48 and aztreonam/avibactam with NDM. Confirm activity when susceptibility results return.",
+            "pages": [
+              16,
+              18
+            ]
+          },
+          {
+            "id": "c",
+            "name": "Patient 1: cefepime. Patient 2: aztreonam/avibactam.",
+            "explanation": "The second pairing fits NDM. Cefepime alone is not a preferred treatment for this OXA-48 bloodstream infection.",
+            "pages": [
+              16,
+              18
+            ]
+          }
+        ],
+        "bestAnswerId": "b",
+        "priority": "extra"
       }
     ],
     "objectivesPage": 3,
@@ -3179,6 +3812,116 @@ const lectures = [
         "challenge": false,
         "format": "question",
         "priority": "extra"
+      },
+      {
+        "id": "hunt-3-1",
+        "level": 2,
+        "number": 9,
+        "title": "Order review",
+        "objectiveIds": [
+          "elements"
+        ],
+        "learningObjective": "Select an intervention for excess downstream use and active specialist feedback.",
+        "vignette": "A hospital review finds that most first doses are appropriate, but broad empiric therapy often continues after cultures become available. The stewardship team can review active orders each afternoon and advise prescribers individually. There is no overnight reviewer.",
+        "vignettePages": [
+          10,
+          11
+        ],
+        "question": "Which intervention best fits the problem and the available staffing?",
+        "decisiveClue": "The team can audit started courses when more data are available and give targeted advice on narrowing and duration.",
+        "decisiveCluePages": [
+          10,
+          11
+        ],
+        "challenge": true,
+        "hunt": true,
+        "mode": "decision",
+        "choices": [
+          {
+            "id": "a",
+            "name": "Require preauthorization before the first dose of restricted therapy.",
+            "explanation": "Preauthorization mainly targets initiation and needs real-time resources. The excess use comes after appropriate starts.",
+            "pages": [
+              10,
+              11
+            ]
+          },
+          {
+            "id": "b",
+            "name": "Use prospective audit with intervention and feedback on active orders.",
+            "explanation": "The team can audit started courses when more data are available and give targeted advice on narrowing and duration.",
+            "pages": [
+              10,
+              11
+            ]
+          },
+          {
+            "id": "c",
+            "name": "Use a 48-72-hour self-check prompt for the treating team.",
+            "explanation": "A time-out prompts reassessment. A self-check prompt does not use the team's available case review and individual feedback.",
+            "pages": [
+              10,
+              11
+            ]
+          }
+        ],
+        "bestAnswerId": "b",
+        "priority": "extra"
+      },
+      {
+        "id": "hunt-3-2",
+        "level": 2,
+        "number": 10,
+        "title": "Ward report",
+        "objectiveIds": [
+          "elements"
+        ],
+        "learningObjective": "Interpret antimicrobial use when ward activity also changes.",
+        "vignette": "A ward records 220 antibiotic days of therapy across 880 patient-days before an intervention and 288 antibiotic days of therapy across 1,200 patient-days afterward.",
+        "vignettePages": [
+          20,
+          21
+        ],
+        "question": "What change should the committee report as DOT per 1,000 patient-days?",
+        "decisiveClue": "220 ÷ 880 × 1,000 = 250. 288 ÷ 1,200 × 1,000 = 240. The normalized rate fell.",
+        "decisiveCluePages": [
+          20,
+          21
+        ],
+        "challenge": true,
+        "hunt": true,
+        "mode": "decision",
+        "choices": [
+          {
+            "id": "a",
+            "name": "An increase from 250 to 327",
+            "explanation": "This divides both DOT totals by the earlier period's 880 patient-days.",
+            "pages": [
+              20,
+              21
+            ]
+          },
+          {
+            "id": "b",
+            "name": "An increase from 220 to 288",
+            "explanation": "Those are the raw DOT totals. The ward had more patient-days in the later period.",
+            "pages": [
+              20,
+              21
+            ]
+          },
+          {
+            "id": "c",
+            "name": "A decrease from 250 to 240",
+            "explanation": "220 ÷ 880 × 1,000 = 250. 288 ÷ 1,200 × 1,000 = 240. The normalized rate fell.",
+            "pages": [
+              20,
+              21
+            ]
+          }
+        ],
+        "bestAnswerId": "c",
+        "priority": "extra"
       }
     ],
     "objectivesPage": 4,
@@ -3492,6 +4235,116 @@ const lectures = [
           }
         ],
         "priority": "essential"
+      },
+      {
+        "id": "hunt-4-1",
+        "level": 4,
+        "number": 6,
+        "title": "Persistent cultures",
+        "objectiveIds": [
+          "management"
+        ],
+        "learningObjective": "Recognize when persistent cultures change a line-salvage decision.",
+        "vignette": "Two peripheral blood culture sets grow methicillin-susceptible Staphylococcus epidermidis in a patient with a long-term catheter. No other source has been found. The team initially tried to preserve the line using active systemic therapy and an antibiotic lock. Repeat peripheral cultures still grow the same organism after 72 hours.",
+        "vignettePages": [
+          4,
+          5,
+          7
+        ],
+        "question": "What should the team do about the catheter now?",
+        "decisiveClue": "The lecture lists continued positive blood cultures after a salvage attempt as a reason to remove the line.",
+        "decisiveCluePages": [
+          4,
+          5,
+          7
+        ],
+        "challenge": true,
+        "hunt": true,
+        "mode": "decision",
+        "choices": [
+          {
+            "id": "a",
+            "name": "Retain the line and continue the original lock course.",
+            "explanation": "A lock can be used in selected salvage attempts. Persistent positive peripheral cultures despite salvage are an indication for removal.",
+            "pages": [
+              4,
+              5,
+              7
+            ]
+          },
+          {
+            "id": "b",
+            "name": "Remove the line and continue culture-directed systemic management.",
+            "explanation": "The lecture lists continued positive blood cultures after a salvage attempt as a reason to remove the line.",
+            "pages": [
+              4,
+              5,
+              7
+            ]
+          },
+          {
+            "id": "c",
+            "name": "Retain the line and change only the antibiotic in the lock.",
+            "explanation": "Changing the lock alone does not address failed salvage while the blood cultures remain positive.",
+            "pages": [
+              4,
+              5,
+              7
+            ]
+          }
+        ],
+        "bestAnswerId": "b",
+        "priority": "extra"
+      },
+      {
+        "id": "hunt-4-2",
+        "level": 4,
+        "number": 7,
+        "title": "Initial coverage",
+        "objectiveIds": [
+          "management"
+        ],
+        "learningObjective": "Apply separate Gram-negative and Candida criteria to one patient.",
+        "vignette": "A patient has fever, new organ dysfunction and a tunneled central line without another evident source of infection. The line is used daily for total parenteral nutrition. Blood cultures are pending, and vancomycin has been started.",
+        "vignettePages": [
+          6
+        ],
+        "question": "Beyond MRSA, which empiric coverage does the lecture support for this presentation?",
+        "decisiveClue": "Sepsis supports Gram-negative coverage. Sepsis with total parenteral nutrition is also a Candida-risk setting in the lecture.",
+        "decisiveCluePages": [
+          6
+        ],
+        "challenge": true,
+        "hunt": true,
+        "mode": "decision",
+        "choices": [
+          {
+            "id": "a",
+            "name": "Add coverage for Gram-negative bacteria and Candida.",
+            "explanation": "Sepsis supports Gram-negative coverage. Sepsis with total parenteral nutrition is also a Candida-risk setting in the lecture.",
+            "pages": [
+              6
+            ]
+          },
+          {
+            "id": "b",
+            "name": "Add coverage for Gram-negative bacteria alone.",
+            "explanation": "Gram-negative coverage addresses sepsis but misses the Candida risk associated with sepsis and parenteral nutrition.",
+            "pages": [
+              6
+            ]
+          },
+          {
+            "id": "c",
+            "name": "Add coverage for Candida alone.",
+            "explanation": "The parenteral nutrition matters, but sepsis also supports adding Gram-negative coverage.",
+            "pages": [
+              6
+            ]
+          }
+        ],
+        "bestAnswerId": "a",
+        "priority": "extra"
       }
     ],
     "objectivesPage": 2,
@@ -4018,6 +4871,107 @@ const lectures = [
         "challenge": false,
         "organism": "pseudomonas",
         "priority": "extra"
+      },
+      {
+        "id": "hunt-5-1",
+        "level": 3,
+        "number": 12,
+        "title": "Breakthrough seizure",
+        "objectiveIds": [
+          "tradeoffs"
+        ],
+        "learningObjective": "Recognize a treatment interaction. See also Principles of antimicrobial therapy, p. 66.",
+        "vignette": "A patient with prosthetic valve endocarditis starts cefazolin, gentamicin, and rifampin. His epilepsy had been well controlled on phenytoin. Ten days later, he has a breakthrough seizure despite taking phenytoin as prescribed.",
+        "vignettePages": [
+          6
+        ],
+        "question": "Which of the following most likely explains the breakthrough seizure?",
+        "decisiveClue": "Rifampin induces hepatic metabolism and can lower phenytoin exposure enough for seizures to recur. See also Principles of antimicrobial therapy, PDF p. 66.",
+        "decisiveCluePages": [
+          6
+        ],
+        "challenge": true,
+        "hunt": true,
+        "mode": "decision",
+        "choices": [
+          {
+            "id": "a",
+            "name": "An interaction between cefazolin and phenytoin",
+            "explanation": "Cefazolin does not induce phenytoin metabolism in the way that explains this interaction.",
+            "pages": [
+              6
+            ]
+          },
+          {
+            "id": "b",
+            "name": "An interaction between rifampin and phenytoin",
+            "explanation": "Rifampin induces hepatic metabolism and can lower phenytoin exposure enough for seizures to recur. See also Principles of antimicrobial therapy, PDF p. 66.",
+            "pages": [
+              6
+            ]
+          },
+          {
+            "id": "c",
+            "name": "An interaction between gentamicin and phenytoin",
+            "explanation": "Gentamicin warrants renal and auditory monitoring. It does not induce the metabolism of phenytoin.",
+            "pages": [
+              6
+            ]
+          }
+        ],
+        "bestAnswerId": "b",
+        "priority": "extra"
+      },
+      {
+        "id": "hunt-5-2",
+        "level": 3,
+        "number": 13,
+        "title": "Treatment plan",
+        "objectiveIds": [
+          "tradeoffs"
+        ],
+        "learningObjective": "Separate the aminoglycoside duration from the overall prosthetic-valve course.",
+        "vignette": "The endocarditis team is treating MRSA infection of a prosthetic aortic valve. Vancomycin, rifampin and gentamicin have already been selected under the lecture's regimen. The pharmacist checks the planned stop dates for each component.",
+        "vignettePages": [
+          6
+        ],
+        "question": "Which set of planned durations fits the lecture?",
+        "decisiveClue": "The course is at least six weeks in the lecture. Gentamicin is the component limited to two weeks.",
+        "decisiveCluePages": [
+          6
+        ],
+        "challenge": true,
+        "hunt": true,
+        "mode": "decision",
+        "choices": [
+          {
+            "id": "a",
+            "name": "Vancomycin and rifampin for at least 6 weeks. Gentamicin for 2 weeks.",
+            "explanation": "The course is at least six weeks in the lecture. Gentamicin is the component limited to two weeks.",
+            "pages": [
+              6
+            ]
+          },
+          {
+            "id": "b",
+            "name": "Vancomycin and rifampin for at least 6 weeks. Gentamicin for 6 weeks.",
+            "explanation": "Six weeks applies to the overall course. Extending gentamicin to six weeks ignores the two-week exception.",
+            "pages": [
+              6
+            ]
+          },
+          {
+            "id": "c",
+            "name": "Vancomycin for at least 6 weeks. Rifampin and gentamicin for 2 weeks.",
+            "explanation": "The slide limits gentamicin to two weeks. It does not apply that same stop date to rifampin.",
+            "pages": [
+              6
+            ]
+          }
+        ],
+        "bestAnswerId": "a",
+        "priority": "extra",
+        "organism": "mrsa"
       }
     ],
     "objectivesPage": 2,
@@ -4611,6 +5565,121 @@ const lectures = [
         "mode": "decision",
         "challenge": false,
         "format": "question"
+      },
+      {
+        "id": "hunt-6-1",
+        "level": 3,
+        "number": 10,
+        "title": "Outpatient treatment",
+        "objectiveIds": [
+          "treatment"
+        ],
+        "learningObjective": "Use recent antibiotic exposure in outpatient regimen selection.",
+        "vignette": "A 64-year-old adult with CAP is being treated as an outpatient. The patient has no chronic conditions and completed an oral antibiotic course for cellulitis seven weeks ago. Local pneumococcal resistance to macrolides is 18%.",
+        "vignettePages": [
+          6,
+          8
+        ],
+        "question": "Which initial oral regimen best fits the lecture’s approach?",
+        "decisiveClue": "Under the lecture’s pathway, recent antibiotic use favors a beta-lactam plus atypical coverage among these options.",
+        "decisiveCluePages": [
+          6,
+          8
+        ],
+        "challenge": true,
+        "hunt": true,
+        "mode": "decision",
+        "choices": [
+          {
+            "id": "a",
+            "name": "Amoxicillin alone",
+            "explanation": "The antibiotic course falls within the previous three months, a risk factor in the lecture’s outpatient pathway.",
+            "pages": [
+              6,
+              8
+            ]
+          },
+          {
+            "id": "b",
+            "name": "Azithromycin alone",
+            "explanation": "The local rate is below 25%, but it does not cancel this patient’s recent antibiotic exposure.",
+            "pages": [
+              6,
+              8
+            ]
+          },
+          {
+            "id": "c",
+            "name": "Amoxicillin/clavulanate plus doxycycline",
+            "explanation": "Under the lecture’s pathway, recent antibiotic use favors a beta-lactam plus atypical coverage among these options.",
+            "pages": [
+              6,
+              8
+            ]
+          }
+        ],
+        "bestAnswerId": "c",
+        "priority": "extra"
+      },
+      {
+        "id": "hunt-6-2",
+        "level": 3,
+        "number": 11,
+        "title": "Admission orders",
+        "objectiveIds": [
+          "treatment"
+        ],
+        "learningObjective": "Combine indirect severity findings with recent exposure and preserve atypical coverage.",
+        "vignette": "A patient admitted from home with CAP has a respiratory rate of 34/min, BUN of 24 mg/dL and multilobar infiltrates. Blood pressure is stable. Forty-five days earlier, the patient received IV antibiotics while hospitalized. Cultures from this admission are pending.",
+        "vignettePages": [
+          5,
+          8,
+          9
+        ],
+        "question": "Which initial regimen fits the lecture's approach?",
+        "decisiveClue": "Tachypnea, uremia and multilobar infiltrates meet three minor severity criteria. With hospitalization and IV antibiotics within 90 days, the lecture broadens coverage for both Pseudomonas and MRSA.",
+        "decisiveCluePages": [
+          5,
+          8,
+          9
+        ],
+        "challenge": true,
+        "hunt": true,
+        "mode": "decision",
+        "choices": [
+          {
+            "id": "a",
+            "name": "Cefepime plus azithromycin",
+            "explanation": "Cefepime covers the two beta-lactam targets in the lecture and azithromycin covers atypicals. This leaves the indicated MRSA coverage missing.",
+            "pages": [
+              5,
+              8,
+              9
+            ]
+          },
+          {
+            "id": "b",
+            "name": "Ceftriaxone plus azithromycin plus vancomycin",
+            "explanation": "This covers MRSA and atypicals, but ceftriaxone does not provide the antipseudomonal coverage indicated here.",
+            "pages": [
+              5,
+              8,
+              9
+            ]
+          },
+          {
+            "id": "c",
+            "name": "Cefepime plus azithromycin plus vancomycin",
+            "explanation": "Tachypnea, uremia and multilobar infiltrates meet three minor severity criteria. With hospitalization and IV antibiotics within 90 days, the lecture broadens coverage for both Pseudomonas and MRSA.",
+            "pages": [
+              5,
+              8,
+              9
+            ]
+          }
+        ],
+        "bestAnswerId": "c",
+        "priority": "extra"
       }
     ],
     "objectivesPage": 2,
@@ -5319,6 +6388,136 @@ const lectures = [
         "bestAnswerId": "ventilation",
         "mode": "decision",
         "challenge": false
+      },
+      {
+        "id": "hunt-7-1",
+        "level": 3,
+        "number": 10,
+        "title": "Ward regimen",
+        "objectiveIds": [
+          "empiric"
+        ],
+        "learningObjective": "Identify a coverage gap after changing the beta-lactam in suspected HAP.",
+        "vignette": "A stable, nonventilated patient develops pneumonia on hospital day 5. The patient has no structural lung disease or IV antibiotic exposure in the past 90 days. Because of remote, immediate angioedema with piperacillin/tazobactam, the team selects aztreonam after checking local susceptibility. In this ward, 28% of S. aureus isolates are MRSA.",
+        "vignettePages": [
+          4,
+          7,
+          9,
+          12,
+          15
+        ],
+        "question": "Which empiric plan best completes the regimen?",
+        "decisiveClue": "Vancomycin supplies the anti-S. aureus coverage missing from aztreonam and covers MRSA for this ward's risk level.",
+        "decisiveCluePages": [
+          4,
+          7,
+          9,
+          12,
+          15
+        ],
+        "challenge": true,
+        "hunt": true,
+        "mode": "decision",
+        "choices": [
+          {
+            "id": "a",
+            "name": "Continue aztreonam alone.",
+            "explanation": "Aztreonam does not supply the required empiric S. aureus coverage. The ward MRSA proportion is above the lecture's HAP threshold.",
+            "pages": [
+              4,
+              7,
+              9,
+              12,
+              15
+            ]
+          },
+          {
+            "id": "b",
+            "name": "Continue aztreonam and add vancomycin.",
+            "explanation": "Vancomycin supplies the anti-S. aureus coverage missing from aztreonam and covers MRSA for this ward's risk level.",
+            "pages": [
+              4,
+              7,
+              9,
+              12,
+              15
+            ]
+          },
+          {
+            "id": "c",
+            "name": "Continue aztreonam and add amikacin.",
+            "explanation": "Amikacin adds Gram-negative coverage. It does not fill the S. aureus gap.",
+            "pages": [
+              4,
+              7,
+              9,
+              12,
+              15
+            ]
+          }
+        ],
+        "bestAnswerId": "b",
+        "priority": "extra"
+      },
+      {
+        "id": "hunt-7-2",
+        "level": 3,
+        "number": 11,
+        "title": "Culture follow-up",
+        "objectiveIds": [
+          "empiric"
+        ],
+        "learningObjective": "Use a negative screen to narrow one part of the empiric regimen.",
+        "vignette": "A ward patient started on cefepime and vancomycin for suspected HAP is now improving. The unit has low MRSA prevalence, the patient has no prior MRSA isolate, and the nasal MRSA PCR is negative. An adequate respiratory culture is pending.",
+        "vignettePages": [
+          4,
+          12,
+          16
+        ],
+        "question": "Which change does the negative result support while the team follows the culture?",
+        "decisiveClue": "In this improving, low-risk patient, the negative screen supports removing empiric MRSA coverage while reassessing the remaining therapy.",
+        "decisiveCluePages": [
+          4,
+          12,
+          16
+        ],
+        "challenge": true,
+        "hunt": true,
+        "mode": "decision",
+        "choices": [
+          {
+            "id": "a",
+            "name": "Stop vancomycin and continue cefepime for now.",
+            "explanation": "In this improving, low-risk patient, the negative screen supports removing empiric MRSA coverage while reassessing the remaining therapy.",
+            "pages": [
+              4,
+              12,
+              16
+            ]
+          },
+          {
+            "id": "b",
+            "name": "Stop cefepime and continue vancomycin for now.",
+            "explanation": "The screen informs the MRSA decision. It does not rule out a Gram-negative cause covered by cefepime.",
+            "pages": [
+              4,
+              12,
+              16
+            ]
+          },
+          {
+            "id": "c",
+            "name": "Stop both agents and follow the respiratory culture.",
+            "explanation": "A negative MRSA screen does not exclude the other organisms that can cause HAP.",
+            "pages": [
+              4,
+              12,
+              16
+            ]
+          }
+        ],
+        "bestAnswerId": "a",
+        "priority": "extra"
       }
     ],
     "marketVerification": {
@@ -6065,6 +7264,14 @@ function playSound(cue, value = 0, direction = 1) {
       noise(380,2280,.8,.84,now,.44,{attack:.18});
       noise(2400,370,.9,.49,now+.65,.32,{attack:.04});
       break;
+    case "orbital-impact":
+      noise(3200,680,.9,.20,now,.55,{attack:.005});
+      tone("sine",165,43,.54,now,.85,{attack:.009});
+      tone("triangle",480,104,.33,now+.025,.34,{attack:.014});
+      tone("sine",790,315,.40,now+.13,.18,{attack:.055});
+      tone("sine",395,158,.54,now+.34,.13,{attack:.066});
+      noise(820,290,.8,.48,now+.25,.18,{attack:.06});
+      break;
     case "story-cannon":
       tone("triangle",315,48,.33,now,.74,{attack:.006});
       tone("sine",850,145,.20,now+.014,.50,{attack:.008});
@@ -6090,6 +7297,10 @@ function playSound(cue, value = 0, direction = 1) {
     case "radio-end":
       tone("triangle",765,765,.079,now,.22,{attack:.009});
       tone("sine",528,506,.14,now+.081,.23,{attack:.008});
+      break;
+    case "ward-settled":
+      tone("sine",659,659,.13,now,.21,{attack:.013});
+      tone("sine",659,659,.18,now+.51,.18,{attack:.014});
       break;
     case "monitor":
       tone("sine",880,880,.115,now,.22,{attack:.008});
@@ -7412,7 +8623,8 @@ function renderPatient() {
   clearPatientSpeech();
   const index = inCannonDemo() ? 0 : lecture.cases.indexOf(currentCase);
   const character = patientPalettes[currentCase.id === storyPatientRound ? 2 : index % patientPalettes.length];
-  patientReaction = recoveries[index % recoveries.length];
+  const familiar = currentCase.id === storyPatientRound;
+  patientReaction = familiar ? {pose:"wave",message:"You stayed, Doc. Thank you."} : recoveries[index % recoveries.length];
   patientPlea = pleas[index % pleas.length];
   patientWard.dataset.variant = character.cut;
   patientWard.dataset.pose = "rest";
@@ -7424,6 +8636,10 @@ function renderPatient() {
   drawLyingPatient(rest,character,false);
   drawLyingPatient(reach,character,true);
   drawRecoveredPatient(recover,character,patientReaction.pose);
+  if (familiar) {
+    scarf(rest,49,58); scarf(reach,49,58);
+    scarf(recover.firstElementChild,0,10);
+  }
 }
 function showPatientSpeech(message,duration) {
   patientHold?.();
@@ -7659,6 +8875,7 @@ document.addEventListener("visibilitychange",() => {
 // ── Round lifecycle and answer feedback ──
 
 function paintInitial(retreat = false) {
+  stage.classList.remove("ward-safe");
   resetMeetingRoom();
   roundToken++;
   cancelMotion();
@@ -7712,7 +8929,7 @@ teamInvite.addEventListener("click",event => {
 });
 teamInvite.addEventListener("close",() => { teamInvite.hidden = true; });
 
-function showFeedback(played,choice,isBest,completed,championshipResult) {
+function showFeedback(played,choice,isBest,completed,resultMessage,newChampionshipAttempt) {
   const note = byId("lecture-completion");
   note.hidden = !completed;
   note.textContent = completed ? (profile.name.trim() ? profile.name.trim()+" · " : "") +
@@ -7721,7 +8938,7 @@ function showFeedback(played,choice,isBest,completed,championshipResult) {
   const feedback=byId("feedback");
   feedback.dataset.best=String(isBest);
   const verdict = isBest ? "Best answer" : "Not the best answer";
-  byId("verdict").textContent = championshipResult ? verdict + " · " + championshipResult : verdict;
+  byId("verdict").textContent = resultMessage ? verdict + " · " + resultMessage : verdict;
   const guestNote = byId("guest-team-note");
   const guest = championshipConfigured && !championshipPlayer && catalog.has(played.round.id);
   const message = byId("guest-team-message");
@@ -7734,14 +8951,14 @@ function showFeedback(played,choice,isBest,completed,championshipResult) {
     const saved = lastStored === JSON.stringify(profile);
     const balance = stars + (stars === 1 ? " first-try point" : " first-try points");
     message.textContent = (profile.results[played.round.id] & FIRST ?
-      "You have a first-try star for this case. " : "No point for this case. ") +
+      "You have a first-try star for this case. " : "No point added to your lifetime championship score for this case. ") +
       (saved ? balance + " saved in this browser." : balance + " in this session. Browser storage is unavailable.") +
       (navigator.onLine ? " Choose a team to add your points to the leaderboard." : " You can join when you’re back online.");
   } else if (championshipConfigured && championshipPlayer) {
     const player = championshipPlayer;
     const score = scoreOf(player);
     message.textContent = "Team " + championshipTeams[player.team].name + " · Your score: " + score +
-      (score === 1 ? " point." : " points.") + (!championshipResult && isBest ?
+      (score === 1 ? " point." : " points.") + (!newChampionshipAttempt && isBest ?
         (player.attempts[played.round.id] ? " This case has already counted." : " Only the first attempt earns a point.") : "");
   } else {
     guestNote.hidden = true;
@@ -7751,6 +8968,7 @@ function showFeedback(played,choice,isBest,completed,championshipResult) {
   byId("result-title").textContent="You chose "+choice.name+".";
   byId("chosen-why").textContent=choice.explanation;
   byId("chosen-source").textContent=played.lecture.title+" · "+pagesLabel(choice.pages);
+  setLectureReviewLinks("feedback-review-pdf",inCannonDemo() ? null : played.lecture.id);
   const otherChoices=byId("other-choices");
   for(const other of played.round.choices.filter(item=>item.id!==choice.id)) {
     const row=document.createElement("div");
@@ -7834,6 +9052,7 @@ async function confirmAnswer() {
   const isBest = choice.id === played.round.bestAnswerId;
   const heavy = isCarbapenem(choice.name);
   const previousStreak = arenaStreak();
+  const weeklyResult = demo ? "" : weeklyHunt.record(played.round.id,isBest);
   const championshipResult = !demo && championshipConfigured && championshipPlayer ?
     recordChampionshipAnswer(played.round.id,isBest) : "";
   byId("confirm").disabled = true;
@@ -7856,13 +9075,16 @@ async function confirmAnswer() {
   }
   const {streak,completed} = demo || championshipPlaying ? {streak:demo ? 0 : championshipStreak,completed:false} :
     recordAnswer(played.round.id,isBest);
+  if (isBest && played.round.id===storyPatientRound && !readPreference("asgard-patient")) {
+    savePreference("asgard-patient","rescued");
+  }
   const crewUnlocked = !demo && isBest && creditCrewWin(played.round);
   juice.vibrate(isBest ? 22 : [13,38,13]);
   showStreakMilestone(streak,token);
   if (meeting) await committeeVerdict(isBest,token);
   else await showCombatResult(impact,isBest,heavy,streak,previousStreak,token);
   if (token === roundToken && currentCase === played.round) {
-    showFeedback(played,choice,isBest,completed,championshipResult);
+    showFeedback(played,choice,isBest,completed,[championshipResult,weeklyResult].filter(Boolean).join(" · "), Boolean(championshipResult));
     if (streak >= 3) syncAtmosphere();
     showCrewReward(crewUnlocked,token);
     if (championshipResult) void syncChampionshipScore();
@@ -7881,6 +9103,12 @@ async function showCombatResult(impact,isBest,heavy,streak,previousStreak,token)
     await impactEffects;
     if (token !== roundToken) return;
     await Promise.all([reactPatient(true,token,streak),cheerPilot(token)]);
+    if (token===roundToken && !review && !championshipPlaying && !inCannonDemo() && !targetPosition().next) {
+      stopAtmosphere();
+      stage.classList.add("ward-safe");
+      playSound("ward-settled");
+      await tween(900,()=>{},token);
+    }
   } else {
     await Promise.all([impactEffects,reactPatient(false,token),reboundToPilot(impact,token)]);
   }
@@ -8712,11 +9940,30 @@ function roundGrid(item,rounds) {
   }
   return list;
 }
+const lectureReviewFiles = new Map([
+  ["principles-of-antimicrobial-therapy","principles-of-antimicrobial-therapy"],
+  ["antimicrobial-resistance","antimicrobial-resistance"],
+  ["antimicrobial-stewardship","antimicrobial-stewardship"],
+  ["bloodstream-infections","bloodstream-infections"],
+  ["infective-endocarditis","infective-endocarditis"],
+  ["lower-respiratory-tract-cap-hap-and-vap","community-acquired-pneumonia"],
+  ["hospital-and-ventilator-associated-pneumonia","hospital-and-ventilator-associated-pneumonia"]
+]);
+function setLectureReviewLinks(containerId, lectureId) {
+  const container = byId(containerId);
+  const file = lectureReviewFiles.get(lectureId);
+  container.hidden = !file;
+  for (const link of container.querySelectorAll("a")) {
+    if (file) link.href = "pdf/" + file + "-review.pdf";
+    else link.removeAttribute("href");
+  }
+}
 function renderMenu(item){
   syncProfile();
   byId("menu-title").textContent=item.title;
   byId("lecture-week").textContent="Week "+item.week+" · "+course.title;
   byId("menu-summary").textContent=practiceCounts(item);
+  setLectureReviewLinks("lecture-review-pdf",item.id);
   const list=byId("round-list");
   list.replaceChildren();
   const {essential,extra}=practiceGroups(item);
@@ -9067,6 +10314,7 @@ async function joinChampionship(event) {
     saveChampionship();
     championshipSyncStatus("");
     showChampionshipHome();
+    weeklyHunt.refresh();
     if (!byId("home").hidden) void refreshChampionshipBoard();
   } catch {
     championshipSyncStatus(championshipMessage());
@@ -9197,6 +10445,7 @@ async function findChampionshipRank() {
 }
 
 function drawTeamSummary() {
+  updateHospitalRecovery();
   const summary = byId("champ-team-summary");
   summary.hidden = !championshipConfigured;
   if (!championshipConfigured) return;
@@ -9437,6 +10686,7 @@ function route(){
     practiceGroups(lecture)[roundId.slice(8)].length ? roundId.slice(8) : null;
   byId("lecture-cleared").hidden = !cleared;
   byId("home").hidden=!!lecture;
+  weeklyHunt.refresh();
   byId("lecture-menu").hidden=!lecture||!!currentCase||!!cleared;
   byId("game").hidden=!currentCase;
   byId("case-count").textContent=course.code;
@@ -9490,13 +10740,215 @@ function route(){
   syncAtmosphere();
 }
 
+// Weekly competition uses the same question IDs across every entry point.
+// Store the first attempt at submission, independently of lifetime practice stars.
+const weeklyHunt = (() => {
+  const span = 7 * 86400000;
+  const anchor = Date.UTC(1970,0,3,21); // Sunday 00:00 in Riyadh.
+  const weekAt = (time = Date.now()) => Math.floor((time-anchor)/span);
+  const prefix = championshipKey + ":hunt:";
+  const memory = new Map();
+  let uploading = false, retry, rollover, retryDelay = 5000;
+  let winnerRequest, winnerCache, winnerError = false, syncError = false;
+  try { winnerCache = JSON.parse(readPreference(prefix+"winner")); } catch {}
+
+  function readAttempt(id,week) {
+    const key = prefix+id;
+    const value = memory.get(key) || readPreference(key) || "";
+    if (!value.startsWith(week+"/")) return null;
+    const code = value.slice(String(week).length+1);
+    return /^[ynYN]$/.test(code) ? code : null;
+  }
+  function writeAttempt(id,week,correct,sent) {
+    const key = prefix+id;
+    const letter = correct ? "y" : "n";
+    const value = week+"/"+(sent ? letter.toUpperCase() : letter);
+    if (savePreference(key,value)) memory.delete(key);
+    else memory.set(key,value);
+  }
+  function attempts(week) {
+    const rows = [];
+    for (const id of catalog.keys()) {
+      const code = readAttempt(id,week);
+      if (code) rows.push({id,correct:code.toLowerCase()==="y",sent:code===code.toUpperCase()});
+    }
+    return rows;
+  }
+  function draw() {
+    const week = weekAt(), rows = attempts(week);
+    const score = rows.filter(row=>row.correct).length;
+    const pending = rows.some(row=>!row.sent);
+    const winner = byId("hunt-winner");
+    if (winnerCache?.week === week) {
+      winner.textContent = winnerCache.names.length ?
+        winnerCache.names.join(" · ")+" — "+winnerCache.score+(winnerCache.score===1?" point":" points") :
+        "No winner yet · Next award Sunday";
+    } else {
+      winner.textContent = !championshipConfigured || !navigator.onLine || winnerError ?
+        "Weekly titleholder unavailable." : "Checking last week’s results…";
+    }
+    byId("hunt-balance").textContent = "Your week · "+score+(score===1?" point":" points")+
+      (!championshipPlayer ? " · Join a team to enter." : pending ?
+        (syncError || !navigator.onLine ? " · Pending sync. Connect before Sunday." : " · Syncing…") : "");
+  }
+  function record(id,correct) {
+    if (!catalog.has(id)) return "";
+    const week = weekAt();
+    if (readAttempt(id,week)) return "";
+    writeAttempt(id,week,correct,false);
+    void sync();
+    return correct ? "+1 weekly point" : "";
+  }
+
+  // Optimistic preconditions prevent simultaneous tabs from replacing each other's answers.
+  // A first attempt already accepted by Firestore takes precedence on reconciliation.
+  async function sync() {
+    if (uploading || !championshipConfigured || !championshipPlayer || !navigator.onLine) return;
+    const week = weekAt(), rows = attempts(week).filter(row=>!row.sent);
+    if (!rows.length) return;
+    clearTimeout(retry);
+    uploading = true;
+    let success = false;
+    try {
+      const player = championshipPlayer, auth = await authenticateChampionship();
+      const path = "/weekly_hunts/"+week+"/entries/"+encodeURIComponent(auth.uid);
+      const previous = await firestoreRequest(path,{missing:true});
+      const correct = new Set((previous?.fields?.correct?.arrayValue?.values || []).map(v=>v.stringValue));
+      const missed = new Set((previous?.fields?.missed?.arrayValue?.values || []).map(v=>v.stringValue));
+      let changed = false;
+      for (const row of rows) {
+        if (correct.has(row.id) || missed.has(row.id)) continue;
+        (row.correct ? correct : missed).add(row.id);
+        changed = true;
+      }
+      if (week !== weekAt()) return;
+      if (changed) {
+        const array = set => ({arrayValue:{values:Array.from(set,stringValue=>({stringValue}))}});
+        const fields = {nickname:{stringValue:player.nickname},team:{stringValue:player.team},
+          correct:array(correct),missed:array(missed),score:{integerValue:String(correct.size)}};
+        await firestoreRequest(":commit",{method:"POST",body:{writes:[{
+          update:{name:firebaseDocuments+path,fields},
+          currentDocument:previous ? {updateTime:previous.updateTime} : {exists:false}
+        }]}});
+      }
+      if (week === weekAt()) {
+        for (const id of [...correct,...missed]) {
+          if (catalog.has(id)) writeAttempt(id,week,correct.has(id),true);
+        }
+      }
+      retryDelay = 5000;
+      syncError = false;
+      success = true;
+    } catch {
+      syncError = true;
+      retry = setTimeout(sync,retryDelay);
+      retryDelay = Math.min(120000,retryDelay*2);
+    } finally {
+      uploading = false;
+      draw();
+      if (success && attempts(weekAt()).some(row=>!row.sent)) void sync();
+    }
+  }
+
+  async function loadWinners(week) {
+    const path = "/weekly_hunts/"+(week-1)+":runQuery";
+    const query = async options => {
+      const result = await firestoreRequest(path,{method:"POST",body:{structuredQuery:{
+        from:[{collectionId:"entries"}],select:{fields:[{fieldPath:"nickname"},{fieldPath:"score"}]},...options
+      }}});
+      return result.filter(row=>row.document).map(row=>row.document);
+    };
+    const [top] = await query({orderBy:[{field:{fieldPath:"score"},direction:"DESCENDING"}],limit:1});
+    const score = cloudScoreOf(top);
+    const tied = score ? await query({where:{fieldFilter:{field:{fieldPath:"score"},op:"EQUAL",value:{integerValue:String(score)}}}}) : [];
+    return {week,names:tied.map(doc=>doc.fields.nickname.stringValue),score};
+  }
+  function refresh() {
+    const week = weekAt();
+    draw();
+    void sync();
+    if (byId("home").hidden) return;
+    clearTimeout(rollover);
+    rollover = setTimeout(refresh,anchor+(week+1)*span-Date.now()+50);
+    if (!championshipConfigured || !navigator.onLine || winnerCache?.week===week || winnerRequest) return;
+    winnerRequest = loadWinners(week).then(board=>{
+      winnerCache = board;
+      savePreference(prefix+"winner",JSON.stringify(board));
+      winnerError = false;
+    }).catch(()=>{winnerError = true;}).finally(()=>{
+      winnerRequest = null;
+      draw();
+      if (week!==weekAt()) refresh();
+    });
+  }
+  function listCases() {
+    const list = byId("hunt-cases-list");
+    list.replaceChildren();
+    for (const item of lectures) {
+      const rounds = item.cases.filter(round=>round.hunt);
+      if (!rounds.length) continue;
+      const group = document.createElement("details");
+      group.append(textNode("summary",item.title+" ("+rounds.length+")"));
+      for (const round of rounds) {
+        const link = textNode("a",round.title,"next-link");
+        link.href = lectureLink(item,round);
+        group.append(link);
+      }
+      list.append(group);
+    }
+  }
+  byId("champ-refresh").addEventListener("click",refresh);
+  window.addEventListener("online",refresh);
+  window.addEventListener("storage",event=>{
+    if (event.key?.startsWith("dose-arcade:"+prefix) && !byId("home").hidden) draw();
+  });
+  document.addEventListener("visibilitychange",()=>{ if (!document.hidden) refresh(); });
+  return {record,refresh,listCases};
+})();
+
+weeklyHunt.listCases();
+
 /* ==========================================================================
    Opening cinematic • the same SVG timeline drives the announcement video
    ========================================================================== */
 
 const story = byId("story");
-const storyLength = 38.5;
-const storyTitleTime = 35.5;
+// A cutaway holds the shuttle at a fixed altitude. The existing landing resumes after impact.
+const strikeStart = 6.73;
+const strikeDuration = 5.20;
+function filmTime(t) { return t >= strikeStart ? t+strikeDuration : t; }
+
+function paintStrike(elapsed) {
+  const active = elapsed>=0 && elapsed<strikeDuration;
+  byId("story-strike").setAttribute("opacity",active?1:0);
+  if (!active) return;
+  const clamp=(value)=>Math.max(0,Math.min(1,value));
+  const bridge=elapsed<2.54, chase=elapsed>=2.86 && elapsed<4.17;
+  byId("strike-bridge").setAttribute("opacity",bridge?1:0);
+  byId("strike-chase").setAttribute("opacity",chase?1:0);
+  const press=clamp((elapsed-1.55)/.20)*(1-clamp((elapsed-2.10)/.22));
+  byId("strike-arm").setAttribute("transform","rotate("+(press*11)+" 151 151)");
+  byId("strike-key").setAttribute("transform","translate(0 "+press*3+")");
+  byId("strike-key-light").setAttribute("fill",elapsed>=1.73?"#ff9382":"#ff5157");
+  const fired=elapsed>=1.73;
+  byId("strike-readout").textContent=fired?"SHOOT!":"READY";
+  byId("strike-readout").setAttribute("fill",fired?"#ffdd9f":"#a5b4c7");
+  const run=clamp((elapsed-2.86)/1.31);
+  byId("strike-streaks").setAttribute("transform","translate("+(-run*165)+" "+(-run*40)+")");
+  byId("strike-surface").setAttribute("transform","translate("+(-28*run)+" "+(-36*run)+")");
+  const zoom=1.13+.95*Math.sin(Math.PI*run);
+  byId("strike-torpedo").setAttribute("transform","translate("+(82+520*run)+" "+(111+93*run)+") rotate(12) scale("+zoom+")");
+  const depart=clamp((elapsed-2.54)/.32);
+  const shot=byId("strike-away");
+  shot.setAttribute("opacity",elapsed>=2.54 && elapsed<2.86?1:0);
+  shot.setAttribute("transform","translate("+(233+192*depart)+" "+(194+19*depart)+") rotate(6) scale("+(.20+.18*depart)+")");
+  const blast=clamp((elapsed-4.17)/.95);
+  byId("strike-plume").setAttribute("transform","translate(485 217) scale("+(.22+1.32*Math.sqrt(blast))+")");
+  byId("strike-plume").setAttribute("opacity",elapsed>=4.17?1-blast:0);
+}
+
+const storyLength = filmTime(38.5);
+const storyTitleTime = filmTime(35.5);
 const storyTraffic = [
   {y:79,period:4.8,offset:.1,size:.86,direction:1,color:"#9ee5dc"},
   {y:121,period:5.9,offset:.64,size:.62,direction:-1,color:"#ebbc91"},
@@ -9546,7 +10998,11 @@ const storyCues = [
   ...wardVolleys.flatMap(({time})=>[[time,"story-laser",1],[time+wardFlight,"bounce"]]),
   ...storyShots.flatMap((shot,index)=>[[shot.time,index<airCover.length?"story-cannon":"story-laser",index%2],
     [shot.time+shotFlight,"story-damage",index%3]])
-].sort((a,b)=>a[0]-b[0]);
+].filter(([time,cue])=>!(time>=6.73 && time<7.73 && ["story-cannon","story-damage"].includes(cue)))
+.map(([time,...cue])=>[filmTime(time),...cue]).concat([
+  [strikeStart+.12,"radio-start"],[strikeStart+1.73,"radio-bit"],[strikeStart+2.54,"story-cannon"],
+  [strikeStart+2.87,"story-boost"],[strikeStart+4.17,"orbital-impact"]
+]).sort((a,b)=>a[0]-b[0]);
 let storyFrame = 0;
 let storyPatientRound = "";
 
@@ -9557,6 +11013,77 @@ function storyClone(source, destination) {
   destination.append(copy);
   return copy;
 }
+
+// Hospital recovery uses the same two team totals already fetched for the leaderboard.
+const hospitalThresholds = [25, 100, 250, 500];
+const dischargePending = readPreference("asgard-patient") === "rescued";
+let hospitalVisible = false;
+let dischargeStarted = false;
+let hospitalLevel = Math.max(0, Math.min(4, parseInt(readPreference("asgard-wards"), 10) || 0));
+
+function scarf(parent, x, y) {
+  const cloth = svgNode("g",{transform:"translate("+x+" "+y+")"},parent);
+  patientPath(cloth,"#59406f","M-6 0h12v4H2v7h-4V4h-4z");
+  patientPath(cloth,"#c39dd8","M-5 0H5v2H-5zM-2 7h4v2h-4z");
+}
+
+function buildHospital() {
+  const windows = byId("hospital-windows");
+  for (const [row,y] of [92,73,51].entries()) {
+    for (const x of [142,160,178,251,269,287]) {
+      if (row===2 && x>275) continue;
+      svgNode("rect",{x,y,width:11,height:6,fill:"#253547","data-floor":row+1},windows);
+    }
+  }
+  const ship = storyClone(byId("story-flight-ship"), byId("hospital-supply"));
+  ship.removeAttribute("transform");
+  const woman = byId("discharge-patient");
+  patientPath(woman,"#302b42","M-6 24h14v14h-5V30H0v8h-7z");
+  patientPath(woman,"#ad977b","M-6 8H6v3h4v15l2 4H-9l2-7h-5v-9h5z");
+  patientPath(woman,"#d7c4a3","M-5 11h4v15h-5zm9 1h3v14H4z");
+  patientPath(woman,"#d29876","M-12 18h4v4h-4zM10 19h3v5h-3z");
+  patientFace(woman,patientPalettes[2],true);
+  scarf(woman,0,9);
+  paintHospital();
+  new IntersectionObserver(([entry])=>{
+    hospitalVisible=entry.isIntersecting;
+    showDischarge();
+  },{threshold:.45}).observe(byId("rescue-hospital"));
+}
+
+function paintHospital() {
+  for (const pane of byId("hospital-windows").children) {
+    pane.setAttribute("fill", Number(pane.dataset.floor)<=hospitalLevel ? "#ffdb9a" : "#263849");
+  }
+  byId("hospital-sign").setAttribute("fill",hospitalLevel>=3?"#ffe0a2":"#738494");
+  byId("hospital-supply").setAttribute("opacity",hospitalLevel>=4?"1":"0");
+  if (hospitalLevel) byId("hospital-caption").textContent="Asgard General · "+
+    ["","First ward online","Two wards online","Emergency beacon online","Supply shuttle on site"][hospitalLevel];
+}
+
+function updateHospitalRecovery() {
+  const teams=leaderboard?.teams;
+  if(teams?.length!==2 || !teams.every(row=>Number.isSafeInteger(row.points) && row.points>=0)) return;
+  const total=teams.reduce((sum,row)=>sum+row.points,0);
+  const next=hospitalThresholds.filter(goal=>total>=goal).length;
+  if(next<=hospitalLevel) return;
+  hospitalLevel=next;
+  savePreference("asgard-wards",String(next));
+  paintHospital();
+  if(next===4) byId("hospital-supply").classList.add("arriving");
+}
+
+function showDischarge() {
+  if (!dischargePending || dischargeStarted || !hospitalVisible || document.hidden ||
+      byId("home").hidden || byId("story").open) return;
+  dischargeStarted=true;
+  savePreference("asgard-patient","discharged");
+  byId("discharge-party").setAttribute("visibility","visible");
+  byId("rescue-hospital").classList.add("discharge");
+  byId("discharge-live").textContent="Hey, Doc. I’m going home today.";
+  setTimeout(()=>byId("discharge-party").setAttribute("visibility","hidden"),6500);
+}
+document.addEventListener("visibilitychange",showDischarge);
 
 function buildStoryArt() {
   const defs = byId("story-art").querySelector("defs");
@@ -9624,6 +11151,11 @@ function buildStoryArt() {
     drawLyingPatient(bed,patientPalettes[palette],true);
   }
   buildRescueInstruments();
+  pharmacistArt(byId("strike-wanda"),"woman");
+  for(let i=0;i<28;i++) {
+    const x=(i*123)%830, y=(i*71)%304;
+    svgNode("path",{d:"M"+x+" "+y+"l"+(22+i%6*8)+" 8",stroke:i%3?"#617592":"#a4a9c4","stroke-width":i%2+1},byId("strike-streaks"));
+  }
   for(let i=0;i<14;i++) {
     svgNode("path",{d:"M-10 0h8v-2h9v2h6v3H-9z",fill:i%2?"#9a94af":"#a7b6c9"},byId("story-pad-dust"));
   }
@@ -9637,6 +11169,7 @@ function buildStoryArt() {
   storyClone(byId("patient-shadow"),byId("story-bed"));
   storyClone(byId("patient-bed"),byId("story-bed"));
   drawLyingPatient(byId("story-elder"),patientPalettes[2],false);
+  scarf(byId("story-elder"),49,58);
   landingPharmacist(byId("story-ward-wanda"),"woman");
   landingPharmacist(byId("story-ward-strange"),"man");
   for (const [id,who] of [["story-wanda","woman"],["story-strange","man"]]) {
@@ -9757,7 +11290,9 @@ function scanStoryRadar(id,t,lock) {
   byId(id+"-blip").setAttribute("opacity",lock?1:.25+.75*Math.max(0,Math.cos(t*5)));
 }
 
-function renderStoryFrame(t, still = false) {
+function renderStoryFrame(clock, still = false) {
+  const t=clock<strikeStart ? clock : Math.max(strikeStart,clock-strikeDuration);
+  paintStrike(clock-strikeStart);
   const progress = (start,end) => Math.max(0,Math.min(1,(t-start)/(end-start)));
   const paint = (id,alpha) => byId(id).setAttribute("opacity",String(Number(alpha)));
   const move = (id,x,y) => byId(id).setAttribute("transform","translate("+x+" "+y+")");
@@ -9769,7 +11304,7 @@ function renderStoryFrame(t, still = false) {
   paint("story-ward",t>=17.1 && t<28);
   paint("story-dialogue",t>=22.95 && t<28);
   paint("story-doom-scene",t>=28 && t<32.25);
-  paint("story-launch",t>=32.25 && t<storyTitleTime+.22);
+  paint("story-launch",t>=32.25 && clock<storyTitleTime+.22);
   if (t>=28 && t<32.25) {
     scanStoryRadar("story-doom-radar",t-28,t>=30.52);
     flyStars("story-doom-stars",t-28,.065,265,80);
@@ -9782,7 +11317,7 @@ function renderStoryFrame(t, still = false) {
     byId("story-depart").setAttribute("transform","translate("+(-210+716*thrust)+" "+(95-14*thrust)+") scale("+size+") rotate(-10 180 112)");
     paint("story-drive",.82+.16*Math.sin(t*30));
   }
-  paint("story-end",progress(storyTitleTime-.25,storyTitleTime+.22));
+  paint("story-end",progress(35.25,35.72));
   if (orbit) {
     const lines = ["Star’s Thera, do you copy?","The epidemic has reached our ward.","We have patients trapped inside."];
     const reveal = [progress(.45,2.13),progress(2.65,3.72),progress(3.7,4.39)];
@@ -9856,7 +11391,7 @@ function renderStoryFrame(t, still = false) {
     paint("story-plea-west",t>=8.76 && t<10.85);
     for (const [index,[x,y,scale]] of storyEnemies.entries()) {
       const hit = storyShots.find(shot=>shot.target===index);
-      const reaction = hit ? progress(hit.time+shotFlight,hit.time+shotFlight+.44) : 0;
+      const reaction = hit && airCover.some(a=>a[3]===index) ? Math.min(1,Math.max(0,(clock-strikeStart-4.17)/.42)) : hit ? progress(hit.time+shotFlight,hit.time+shotFlight+.44) : 0;
       const pulse = Math.sin(reaction*Math.PI/2);
       const dx = Math.sin(t*5+index)*3 + pulse*29;
       const dy = Math.sin(t*7+index)*4 - pulse*14;
@@ -9872,9 +11407,9 @@ function renderStoryFrame(t, still = false) {
       const angle = Math.atan2(hitY-y,hitX-x)*180/Math.PI;
       const bolt = byId("story-shot-"+index);
       bolt.setAttribute("transform","translate("+(x+(hitX-x)*flight)+" "+(y+(hitY-y)*flight)+") rotate("+angle+")");
-      paint("story-shot-"+index,flight>0 && flight<1);
-      paint("story-muzzle-"+index,t>=time && 1-progress(time,time+.10));
-      paint("story-hit-"+index,t>=time+shotFlight && 1-progress(time+shotFlight,time+shotFlight+.24));
+      paint("story-shot-"+index,index>=airCover.length && flight>0 && flight<1);
+      paint("story-muzzle-"+index,index>=airCover.length && t>=time && 1-progress(time,time+.10));
+      paint("story-hit-"+index,index>=airCover.length && t>=time+shotFlight && 1-progress(time+shotFlight,time+shotFlight+.24));
     });
   }
   if (reflected) {
@@ -9939,7 +11474,7 @@ function finishStory(openCase = false) {
     storyPatientRound = target.split("/")[2];
     location.hash = target;
   }
-  else { syncAtmosphere(); syncArrival(); }
+  else { syncAtmosphere(); syncArrival(); showDischarge(); }
 }
 
 function startStory() {
@@ -9952,6 +11487,7 @@ function startStory() {
   byId("story-play").hidden = !reducedMotion.matches;
   renderStoryFrame(0,reducedMotion.matches);
   story.showModal();
+  savePreference("asgard-intro","seen");
   if (reducedMotion.matches) return;
   let started;
   let cue = 0;
@@ -9998,6 +11534,7 @@ updateAwards(false,Object.values(profile.results).some(flags => flags === (SOLVE
 drawWordmark();
 drawArena();
 buildStoryArt();
+buildHospital();
 addReadyFaces();
 startArenaLife();
 renderLibrary();
@@ -10008,9 +11545,10 @@ byId("play-extra").addEventListener("click",() => advanceMission(practiceGroups(
 byId("clear-library").addEventListener("click",() => { location.hash = "#library"; });
 byId("retry").addEventListener("click",retryRound);
 const storyLecture = lectures.find(item=>practiceGroups(item).essential.length);
+storyPatientRound = practiceGroups(storyLecture).essential[0].id;
 byId("story-play").href = lectureLink(storyLecture,practiceGroups(storyLecture).essential[0]);
 route();
-if (["","#home","#library"].includes(location.hash)) startStory();
+if (["","#home","#library"].includes(location.hash) && readPreference("asgard-intro") !== "seen") startStory();
 </script>
 </body>
 </html>
